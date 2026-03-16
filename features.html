@@ -1,0 +1,1444 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Features — Budder Buddy Tattoo Healing App</title>
+  <link rel="canonical" href="https://budderbuddy.org/features.html" />
+  <meta name="description" content="Deep-dive every Budder Buddy feature — Ghost Camera, Healing Timelapse, AI Healing Stage Guide, Live UV Rating, Smart Reminders, and Ink Vault. Built to protect your investment." />
+  <meta property="og:title" content="Features — Budder Buddy Tattoo Healing App" />
+  <meta property="og:description" content="Ghost Camera, Healing Timelapse, AI Healing Guide, Live UV Alerts, Smart Reminders, Ink Vault. Every feature designed for the heal." />
+  <meta property="og:url" content="https://budderbuddy.org/features.html" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;700;800;900&family=Nunito:ital,wght@0,400;0,600;0,700;0,800;1,700&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --black:     #080808;
+      --dark:      #0d0d0d;
+      --dark2:     #121212;
+      --card:      rgba(14,14,14,0.9);
+      --blue:      #4facfe;
+      --blue-dim:  rgba(79,172,254,0.12);
+      --blue-glow: rgba(79,172,254,0.35);
+      --gold:      #f5a623;
+      --gold-dim:  rgba(245,166,35,0.12);
+      --gold-glow: rgba(245,166,35,0.35);
+      --white:     #f0f0f0;
+      --muted:     #555;
+      --border:    rgba(255,255,255,0.07);
+      --font-display: 'Orbitron', monospace;
+      --font:      'Nunito', sans-serif;
+    }
+
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: var(--font);
+      background: var(--black);
+      color: var(--white);
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    /* ─── LIQUID METAL ─── */
+    @keyframes metal-flow {
+      0%   { background-position: 0%   50%; }
+      50%  { background-position: 100% 50%; }
+      100% { background-position: 0%   50%; }
+    }
+
+    .lm-blue {
+      background: linear-gradient(110deg,
+        #001933 0%, #003366 12%, #0066cc 22%,
+        #2196f3 32%, #4facfe 42%, #a8d8ff 50%,
+        #4facfe 58%, #2196f3 68%,
+        #0066cc 78%, #003366 88%, #001933 100%
+      );
+      background-size: 220% 220%;
+      animation: metal-flow 5s ease-in-out infinite;
+    }
+
+    .lm-gold {
+      background: linear-gradient(110deg,
+        #1a0d00 0%, #3d2000 12%, #7a4500 22%,
+        #c47a00 32%, #f5a623 42%, #fde68a 50%,
+        #f5a623 58%, #c47a00 68%,
+        #7a4500 78%, #3d2000 88%, #1a0d00 100%
+      );
+      background-size: 220% 220%;
+      animation: metal-flow 5s ease-in-out infinite reverse;
+    }
+
+    @keyframes sheen-slide {
+      0%   { transform: translateX(-120%) skewX(-15deg); }
+      100% { transform: translateX(220%)  skewX(-15deg); }
+    }
+    @keyframes eyebrow-glow {
+      from { text-shadow: 0 0 8px rgba(79,172,254,0.4); }
+      to   { text-shadow: 0 0 20px rgba(79,172,254,0.9), 0 0 40px rgba(79,172,254,0.3); }
+    }
+    @keyframes glow-pulse-blue {
+      0%, 100% { box-shadow: 0 0 24px rgba(79,172,254,0.4), 0 0 60px rgba(79,172,254,0.12); }
+      50%       { box-shadow: 0 0 48px rgba(79,172,254,0.7), 0 0 100px rgba(79,172,254,0.25); }
+    }
+    @keyframes float-up-slow {
+      0%, 100% { transform: translateY(0px); }
+      50%       { transform: translateY(-10px); }
+    }
+    @keyframes blob-drift {
+      0%, 100% { border-radius: 60% 40% 70% 30% / 50% 60% 40% 60%; transform: rotate(0deg) scale(1); }
+      33%  { border-radius: 40% 60% 30% 70% / 60% 40% 60% 40%; transform: rotate(120deg) scale(1.05); }
+      66%  { border-radius: 70% 30% 50% 50% / 30% 70% 50% 50%; transform: rotate(240deg) scale(0.97); }
+    }
+
+    /* ─── UTILS ─── */
+    #grain {
+      position: fixed; inset: 0; z-index: 9997; pointer-events: none; opacity: 0.028;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='250' height='250'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='250' height='250' filter='url(%23n)'/%3E%3C/svg%3E");
+    }
+    #cursor-glow {
+      pointer-events: none; position: fixed;
+      width: 500px; height: 500px; border-radius: 50%;
+      background: radial-gradient(circle, rgba(79,172,254,0.05) 0%, transparent 70%);
+      transform: translate(-50%,-50%); z-index: 9999; transition: opacity 0.3s;
+    }
+
+    .reveal { opacity: 0; transform: translateY(28px); transition: opacity 0.7s ease, transform 0.7s ease; }
+    .reveal.on { opacity: 1; transform: none; }
+    .d1{transition-delay:.08s} .d2{transition-delay:.17s} .d3{transition-delay:.26s}
+    .d4{transition-delay:.35s} .d5{transition-delay:.44s} .d6{transition-delay:.53s}
+
+    /* ─── NAV ─── */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 0 2.5rem; height: 68px;
+      background: rgba(8,8,8,0.75);
+      backdrop-filter: blur(24px) saturate(160%);
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+      transition: background 0.4s;
+    }
+    nav::after {
+      content: '';
+      position: absolute; bottom: 0; left: 0; right: 0; height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(79,172,254,0.35), rgba(245,166,35,0.35), transparent);
+    }
+    nav.scrolled { background: rgba(8,8,8,0.96); }
+
+    .nav-logo { display: flex; align-items: center; gap: 0.75rem; text-decoration: none; }
+    .nav-logo-icon {
+      width: 36px; height: 36px; border-radius: 9px;
+      display: flex; align-items: center; justify-content: center;
+      position: relative; overflow: hidden;
+    }
+    .nav-logo-icon-bg {
+      position: absolute; inset: 0;
+      background: linear-gradient(110deg,
+        #001933 0%, #003366 20%, #0066cc 35%, #4facfe 50%,
+        #a8d8ff 60%, #4facfe 70%, #0066cc 85%, #001933 100%
+      );
+      background-size: 220% 220%;
+      animation: metal-flow 4s ease-in-out infinite;
+    }
+    .nav-logo-icon svg { position: relative; z-index: 1; width: 20px; height: 20px; }
+    .nav-logo-name {
+      display: block;
+      font-family: var(--font-display); font-size: 0.82rem; font-weight: 700;
+      letter-spacing: 0.08em; color: var(--white);
+    }
+    .nav-logo-sub { display: block; font-size: 0.6rem; color: var(--muted); letter-spacing: 0.05em; }
+
+    .nav-links { display: flex; gap: 2.25rem; list-style: none; }
+    .nav-links a {
+      color: var(--muted); text-decoration: none; font-size: 0.82rem;
+      font-weight: 600; letter-spacing: 0.04em; transition: color 0.2s;
+    }
+    .nav-links a:hover, .nav-links a.active { color: var(--white); }
+    .nav-links a.active { color: var(--blue); }
+
+    .nav-cta {
+      position: relative; overflow: hidden;
+      padding: 0.55rem 1.4rem; border-radius: 8px;
+      font-family: var(--font-display); font-size: 0.68rem; font-weight: 700;
+      letter-spacing: 0.08em; text-decoration: none; color: #000;
+      border: none; cursor: pointer; display: inline-block;
+      box-shadow: 0 0 24px rgba(79,172,254,0.45), 0 0 48px rgba(79,172,254,0.12);
+      transition: box-shadow 0.3s, transform 0.2s;
+    }
+    .nav-cta::before {
+      content: ''; position: absolute; inset: 0;
+      background: linear-gradient(110deg,
+        #001933 0%, #003366 15%, #0066cc 28%,
+        #4facfe 38%, #7ec8fd 48%, #c8e9ff 50%,
+        #7ec8fd 52%, #4facfe 62%,
+        #0066cc 72%, #003366 85%, #001933 100%
+      );
+      background-size: 220% 220%;
+      animation: metal-flow 4s ease-in-out infinite;
+    }
+    .nav-cta span { position: relative; z-index: 1; }
+    .nav-cta:hover { box-shadow: 0 0 40px rgba(79,172,254,0.7), 0 0 80px rgba(79,172,254,0.25); transform: translateY(-1px); }
+
+    /* Nav mobile */
+    .nav-hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; padding: 4px; background: none; border: none; }
+    .nav-hamburger span { width: 24px; height: 2px; background: var(--white); border-radius: 2px; transition: 0.3s; }
+
+    /* ─── PAGE HERO ─── */
+    .page-hero {
+      position: relative;
+      padding: 10rem 4rem 6rem;
+      text-align: center;
+      overflow: hidden;
+    }
+    .page-hero-bg {
+      position: absolute; inset: 0; z-index: 0;
+      background: radial-gradient(ellipse 80% 60% at 50% 0%, rgba(79,172,254,0.07) 0%, transparent 70%);
+    }
+    .page-hero-grid {
+      position: absolute; inset: 0; z-index: 0; opacity: 0.04;
+      background-image:
+        linear-gradient(rgba(79,172,254,0.5) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(79,172,254,0.5) 1px, transparent 1px);
+      background-size: 60px 60px;
+      mask-image: radial-gradient(ellipse 80% 100% at 50% 0%, black 0%, transparent 80%);
+    }
+    .page-hero-eyebrow {
+      display: inline-flex; align-items: center; gap: 0.6rem;
+      font-family: var(--font-display); font-size: 0.6rem; font-weight: 600;
+      letter-spacing: 0.2em; text-transform: uppercase; margin-bottom: 1.5rem;
+      color: var(--blue);
+      animation: eyebrow-glow 2.5s ease-in-out infinite alternate;
+      position: relative; z-index: 1;
+    }
+    .page-hero-eyebrow::before, .page-hero-eyebrow::after {
+      content: ''; height: 1px; background: var(--blue);
+    }
+    .page-hero-eyebrow::before { width: 28px; }
+    .page-hero-eyebrow::after  { width: 14px; }
+
+    .page-hero-headline {
+      font-family: var(--font-display);
+      font-size: clamp(2rem, 5vw, 3.8rem);
+      font-weight: 900; line-height: 1.1;
+      letter-spacing: -0.02em;
+      color: var(--white);
+      margin-bottom: 1.25rem;
+      position: relative; z-index: 1;
+    }
+    .page-hero-sub {
+      font-size: clamp(0.95rem, 1.6vw, 1.08rem);
+      color: rgba(240,240,240,0.5);
+      max-width: 480px;
+      margin: 0 auto 2.5rem;
+      line-height: 1.8;
+      position: relative; z-index: 1;
+    }
+    .page-hero-scroll-hint {
+      position: relative; z-index: 1;
+      display: inline-flex; flex-direction: column; align-items: center; gap: 0.5rem;
+      color: var(--muted); font-size: 0.72rem; letter-spacing: 0.08em; text-transform: uppercase;
+      font-family: var(--font-display);
+    }
+    .scroll-mouse {
+      width: 24px; height: 38px; border: 2px solid rgba(255,255,255,0.15); border-radius: 12px;
+      position: relative; display: flex; justify-content: center;
+    }
+    .scroll-mouse::after {
+      content: ''; position: absolute; top: 6px;
+      width: 3px; height: 8px; background: var(--blue); border-radius: 2px;
+      animation: float-up-slow 1.5s ease-in-out infinite;
+    }
+    .page-hero-fade {
+      position: absolute; bottom: 0; left: 0; right: 0; height: 80px; z-index: 1;
+      background: linear-gradient(to top, var(--black), transparent);
+    }
+
+    /* ─── FEATURES INDEX BAR ─── */
+    .features-index {
+      position: sticky; top: 68px; z-index: 900;
+      background: rgba(8,8,8,0.9);
+      backdrop-filter: blur(20px);
+      border-bottom: 1px solid var(--border);
+      padding: 0 4rem;
+      overflow-x: auto;
+    }
+    .features-index::-webkit-scrollbar { height: 0; }
+    .features-index-inner {
+      display: flex; gap: 0; min-width: max-content;
+    }
+    .feat-idx-item {
+      padding: 1rem 1.5rem;
+      font-family: var(--font-display); font-size: 0.58rem; font-weight: 600;
+      letter-spacing: 0.1em; text-transform: uppercase;
+      color: var(--muted); text-decoration: none;
+      border-bottom: 2px solid transparent;
+      transition: color 0.2s, border-color 0.2s;
+      white-space: nowrap;
+    }
+    .feat-idx-item:hover { color: var(--white); border-color: rgba(255,255,255,0.2); }
+    .feat-idx-item.active-feat { color: var(--blue); border-color: var(--blue); }
+
+    /* ─── FEATURE SECTION ─── */
+    .feature-section {
+      padding: 8rem 4rem;
+      position: relative;
+      border-bottom: 1px solid var(--border);
+    }
+    .feature-section:nth-child(even) { background: rgba(255,255,255,0.01); }
+    .feature-section-inner {
+      max-width: 1200px; margin: 0 auto;
+      display: grid; grid-template-columns: 1fr 420px; gap: 5rem; align-items: start;
+    }
+    .feature-section:nth-child(even) .feature-section-inner {
+      grid-template-columns: 420px 1fr;
+    }
+    .feature-section:nth-child(even) .feature-text { order: 2; }
+    .feature-section:nth-child(even) .feature-mockup { order: 1; }
+
+    /* Number + tag row */
+    .feature-meta {
+      display: flex; align-items: center; gap: 1rem; margin-bottom: 1.5rem; flex-wrap: wrap;
+    }
+    .feature-number {
+      font-family: var(--font-display); font-size: 0.65rem; font-weight: 800;
+      letter-spacing: 0.15em; color: rgba(255,255,255,0.15);
+    }
+    .feature-tag {
+      font-family: var(--font-display); font-size: 0.56rem; font-weight: 700;
+      letter-spacing: 0.14em; text-transform: uppercase;
+      padding: 0.3rem 0.9rem; border-radius: 20px;
+    }
+    .tag-blue {
+      background: var(--blue-dim); color: var(--blue);
+      border: 1px solid rgba(79,172,254,0.2);
+    }
+    .tag-gold {
+      background: var(--gold-dim); color: var(--gold);
+      border: 1px solid rgba(245,166,35,0.2);
+    }
+
+    .feature-title {
+      font-family: var(--font-display);
+      font-size: clamp(1.6rem, 3vw, 2.4rem);
+      font-weight: 800; letter-spacing: -0.01em; line-height: 1.15;
+      color: var(--white); margin-bottom: 1.25rem;
+    }
+    .feature-title span {
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    .title-blue-grad {
+      background: linear-gradient(110deg, #4facfe, #a8d8ff, #4facfe);
+      background-size: 200% 200%;
+      animation: metal-flow 5s ease-in-out infinite;
+    }
+    .title-gold-grad {
+      background: linear-gradient(110deg, #f5a623, #fde68a, #f5a623);
+      background-size: 200% 200%;
+      animation: metal-flow 5s ease-in-out infinite reverse;
+    }
+
+    .feature-desc {
+      font-size: 1.02rem; color: rgba(240,240,240,0.65);
+      line-height: 1.85; margin-bottom: 2.5rem;
+      font-weight: 500;
+    }
+
+    /* How It Works */
+    .how-it-works { margin-top: 0.5rem; }
+    .hiw-label {
+      font-family: var(--font-display); font-size: 0.6rem; font-weight: 700;
+      letter-spacing: 0.18em; text-transform: uppercase;
+      color: var(--muted); margin-bottom: 1.25rem;
+    }
+    .hiw-steps { display: flex; flex-direction: column; gap: 1rem; }
+    .hiw-step {
+      display: flex; align-items: flex-start; gap: 1.1rem;
+    }
+    .hiw-step-num {
+      flex-shrink: 0;
+      width: 28px; height: 28px; border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-family: var(--font-display); font-size: 0.6rem; font-weight: 800;
+      letter-spacing: 0.05em; color: #000;
+      position: relative; overflow: hidden;
+    }
+    .hiw-step-num-bg { position: absolute; inset: 0; }
+    .hiw-step-num span { position: relative; z-index: 1; }
+    .hiw-step-text {
+      padding-top: 0.3rem;
+      font-size: 0.92rem; color: rgba(240,240,240,0.6);
+      line-height: 1.65; font-weight: 500;
+    }
+    .hiw-step-text strong { color: var(--white); font-weight: 700; }
+
+    /* ─── MOCKUP CARD ─── */
+    .feature-mockup {
+      display: flex; justify-content: center; align-items: center;
+      position: sticky; top: calc(68px + 52px + 3rem);
+    }
+    .mockup-phone {
+      width: 280px; height: 560px;
+      background: var(--dark2);
+      border-radius: 42px;
+      border: 1px solid rgba(255,255,255,0.08);
+      box-shadow:
+        0 40px 100px rgba(0,0,0,0.7),
+        0 0 0 1px rgba(255,255,255,0.03),
+        inset 0 1px 0 rgba(255,255,255,0.07);
+      position: relative; overflow: hidden;
+      display: flex; flex-direction: column; align-items: center; justify-content: center;
+      gap: 1.5rem;
+      animation: float-up-slow 7s ease-in-out infinite;
+    }
+    .mockup-phone::before {
+      content: '';
+      position: absolute; top: 0; left: 50%; transform: translateX(-50%);
+      width: 100px; height: 30px;
+      background: var(--black); border-radius: 0 0 20px 20px;
+      z-index: 2;
+    }
+    .mockup-glow-blue {
+      position: absolute; top: -60px; left: 50%; transform: translateX(-50%);
+      width: 300px; height: 300px; border-radius: 50%;
+      background: radial-gradient(ellipse, rgba(79,172,254,0.15) 0%, transparent 65%);
+      pointer-events: none; z-index: 0;
+    }
+    .mockup-glow-gold {
+      position: absolute; bottom: -60px; left: 50%; transform: translateX(-50%);
+      width: 260px; height: 260px; border-radius: 50%;
+      background: radial-gradient(ellipse, rgba(245,166,35,0.1) 0%, transparent 65%);
+      pointer-events: none; z-index: 0;
+    }
+    .mockup-icon {
+      font-size: 4rem; line-height: 1; position: relative; z-index: 1;
+      filter: drop-shadow(0 0 20px rgba(79,172,254,0.4));
+    }
+    .mockup-icon-gold {
+      filter: drop-shadow(0 0 20px rgba(245,166,35,0.4));
+    }
+    .mockup-label {
+      position: relative; z-index: 1;
+      font-family: var(--font-display); font-size: 0.62rem; font-weight: 700;
+      letter-spacing: 0.1em; color: var(--muted); text-align: center;
+      padding: 0 2rem;
+    }
+    .mockup-ui-strip {
+      position: relative; z-index: 1;
+      width: calc(100% - 3rem); border-radius: 12px;
+      background: rgba(255,255,255,0.03);
+      border: 1px solid rgba(255,255,255,0.07);
+      padding: 0.9rem 1rem;
+    }
+    .mockup-ui-line {
+      height: 8px; border-radius: 4px; margin-bottom: 0.6rem;
+    }
+    .mockup-ui-line:last-child { margin-bottom: 0; width: 65%; }
+    .mockup-ui-line.blue { background: rgba(79,172,254,0.25); }
+    .mockup-ui-line.blue-bright { background: rgba(79,172,254,0.55); width: 80%; }
+    .mockup-ui-line.gold { background: rgba(245,166,35,0.25); }
+    .mockup-ui-line.gold-bright { background: rgba(245,166,35,0.55); width: 80%; }
+    .mockup-ui-line.white { background: rgba(255,255,255,0.1); }
+    .mockup-scan {
+      position: absolute; left: 0; right: 0; height: 2px; z-index: 3;
+      background: linear-gradient(to right, transparent, rgba(79,172,254,0.6), transparent);
+      animation: mockup-scan-anim 3s linear infinite;
+    }
+    .mockup-scan-gold {
+      background: linear-gradient(to right, transparent, rgba(245,166,35,0.6), transparent);
+    }
+    @keyframes mockup-scan-anim {
+      0%   { top: 40px; opacity: 1; }
+      85%  { opacity: 1; }
+      100% { top: calc(100% - 20px); opacity: 0; }
+    }
+
+    /* Ghost cam overlay effect on mockup */
+    .mockup-ghost-overlay {
+      position: absolute; inset: 40px 0 0;
+      z-index: 1;
+      display: flex; flex-direction: column; align-items: center; justify-content: center;
+      gap: 0.75rem; padding: 1rem;
+    }
+    .ghost-frame {
+      width: 100%; flex: 1; border-radius: 8px;
+      background: rgba(79,172,254,0.04);
+      border: 1px dashed rgba(79,172,254,0.2);
+      display: flex; align-items: center; justify-content: center;
+      position: relative; overflow: hidden;
+    }
+    .ghost-frame::before {
+      content: '';
+      position: absolute; inset: 0;
+      background: linear-gradient(135deg, rgba(79,172,254,0.08) 0%, transparent 50%, rgba(79,172,254,0.04) 100%);
+    }
+    .ghost-frame-label {
+      font-family: var(--font-display); font-size: 0.5rem; letter-spacing: 0.12em;
+      color: rgba(79,172,254,0.5); z-index: 1;
+    }
+    .ghost-crosshair {
+      position: absolute; inset: 0; z-index: 2; pointer-events: none;
+    }
+    .ghost-crosshair::before, .ghost-crosshair::after {
+      content: '';
+      position: absolute; background: rgba(79,172,254,0.3);
+    }
+    .ghost-crosshair::before {
+      top: 50%; left: 20%; right: 20%; height: 1px;
+    }
+    .ghost-crosshair::after {
+      left: 50%; top: 20%; bottom: 20%; width: 1px;
+    }
+
+    /* ─── UV BADGE ─── */
+    .mockup-uv-badge {
+      position: relative; z-index: 1;
+      width: calc(100% - 3rem); border-radius: 14px;
+      background: rgba(245,166,35,0.07);
+      border: 1px solid rgba(245,166,35,0.2);
+      padding: 1rem 1.25rem;
+      display: flex; align-items: center; gap: 1rem;
+    }
+    .uv-circle {
+      width: 48px; height: 48px; border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-family: var(--font-display); font-size: 1rem; font-weight: 900;
+      color: #000; flex-shrink: 0; position: relative; overflow: hidden;
+    }
+    .uv-text-block { flex: 1; }
+    .uv-rating-label {
+      font-family: var(--font-display); font-size: 0.58rem; font-weight: 700;
+      letter-spacing: 0.1em; color: var(--gold); display: block; margin-bottom: 0.25rem;
+    }
+    .uv-rating-sub {
+      font-size: 0.72rem; color: rgba(240,240,240,0.5); line-height: 1.4;
+    }
+
+    /* ─── TIMELAPSE STRIP ─── */
+    .mockup-timelapse {
+      position: relative; z-index: 1;
+      width: calc(100% - 3rem);
+      display: flex; gap: 0.4rem;
+    }
+    .tl-frame {
+      flex: 1; aspect-ratio: 0.75;
+      border-radius: 8px;
+      border: 1px solid rgba(255,255,255,0.07);
+      position: relative; overflow: hidden;
+    }
+    .tl-frame-fill {
+      position: absolute; inset: 0;
+      background: linear-gradient(180deg, rgba(79,172,254,0.06) 0%, rgba(79,172,254,0.18) 100%);
+    }
+    .tl-frame:nth-child(2) .tl-frame-fill { background: linear-gradient(180deg, rgba(79,172,254,0.1) 0%, rgba(79,172,254,0.3) 100%); }
+    .tl-frame:nth-child(3) .tl-frame-fill { background: linear-gradient(180deg, rgba(79,172,254,0.15) 0%, rgba(79,172,254,0.45) 100%); }
+    .tl-frame:nth-child(4) .tl-frame-fill { background: linear-gradient(180deg, rgba(79,172,254,0.2) 0%, rgba(79,172,254,0.6) 100%); }
+    .tl-day-label {
+      position: absolute; bottom: 4px; left: 0; right: 0;
+      text-align: center; font-family: var(--font-display); font-size: 0.45rem;
+      color: rgba(79,172,254,0.6); letter-spacing: 0.05em;
+    }
+
+    /* ─── REMINDER CARDS ─── */
+    .mockup-reminders {
+      position: relative; z-index: 1;
+      width: calc(100% - 2rem);
+      display: flex; flex-direction: column; gap: 0.5rem;
+    }
+    .reminder-card {
+      background: rgba(255,255,255,0.03);
+      border: 1px solid rgba(255,255,255,0.07);
+      border-radius: 10px; padding: 0.65rem 0.85rem;
+      display: flex; align-items: center; gap: 0.75rem;
+    }
+    .reminder-dot {
+      width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0;
+    }
+    .reminder-dot.blue { background: var(--blue); box-shadow: 0 0 6px rgba(79,172,254,0.5); }
+    .reminder-dot.gold { background: var(--gold); box-shadow: 0 0 6px rgba(245,166,35,0.5); }
+    .reminder-dot.green { background: #4caf82; box-shadow: 0 0 6px rgba(76,175,130,0.5); }
+    .reminder-info { flex: 1; }
+    .reminder-title-text {
+      font-family: var(--font-display); font-size: 0.54rem; font-weight: 700;
+      letter-spacing: 0.08em; color: var(--white); margin-bottom: 0.15rem;
+    }
+    .reminder-time { font-size: 0.7rem; color: var(--muted); }
+
+    /* ─── AI ANALYSIS CARD ─── */
+    .mockup-ai-card {
+      position: relative; z-index: 1;
+      width: calc(100% - 2rem);
+      background: rgba(255,255,255,0.03);
+      border: 1px solid rgba(79,172,254,0.12);
+      border-radius: 12px; padding: 1rem;
+    }
+    .ai-card-header {
+      display: flex; align-items: center; gap: 0.6rem; margin-bottom: 0.75rem;
+    }
+    .ai-indicator {
+      width: 6px; height: 6px; border-radius: 50%; background: var(--blue);
+      box-shadow: 0 0 8px rgba(79,172,254,0.6);
+      animation: ai-pulse 2s ease-in-out infinite;
+    }
+    @keyframes ai-pulse {
+      0%, 100% { opacity: 1; } 50% { opacity: 0.4; }
+    }
+    .ai-card-title {
+      font-family: var(--font-display); font-size: 0.54rem; font-weight: 700;
+      letter-spacing: 0.1em; color: var(--blue);
+    }
+    .ai-card-body { font-size: 0.72rem; color: rgba(240,240,240,0.55); line-height: 1.55; }
+    .ai-card-status {
+      margin-top: 0.75rem;
+      display: inline-flex; align-items: center; gap: 0.4rem;
+      background: rgba(76,175,130,0.1); border: 1px solid rgba(76,175,130,0.2);
+      border-radius: 20px; padding: 0.25rem 0.75rem;
+      font-family: var(--font-display); font-size: 0.5rem; font-weight: 700;
+      letter-spacing: 0.08em; color: #4caf82;
+    }
+    .ai-card-status::before {
+      content: ''; width: 5px; height: 5px; border-radius: 50%;
+      background: #4caf82; box-shadow: 0 0 5px rgba(76,175,130,0.6);
+    }
+
+    /* ─── VAULT GRID ─── */
+    .mockup-vault {
+      position: relative; z-index: 1;
+      width: calc(100% - 2rem);
+      display: grid; grid-template-columns: 1fr 1fr; gap: 0.5rem;
+    }
+    .vault-card {
+      background: rgba(255,255,255,0.03);
+      border: 1px solid rgba(255,255,255,0.07);
+      border-radius: 10px; padding: 0.75rem;
+      display: flex; flex-direction: column; gap: 0.4rem;
+    }
+    .vault-card-top {
+      aspect-ratio: 1; border-radius: 6px;
+      background: rgba(79,172,254,0.08);
+      border: 1px solid rgba(79,172,254,0.1);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.4rem;
+    }
+    .vault-card-name {
+      font-family: var(--font-display); font-size: 0.5rem; font-weight: 700;
+      letter-spacing: 0.06em; color: rgba(240,240,240,0.6);
+    }
+    .vault-card-days {
+      font-size: 0.65rem; color: var(--muted);
+    }
+
+    /* ─── SECTION DIVIDER ─── */
+    .section-divider {
+      height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(79,172,254,0.2), rgba(245,166,35,0.2), transparent);
+    }
+
+    /* ─── CTA SECTION ─── */
+    .cta-section {
+      padding: 8rem 4rem;
+      text-align: center;
+      position: relative; overflow: hidden;
+    }
+    .cta-section-bg {
+      position: absolute; inset: 0;
+      background: radial-gradient(ellipse 80% 80% at 50% 50%, rgba(79,172,254,0.06) 0%, transparent 65%);
+    }
+    .cta-eyebrow {
+      display: inline-flex; align-items: center; gap: 0.6rem;
+      font-family: var(--font-display); font-size: 0.6rem; font-weight: 600;
+      letter-spacing: 0.2em; text-transform: uppercase; margin-bottom: 1.5rem;
+      color: var(--gold);
+      position: relative; z-index: 1;
+    }
+    .cta-eyebrow::before, .cta-eyebrow::after {
+      content: ''; height: 1px; background: var(--gold);
+    }
+    .cta-eyebrow::before { width: 28px; }
+    .cta-eyebrow::after  { width: 14px; }
+
+    .cta-headline {
+      font-family: var(--font-display);
+      font-size: clamp(1.8rem, 4vw, 3rem);
+      font-weight: 900; letter-spacing: -0.02em;
+      color: var(--white); margin-bottom: 1rem;
+      position: relative; z-index: 1;
+    }
+    .cta-sub {
+      font-size: 1.02rem; color: rgba(240,240,240,0.5);
+      max-width: 420px; margin: 0 auto 2.5rem;
+      line-height: 1.8; position: relative; z-index: 1;
+    }
+    .cta-form {
+      display: flex; gap: 0.75rem; max-width: 460px; margin: 0 auto;
+      position: relative; z-index: 1;
+    }
+    .cta-input {
+      flex: 1; padding: 0.9rem 1.25rem; border-radius: 10px;
+      background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1);
+      color: var(--white); font-family: var(--font); font-size: 0.9rem;
+      outline: none; transition: border-color 0.2s, box-shadow 0.2s;
+    }
+    .cta-input::placeholder { color: var(--muted); }
+    .cta-input:focus {
+      border-color: rgba(79,172,254,0.4);
+      box-shadow: 0 0 0 3px rgba(79,172,254,0.1);
+    }
+    .cta-btn {
+      position: relative; overflow: hidden;
+      padding: 0.9rem 1.8rem; border-radius: 10px;
+      font-family: var(--font-display); font-size: 0.68rem; font-weight: 700;
+      letter-spacing: 0.1em; color: #000; border: none; cursor: pointer;
+      box-shadow: 0 0 28px rgba(79,172,254,0.4), 0 0 56px rgba(79,172,254,0.12);
+      transition: box-shadow 0.3s, transform 0.2s;
+      white-space: nowrap;
+    }
+    .cta-btn::before {
+      content: ''; position: absolute; inset: 0;
+      background: linear-gradient(110deg,
+        #001933 0%, #003366 15%, #0066cc 28%,
+        #4facfe 38%, #7ec8fd 48%, #c8e9ff 50%,
+        #7ec8fd 52%, #4facfe 62%,
+        #0066cc 72%, #003366 85%, #001933 100%
+      );
+      background-size: 220% 220%;
+      animation: metal-flow 4s ease-in-out infinite;
+    }
+    .cta-btn span { position: relative; z-index: 1; }
+    .cta-btn:hover { box-shadow: 0 0 44px rgba(79,172,254,0.7), 0 0 88px rgba(79,172,254,0.25); transform: translateY(-2px); }
+    .cta-fine {
+      margin-top: 1rem;
+      font-size: 0.78rem; color: var(--muted);
+      position: relative; z-index: 1;
+    }
+
+    /* ─── FOOTER ─── */
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 3rem 4rem 2.5rem;
+      text-align: center;
+      position: relative;
+    }
+    footer::before {
+      content: '';
+      position: absolute; top: 0; left: 0; right: 0; height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(79,172,254,0.3), rgba(245,166,35,0.3), transparent);
+    }
+    .footer-logo {
+      display: inline-flex; align-items: center; gap: 0.65rem;
+      text-decoration: none; margin-bottom: 1.25rem;
+    }
+    .footer-logo-icon {
+      width: 32px; height: 32px; border-radius: 8px;
+      display: flex; align-items: center; justify-content: center;
+      position: relative; overflow: hidden;
+    }
+    .footer-logo-icon-bg {
+      position: absolute; inset: 0;
+      background: linear-gradient(110deg,
+        #001933 0%, #003366 20%, #0066cc 35%, #4facfe 50%,
+        #a8d8ff 60%, #4facfe 70%, #0066cc 85%, #001933 100%
+      );
+      background-size: 220% 220%;
+      animation: metal-flow 4s ease-in-out infinite;
+    }
+    .footer-logo-icon svg { position: relative; z-index: 1; width: 18px; height: 18px; }
+    .footer-logo-name {
+      font-family: var(--font-display); font-size: 0.75rem; font-weight: 700;
+      letter-spacing: 0.1em; color: var(--white);
+    }
+    .footer-links {
+      display: flex; justify-content: center; gap: 2rem;
+      list-style: none; margin-bottom: 1.5rem; flex-wrap: wrap;
+    }
+    .footer-links a {
+      color: var(--muted); text-decoration: none; font-size: 0.8rem;
+      font-weight: 600; letter-spacing: 0.04em; transition: color 0.2s;
+    }
+    .footer-links a:hover { color: var(--white); }
+    .footer-copy {
+      font-size: 0.75rem; color: rgba(85,85,85,0.7); letter-spacing: 0.04em;
+    }
+
+    /* ─── RESPONSIVE ─── */
+    @media (max-width: 960px) {
+      .feature-section { padding: 5rem 2rem; }
+      .feature-section-inner {
+        grid-template-columns: 1fr !important;
+        gap: 3rem;
+      }
+      .feature-section:nth-child(even) .feature-text { order: 1; }
+      .feature-section:nth-child(even) .feature-mockup { order: 2; }
+      .feature-mockup { position: static; }
+      .features-index { padding: 0 1.5rem; }
+      .page-hero { padding: 9rem 2rem 5rem; }
+      .cta-section { padding: 5rem 2rem; }
+      .cta-form { flex-direction: column; }
+      footer { padding: 2.5rem 2rem; }
+    }
+    @media (max-width: 768px) {
+      nav { padding: 0 1.5rem; }
+      .nav-links, .nav-cta { display: none; }
+      .nav-hamburger { display: flex; }
+    }
+    @media (max-width: 480px) {
+      .page-hero-headline { font-size: 1.75rem; }
+      .feature-title { font-size: 1.5rem; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- Film grain -->
+<div id="grain"></div>
+<div id="cursor-glow"></div>
+
+<!-- ─── NAV ─── -->
+<nav id="main-nav">
+  <a href="/" class="nav-logo">
+    <div class="nav-logo-icon">
+      <div class="nav-logo-icon-bg"></div>
+      <svg viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M10 2C7.2 2 5 4.2 5 7c0 1.8.9 3.4 2.3 4.4L7 16h6l-.3-4.6C14.1 10.4 15 8.8 15 7c0-2.8-2.2-5-5-5z" fill="white"/>
+        <path d="M8 16h4l.5 2H7.5L8 16z" fill="rgba(255,255,255,0.5)"/>
+      </svg>
+    </div>
+    <div>
+      <span class="nav-logo-name">BUDDER BUDDY</span>
+      <span class="nav-logo-sub">Tattoo Healing App</span>
+    </div>
+  </a>
+
+  <ul class="nav-links">
+    <li><a href="/">Home</a></li>
+    <li><a href="/features.html" class="active">Features</a></li>
+    <li><a href="/healing-guide.html">Healing Guide</a></li>
+    <li><a href="/for-artists.html">For Artists</a></li>
+  </ul>
+
+  <a href="/#signup" class="nav-cta"><span>Get Early Access</span></a>
+  <button class="nav-hamburger" aria-label="Menu">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<!-- ─── PAGE HERO ─── -->
+<section class="page-hero">
+  <div class="page-hero-bg"></div>
+  <div class="page-hero-grid"></div>
+  <div class="page-hero-fade"></div>
+
+  <div class="page-hero-eyebrow reveal">App Features</div>
+
+  <h1 class="page-hero-headline reveal d1">
+    Every Feature Designed<br>For The Heal.
+  </h1>
+  <p class="page-hero-sub reveal d2">
+    No gimmicks. Just the tools you actually need to protect your ink, track your progress, and heal with confidence.
+  </p>
+
+  <div class="page-hero-scroll-hint reveal d3">
+    <div class="scroll-mouse"></div>
+    Explore features
+  </div>
+</section>
+
+<!-- ─── STICKY FEATURE INDEX ─── -->
+<nav class="features-index" aria-label="Feature navigation">
+  <div class="features-index-inner">
+    <a href="#ghost-camera"   class="feat-idx-item active-feat">01 Ghost Camera</a>
+    <a href="#timelapse"      class="feat-idx-item">02 Healing Timelapse</a>
+    <a href="#ai-guide"       class="feat-idx-item">03 AI Healing Guide</a>
+    <a href="#uv-rating"      class="feat-idx-item">04 Live UV Rating</a>
+    <a href="#reminders"      class="feat-idx-item">05 Smart Reminders</a>
+    <a href="#ink-vault"      class="feat-idx-item">06 Ink Vault</a>
+  </div>
+</nav>
+
+<!-- ═══════════════════════════════════════
+     FEATURE 01 — GHOST CAMERA
+════════════════════════════════════════ -->
+<section class="feature-section" id="ghost-camera">
+  <div class="feature-section-inner">
+
+    <div class="feature-text">
+      <div class="feature-meta reveal">
+        <span class="feature-number">01 / 06</span>
+        <span class="feature-tag tag-blue">Signature Feature</span>
+      </div>
+
+      <h2 class="feature-title reveal d1">
+        <span class="title-blue-grad">Ghost Camera</span>
+      </h2>
+
+      <p class="feature-desc reveal d2">
+        Consistency is everything when documenting a heal. Ghost Camera overlays a faded version of your very first check-in photo directly onto your live camera view, so you can perfectly align each new photo from the same angle, distance, and framing. No more guessing — every shot matches. When you stack them all together, the progression tells a real story: the swelling fading, the color settling, the skin closing. That only works when the angles are identical. Ghost Camera makes that effortless with zero setup or technical knowledge required.
+      </p>
+
+      <div class="how-it-works reveal d3">
+        <p class="hiw-label">How It Works</p>
+        <div class="hiw-steps">
+          <div class="hiw-step">
+            <div class="hiw-step-num">
+              <div class="hiw-step-num-bg lm-blue"></div>
+              <span>1</span>
+            </div>
+            <p class="hiw-step-text"><strong>Take your first check-in photo</strong> — this becomes your reference frame stored in your tattoo's healing diary.</p>
+          </div>
+          <div class="hiw-step">
+            <div class="hiw-step-num">
+              <div class="hiw-step-num-bg lm-blue"></div>
+              <span>2</span>
+            </div>
+            <p class="hiw-step-text"><strong>Open the camera for any future check-in</strong> and the ghost overlay appears at 40% opacity, showing exactly where your tattoo was in frame.</p>
+          </div>
+          <div class="hiw-step">
+            <div class="hiw-step-num">
+              <div class="hiw-step-num-bg lm-blue"></div>
+              <span>3</span>
+            </div>
+            <p class="hiw-step-text"><strong>Align, snap, done.</strong> The new photo is saved to your diary and automatically queued for timelapse compilation.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="feature-mockup reveal d2">
+      <div class="mockup-phone">
+        <div class="mockup-glow-blue"></div>
+        <div class="mockup-ghost-overlay">
+          <div class="ghost-frame" style="flex: 2.5;">
+            <div class="ghost-crosshair"></div>
+            <span class="ghost-frame-label">GHOST OVERLAY ACTIVE</span>
+          </div>
+          <div class="mockup-ui-strip" style="margin: 0;">
+            <div class="mockup-ui-line blue-bright"></div>
+            <div class="mockup-ui-line blue"></div>
+            <div class="mockup-ui-line blue" style="width: 50%;"></div>
+          </div>
+        </div>
+        <div class="mockup-scan"></div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<div class="section-divider"></div>
+
+<!-- ═══════════════════════════════════════
+     FEATURE 02 — HEALING TIMELAPSE
+════════════════════════════════════════ -->
+<section class="feature-section" id="timelapse">
+  <div class="feature-section-inner">
+
+    <div class="feature-text">
+      <div class="feature-meta reveal">
+        <span class="feature-number">02 / 06</span>
+        <span class="feature-tag tag-blue">Fan Favorite</span>
+      </div>
+
+      <h2 class="feature-title reveal d1">
+        Healing <span class="title-blue-grad">Timelapse</span>
+      </h2>
+
+      <p class="feature-desc reveal d2">
+        Every photo you take during your heal is automatically stitched into a smooth timelapse video the moment your healing period closes. Watch weeks of recovery compress into seconds — the swelling subside, the peeling lift, the vibrancy of the ink return. It's one of the most satisfying things you'll ever see. You can download the finished timelapse directly to your phone and share it anywhere, making it the perfect companion post when you debut your healed tattoo on social media. Your artist will love seeing it too.
+      </p>
+
+      <div class="how-it-works reveal d3">
+        <p class="hiw-label">How It Works</p>
+        <div class="hiw-steps">
+          <div class="hiw-step">
+            <div class="hiw-step-num">
+              <div class="hiw-step-num-bg lm-blue"></div>
+              <span>1</span>
+            </div>
+            <p class="hiw-step-text"><strong>Check in consistently</strong> using Ghost Camera — the more check-ins you have, the smoother the timelapse will be.</p>
+          </div>
+          <div class="hiw-step">
+            <div class="hiw-step-num">
+              <div class="hiw-step-num-bg lm-blue"></div>
+              <span>2</span>
+            </div>
+            <p class="hiw-step-text"><strong>App auto-compiles the video</strong> when your healing diary is marked complete, applying smooth crossfade transitions between frames.</p>
+          </div>
+          <div class="hiw-step">
+            <div class="hiw-step-num">
+              <div class="hiw-step-num-bg lm-blue"></div>
+              <span>3</span>
+            </div>
+            <p class="hiw-step-text"><strong>Download and share</strong> — export as a vertical MP4 sized perfectly for Instagram Reels or TikTok with one tap.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="feature-mockup reveal d2">
+      <div class="mockup-phone">
+        <div class="mockup-glow-blue"></div>
+        <div class="mockup-icon">🎞️</div>
+        <div class="mockup-timelapse">
+          <div class="tl-frame"><div class="tl-frame-fill"></div><div class="tl-day-label">DAY 1</div></div>
+          <div class="tl-frame"><div class="tl-frame-fill"></div><div class="tl-day-label">DAY 7</div></div>
+          <div class="tl-frame"><div class="tl-frame-fill"></div><div class="tl-day-label">DAY 14</div></div>
+          <div class="tl-frame"><div class="tl-frame-fill"></div><div class="tl-day-label">DAY 28</div></div>
+        </div>
+        <div class="mockup-ui-strip">
+          <div class="mockup-ui-line blue-bright"></div>
+          <div class="mockup-ui-line white"></div>
+          <div class="mockup-ui-line blue" style="width: 55%;"></div>
+        </div>
+        <div class="mockup-label">28-DAY HEAL · READY TO EXPORT</div>
+        <div class="mockup-scan"></div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<div class="section-divider"></div>
+
+<!-- ═══════════════════════════════════════
+     FEATURE 03 — AI HEALING STAGE GUIDE
+════════════════════════════════════════ -->
+<section class="feature-section" id="ai-guide">
+  <div class="feature-section-inner">
+
+    <div class="feature-text">
+      <div class="feature-meta reveal">
+        <span class="feature-number">03 / 06</span>
+        <span class="feature-tag tag-gold">AI-Powered</span>
+      </div>
+
+      <h2 class="feature-title reveal d1">
+        AI Healing <span class="title-gold-grad">Stage Guide</span>
+      </h2>
+
+      <p class="feature-desc reveal d2">
+        The middle of healing is confusing. Is that peeling normal? Should the redness be fading by now? Why does it look cloudy? Budder Buddy's AI analyzes your check-in photo and identifies exactly what stage of the healing process you're in — from initial inflammation to peeling, scabbing, clouding, and final settling. It tells you what's normal for where you are in the timeline, what signs warrant concern, and when it's appropriate to reach out to your artist. It's not a diagnosis, it's informed guidance from a system trained on the full spectrum of tattoo healing stages.
+      </p>
+
+      <div class="how-it-works reveal d3">
+        <p class="hiw-label">How It Works</p>
+        <div class="hiw-steps">
+          <div class="hiw-step">
+            <div class="hiw-step-num">
+              <div class="hiw-step-num-bg lm-gold"></div>
+              <span>1</span>
+            </div>
+            <p class="hiw-step-text"><strong>Submit your check-in photo</strong> — tap "Analyze" and the AI examines color, texture, and surface detail in the image.</p>
+          </div>
+          <div class="hiw-step">
+            <div class="hiw-step-num">
+              <div class="hiw-step-num-bg lm-gold"></div>
+              <span>2</span>
+            </div>
+            <p class="hiw-step-text"><strong>Stage identified instantly</strong> — the AI returns your current healing stage (e.g. "Stage 2: Active Peeling") with a plain-language explanation of what's happening under the skin.</p>
+          </div>
+          <div class="hiw-step">
+            <div class="hiw-step-num">
+              <div class="hiw-step-num-bg lm-gold"></div>
+              <span>3</span>
+            </div>
+            <p class="hiw-step-text"><strong>Normal or Not flag</strong> — any detected anomaly (unusual swelling, color spreading, discharge) is flagged with a recommendation to contact your artist.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="feature-mockup reveal d2">
+      <div class="mockup-phone">
+        <div class="mockup-glow-gold"></div>
+        <div class="mockup-icon mockup-icon-gold">🤖</div>
+        <div class="mockup-ai-card">
+          <div class="ai-card-header">
+            <div class="ai-indicator"></div>
+            <span class="ai-card-title">AI ANALYSIS · DAY 7</span>
+          </div>
+          <div class="ai-card-body">
+            Detecting <strong style="color: var(--white);">Stage 2: Active Peeling.</strong> Outer epidermis shedding normally. Light clouding on upper arm typical for this stage. Ink appears to be settling well underneath.
+          </div>
+          <div class="ai-card-status">Normal — No Concerns</div>
+        </div>
+        <div class="mockup-ui-strip">
+          <div class="mockup-ui-line gold-bright"></div>
+          <div class="mockup-ui-line gold"></div>
+          <div class="mockup-ui-line gold" style="width: 60%;"></div>
+        </div>
+        <div class="mockup-scan mockup-scan-gold"></div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<div class="section-divider"></div>
+
+<!-- ═══════════════════════════════════════
+     FEATURE 04 — LIVE UV RATING
+════════════════════════════════════════ -->
+<section class="feature-section" id="uv-rating">
+  <div class="feature-section-inner">
+
+    <div class="feature-text">
+      <div class="feature-meta reveal">
+        <span class="feature-number">04 / 06</span>
+        <span class="feature-tag tag-gold">Smart Alerts</span>
+      </div>
+
+      <h2 class="feature-title reveal d1">
+        Live <span class="title-gold-grad">UV Rating</span>
+      </h2>
+
+      <p class="feature-desc reveal d2">
+        UV exposure is one of the most overlooked threats to a healing tattoo. Even indirect sun can break down fresh ink particles before they've fully bonded with the dermis, causing fading, blowouts, and uneven color retention. Budder Buddy pulls the real-time UV index for your location and surfaces it directly in the app, every day of your healing window. If the UV rating climbs into risky territory, you get an alert before you step outside — so you can cover up, stay in, or at minimum apply SPF with enough lead time to actually protect the work.
+      </p>
+
+      <div class="how-it-works reveal d3">
+        <p class="hiw-label">How It Works</p>
+        <div class="hiw-steps">
+          <div class="hiw-step">
+            <div class="hiw-step-num">
+              <div class="hiw-step-num-bg lm-gold"></div>
+              <span>1</span>
+            </div>
+            <p class="hiw-step-text"><strong>Location access granted once</strong> — Budder Buddy uses your GPS coordinates to fetch the current UV index for your exact area, updated hourly.</p>
+          </div>
+          <div class="hiw-step">
+            <div class="hiw-step-num">
+              <div class="hiw-step-num-bg lm-gold"></div>
+              <span>2</span>
+            </div>
+            <p class="hiw-step-text"><strong>UV dashboard in the app</strong> shows today's index, peak risk hours, and a simple risk level: Safe / Moderate / Cover Up / Stay In.</p>
+          </div>
+          <div class="hiw-step">
+            <div class="hiw-step-num">
+              <div class="hiw-step-num-bg lm-gold"></div>
+              <span>3</span>
+            </div>
+            <p class="hiw-step-text"><strong>Morning push notification</strong> — if the day's forecast hits Moderate or above during your active healing window, you get alerted before you leave the house.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="feature-mockup reveal d2">
+      <div class="mockup-phone">
+        <div class="mockup-glow-gold"></div>
+        <div class="mockup-icon mockup-icon-gold">☀️</div>
+        <div class="mockup-uv-badge">
+          <div class="uv-circle">
+            <div class="hiw-step-num-bg lm-gold" style="position:absolute;inset:0;border-radius:50%;"></div>
+            <span style="position:relative;z-index:1;font-family:var(--font-display);font-size:1.1rem;font-weight:900;">8</span>
+          </div>
+          <div class="uv-text-block">
+            <span class="uv-rating-label">UV INDEX · HIGH</span>
+            <span class="uv-rating-sub">Cover up or stay indoors.<br>Peak risk 11am – 3pm.</span>
+          </div>
+        </div>
+        <div class="mockup-ui-strip">
+          <div class="mockup-ui-line gold-bright"></div>
+          <div class="mockup-ui-line gold"></div>
+          <div class="mockup-ui-line gold" style="width: 45%;"></div>
+        </div>
+        <div class="mockup-label">HEALING DAY 9 · PROTECTION ADVISED</div>
+        <div class="mockup-scan mockup-scan-gold"></div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<div class="section-divider"></div>
+
+<!-- ═══════════════════════════════════════
+     FEATURE 05 — SMART REMINDERS
+════════════════════════════════════════ -->
+<section class="feature-section" id="reminders">
+  <div class="feature-section-inner">
+
+    <div class="feature-text">
+      <div class="feature-meta reveal">
+        <span class="feature-number">05 / 06</span>
+        <span class="feature-tag tag-blue">Stay On Track</span>
+      </div>
+
+      <h2 class="feature-title reveal d1">
+        <span class="title-blue-grad">Smart</span> Reminders
+      </h2>
+
+      <p class="feature-desc reveal d2">
+        Generic aftercare advice tells you to moisturize twice a day. Smart Reminders knows what day you're on, what healing stage the AI flagged, and what your skin needs right now. In the first 72 hours, wash reminders are more frequent to keep bacteria at bay. As you enter the peeling phase, moisturize reminders increase to prevent cracking and premature scab removal. Check-in reminders are timed around the best natural lighting windows of the day. Every notification is context-aware, not a generic ping — so you're never over-reminded or, worse, missing a critical care step.
+      </p>
+
+      <div class="how-it-works reveal d3">
+        <p class="hiw-label">How It Works</p>
+        <div class="hiw-steps">
+          <div class="hiw-step">
+            <div class="hiw-step-num">
+              <div class="hiw-step-num-bg lm-blue"></div>
+              <span>1</span>
+            </div>
+            <p class="hiw-step-text"><strong>Log your tattoo date</strong> — Budder Buddy builds your personal care schedule automatically based on standard healing milestones for your tattoo placement.</p>
+          </div>
+          <div class="hiw-step">
+            <div class="hiw-step-num">
+              <div class="hiw-step-num-bg lm-blue"></div>
+              <span>2</span>
+            </div>
+            <p class="hiw-step-text"><strong>Reminders adapt as you heal</strong> — when the AI detects a stage change, the reminder frequency and type update automatically without you touching a setting.</p>
+          </div>
+          <div class="hiw-step">
+            <div class="hiw-step-num">
+              <div class="hiw-step-num-bg lm-blue"></div>
+              <span>3</span>
+            </div>
+            <p class="hiw-step-text"><strong>Snooze or log directly from the notification</strong> — tap to mark "done" or snooze 30 minutes, keeping your care log accurate with zero extra steps.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="feature-mockup reveal d2">
+      <div class="mockup-phone">
+        <div class="mockup-glow-blue"></div>
+        <div class="mockup-icon">🔔</div>
+        <div class="mockup-reminders">
+          <div class="reminder-card">
+            <div class="reminder-dot blue"></div>
+            <div class="reminder-info">
+              <div class="reminder-title-text">WASH TATTOO</div>
+              <div class="reminder-time">Day 2 · Every 4 hrs · Next: 2:00 PM</div>
+            </div>
+          </div>
+          <div class="reminder-card">
+            <div class="reminder-dot gold"></div>
+            <div class="reminder-info">
+              <div class="reminder-title-text">MOISTURIZE</div>
+              <div class="reminder-time">Day 2 · 3x today · Next: 5:30 PM</div>
+            </div>
+          </div>
+          <div class="reminder-card">
+            <div class="reminder-dot green"></div>
+            <div class="reminder-info">
+              <div class="reminder-title-text">PHOTO CHECK-IN</div>
+              <div class="reminder-time">Best light window · 4:00 – 6:00 PM</div>
+            </div>
+          </div>
+        </div>
+        <div class="mockup-ui-strip">
+          <div class="mockup-ui-line blue"></div>
+          <div class="mockup-ui-line white"></div>
+        </div>
+        <div class="mockup-scan"></div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<div class="section-divider"></div>
+
+<!-- ═══════════════════════════════════════
+     FEATURE 06 — INK VAULT + LEARN HUB
+════════════════════════════════════════ -->
+<section class="feature-section" id="ink-vault">
+  <div class="feature-section-inner">
+
+    <div class="feature-text">
+      <div class="feature-meta reveal">
+        <span class="feature-number">06 / 06</span>
+        <span class="feature-tag tag-gold">Knowledge Base</span>
+      </div>
+
+      <h2 class="feature-title reveal d1">
+        Ink Vault <span class="title-gold-grad">+ Learn Hub</span>
+      </h2>
+
+      <p class="feature-desc reveal d2">
+        Every tattoo you've ever healed lives in your Ink Vault — a private, permanent archive of your entire ink journey. Each entry contains the full healing diary, every check-in photo, the timelapse, your care log, and any AI analysis notes from that heal. It becomes your personal reference for how your skin heals across different placements, styles, and seasons. Alongside the vault, the Learn Hub is a comprehensive, jargon-free guide covering every stage of healing, what normal peeling looks like versus signs of infection, the difference between an allergic reaction and standard irritation, and a complete aftercare do's and don'ts library you can access at 2am when you're panicking about a cloudy patch.
+      </p>
+
+      <div class="how-it-works reveal d3">
+        <p class="hiw-label">How It Works</p>
+        <div class="hiw-steps">
+          <div class="hiw-step">
+            <div class="hiw-step-num">
+              <div class="hiw-step-num-bg lm-gold"></div>
+              <span>1</span>
+            </div>
+            <p class="hiw-step-text"><strong>Healing diaries archive automatically</strong> — once a healing period closes, the full record is sealed and stored in your Ink Vault forever, organized by date and placement.</p>
+          </div>
+          <div class="hiw-step">
+            <div class="hiw-step-num">
+              <div class="hiw-step-num-bg lm-gold"></div>
+              <span>2</span>
+            </div>
+            <p class="hiw-step-text"><strong>Browse your collection anytime</strong> — tap any vault entry to revisit the day-by-day photos, timelapse, and care history for that piece.</p>
+          </div>
+          <div class="hiw-step">
+            <div class="hiw-step-num">
+              <div class="hiw-step-num-bg lm-gold"></div>
+              <span>3</span>
+            </div>
+            <p class="hiw-step-text"><strong>Learn Hub is always one tap away</strong> — searchable articles, stage photos, and a symptom checker give you real answers without doomscrolling Reddit at midnight.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="feature-mockup reveal d2">
+      <div class="mockup-phone">
+        <div class="mockup-glow-gold"></div>
+        <div class="mockup-icon mockup-icon-gold">🗂️</div>
+        <div class="mockup-vault">
+          <div class="vault-card">
+            <div class="vault-card-top">🐉</div>
+            <div class="vault-card-name">LEFT ARM</div>
+            <div class="vault-card-days">Healed · 28d</div>
+          </div>
+          <div class="vault-card">
+            <div class="vault-card-top">🌿</div>
+            <div class="vault-card-name">RIGHT RIB</div>
+            <div class="vault-card-days">Healed · 35d</div>
+          </div>
+          <div class="vault-card">
+            <div class="vault-card-top" style="background: rgba(245,166,35,0.12); border-color: rgba(245,166,35,0.15);">⚡</div>
+            <div class="vault-card-name">SHIN</div>
+            <div class="vault-card-days" style="color: var(--blue);">Healing · Day 6</div>
+          </div>
+          <div class="vault-card" style="border-style: dashed; opacity: 0.4;">
+            <div class="vault-card-top" style="background: transparent; border: 1px dashed rgba(255,255,255,0.1);">+</div>
+            <div class="vault-card-name">ADD NEW</div>
+            <div class="vault-card-days">Tap to log</div>
+          </div>
+        </div>
+        <div class="mockup-scan mockup-scan-gold"></div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<div class="section-divider"></div>
+
+<!-- ─── CTA SECTION ─── -->
+<section class="cta-section" id="signup">
+  <div class="cta-section-bg"></div>
+
+  <div class="cta-eyebrow reveal">Early Access</div>
+
+  <h2 class="cta-headline reveal d1">Start Healing Smarter.</h2>
+  <p class="cta-sub reveal d2">
+    Join the waitlist. Free for first adopters, no credit card required, no fluff.
+  </p>
+
+  <form class="cta-form reveal d3" onsubmit="handleSignup(event)">
+    <input
+      type="email"
+      class="cta-input"
+      placeholder="your@email.com"
+      required
+      autocomplete="email"
+    />
+    <button type="submit" class="cta-btn"><span>JOIN WAITLIST</span></button>
+  </form>
+  <p class="cta-fine reveal d4">No spam. Unsubscribe anytime. First in = free forever.</p>
+</section>
+
+<!-- ─── FOOTER ─── -->
+<footer>
+  <a href="/" class="footer-logo">
+    <div class="footer-logo-icon">
+      <div class="footer-logo-icon-bg"></div>
+      <svg viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M10 2C7.2 2 5 4.2 5 7c0 1.8.9 3.4 2.3 4.4L7 16h6l-.3-4.6C14.1 10.4 15 8.8 15 7c0-2.8-2.2-5-5-5z" fill="white"/>
+        <path d="M8 16h4l.5 2H7.5L8 16z" fill="rgba(255,255,255,0.5)"/>
+      </svg>
+    </div>
+    <span class="footer-logo-name">BUDDER BUDDY</span>
+  </a>
+
+  <ul class="footer-links">
+    <li><a href="/">Home</a></li>
+    <li><a href="/features.html">Features</a></li>
+    <li><a href="/healing-guide.html">Healing Guide</a></li>
+    <li><a href="/for-artists.html">For Artists</a></li>
+    <li><a href="/#signup">Get Early Access</a></li>
+  </ul>
+
+  <p class="footer-copy">
+    &copy; 2026 Budder Buddy &nbsp;·&nbsp; All rights reserved &nbsp;·&nbsp; budderbuddy.org
+  </p>
+</footer>
+
+<!-- ─── SCRIPTS ─── -->
+<script>
+  // Cursor glow
+  const cg = document.getElementById('cursor-glow');
+  document.addEventListener('mousemove', e => {
+    cg.style.left = e.clientX + 'px';
+    cg.style.top  = e.clientY + 'px';
+  });
+
+  // Nav scroll class
+  const nav = document.getElementById('main-nav');
+  window.addEventListener('scroll', () => {
+    nav.classList.toggle('scrolled', window.scrollY > 40);
+    updateActiveFeature();
+  }, { passive: true });
+
+  // Reveal on scroll
+  const reveals = document.querySelectorAll('.reveal');
+  const io = new IntersectionObserver(entries => {
+    entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('on'); });
+  }, { threshold: 0.12 });
+  reveals.forEach(el => io.observe(el));
+
+  // Active feature in sticky index bar
+  const featureSections = document.querySelectorAll('.feature-section[id]');
+  const idxItems = document.querySelectorAll('.feat-idx-item');
+
+  function updateActiveFeature() {
+    let current = '';
+    featureSections.forEach(sec => {
+      const rect = sec.getBoundingClientRect();
+      if (rect.top <= 200) current = sec.id;
+    });
+    idxItems.forEach(item => {
+      item.classList.toggle('active-feat', item.getAttribute('href') === '#' + current);
+    });
+  }
+
+  // Smooth scroll for index items
+  idxItems.forEach(item => {
+    item.addEventListener('click', e => {
+      e.preventDefault();
+      const target = document.querySelector(item.getAttribute('href'));
+      if (target) {
+        const offset = 68 + 52; // nav + sticky index height
+        const top = target.getBoundingClientRect().top + window.scrollY - offset - 24;
+        window.scrollTo({ top, behavior: 'smooth' });
+      }
+    });
+  });
+
+  // Signup form
+  function handleSignup(e) {
+    e.preventDefault();
+    const form = e.target;
+    const email = form.querySelector('input').value;
+    const btn = form.querySelector('button');
+    btn.innerHTML = '<span>YOU\'RE IN ✓</span>';
+    btn.style.pointerEvents = 'none';
+    form.querySelector('input').value = '';
+    form.querySelector('input').placeholder = 'See you on launch day.';
+    console.log('Signup:', email);
+  }
+</script>
+
+</body>
+</html>

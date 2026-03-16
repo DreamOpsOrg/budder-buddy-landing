@@ -1,6 +1,23 @@
 [build]
   publish = "."
 
+# Explicit routes for each HTML page — must come BEFORE the catch-all
+[[redirects]]
+  from = "/features"
+  to = "/features.html"
+  status = 200
+
+[[redirects]]
+  from = "/healing-guide"
+  to = "/healing-guide.html"
+  status = 200
+
+[[redirects]]
+  from = "/for-artists"
+  to = "/for-artists.html"
+  status = 200
+
+# Catch-all for any unmatched paths → home
 [[redirects]]
   from = "/*"
   to = "/index.html"

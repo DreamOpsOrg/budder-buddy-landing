@@ -1,0 +1,1314 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>For Tattoo Artists — Budder Buddy Partner Program</title>
+  <link rel="canonical" href="https://budderbuddy.org/for-artists.html" />
+  <meta name="description" content="Budder Buddy is the professional aftercare system that makes your work heal better — and market itself. Join as an early artist partner." />
+  <meta property="og:title" content="For Tattoo Artists — Budder Buddy Partner Program" />
+  <meta property="og:description" content="Less noise in your DMs. Your work documented. Professional trust. Free forever for early partners." />
+  <meta property="og:url" content="https://budderbuddy.org/for-artists.html" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;700;800;900&family=Nunito:ital,wght@0,400;0,600;0,700;0,800;1,700&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --black:     #080808;
+      --dark:      #0d0d0d;
+      --dark2:     #121212;
+      --card:      rgba(14,14,14,0.9);
+      --blue:      #4facfe;
+      --blue-dim:  rgba(79,172,254,0.12);
+      --blue-glow: rgba(79,172,254,0.35);
+      --gold:      #f5a623;
+      --gold-dim:  rgba(245,166,35,0.12);
+      --gold-glow: rgba(245,166,35,0.35);
+      --white:     #f0f0f0;
+      --muted:     #555;
+      --border:    rgba(255,255,255,0.07);
+      --font-display: 'Orbitron', monospace;
+      --font:      'Nunito', sans-serif;
+    }
+
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: var(--font);
+      background: var(--black);
+      color: var(--white);
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    /* ─── LIQUID METAL ─── */
+    @keyframes metal-flow {
+      0%   { background-position: 0%   50%; }
+      50%  { background-position: 100% 50%; }
+      100% { background-position: 0%   50%; }
+    }
+
+    .lm-blue {
+      background: linear-gradient(110deg,
+        #001933 0%, #003366 12%, #0066cc 22%,
+        #2196f3 32%, #4facfe 42%, #a8d8ff 50%,
+        #4facfe 58%, #2196f3 68%,
+        #0066cc 78%, #003366 88%, #001933 100%
+      );
+      background-size: 220% 220%;
+      animation: metal-flow 5s ease-in-out infinite;
+    }
+
+    .lm-gold {
+      background: linear-gradient(110deg,
+        #1a0d00 0%, #3d2000 12%, #7a4500 22%,
+        #c47a00 32%, #f5a623 42%, #fde68a 50%,
+        #f5a623 58%, #c47a00 68%,
+        #7a4500 78%, #3d2000 88%, #1a0d00 100%
+      );
+      background-size: 220% 220%;
+      animation: metal-flow 5s ease-in-out infinite reverse;
+    }
+
+    @keyframes sheen-slide {
+      0%   { transform: translateX(-120%) skewX(-15deg); }
+      100% { transform: translateX(220%)  skewX(-15deg); }
+    }
+    @keyframes eyebrow-glow {
+      from { text-shadow: 0 0 8px rgba(79,172,254,0.4); }
+      to   { text-shadow: 0 0 20px rgba(79,172,254,0.9), 0 0 40px rgba(79,172,254,0.3); }
+    }
+    @keyframes eyebrow-glow-gold {
+      from { text-shadow: 0 0 8px rgba(245,166,35,0.4); }
+      to   { text-shadow: 0 0 20px rgba(245,166,35,0.9), 0 0 40px rgba(245,166,35,0.3); }
+    }
+    @keyframes blob-drift {
+      0%, 100% { border-radius: 60% 40% 70% 30% / 50% 60% 40% 60%; transform: rotate(0deg) scale(1); }
+      33%  { border-radius: 40% 60% 30% 70% / 60% 40% 60% 40%; transform: rotate(120deg) scale(1.05); }
+      66%  { border-radius: 70% 30% 50% 50% / 30% 70% 50% 50%; transform: rotate(240deg) scale(0.97); }
+    }
+    @keyframes float-up-slow {
+      0%, 100% { transform: translateY(0px); }
+      50%       { transform: translateY(-10px); }
+    }
+    @keyframes fade-up {
+      from { opacity: 0; transform: translateY(32px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes counter-tick {
+      from { opacity: 0; transform: translateY(6px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    /* ─── UTILS ─── */
+    #grain {
+      position: fixed; inset: 0; z-index: 9997; pointer-events: none; opacity: 0.028;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='250' height='250'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='250' height='250' filter='url(%23n)'/%3E%3C/svg%3E");
+    }
+    #cursor-glow {
+      pointer-events: none; position: fixed;
+      width: 500px; height: 500px; border-radius: 50%;
+      background: radial-gradient(circle, rgba(79,172,254,0.05) 0%, transparent 70%);
+      transform: translate(-50%,-50%); z-index: 9999; transition: opacity 0.3s;
+    }
+    #particles { position: fixed; inset: 0; z-index: 0; pointer-events: none; }
+
+    .reveal { opacity: 0; transform: translateY(28px); transition: opacity 0.7s ease, transform 0.7s ease; }
+    .reveal.on { opacity: 1; transform: none; }
+    .d1{transition-delay:.08s} .d2{transition-delay:.17s} .d3{transition-delay:.26s}
+    .d4{transition-delay:.35s} .d5{transition-delay:.44s} .d6{transition-delay:.53s}
+
+    /* ─── NAV ─── */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 0 2.5rem; height: 68px;
+      background: rgba(8,8,8,0.75);
+      backdrop-filter: blur(24px) saturate(160%);
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+      transition: background 0.4s;
+    }
+    nav::after {
+      content: '';
+      position: absolute; bottom: 0; left: 0; right: 0; height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(79,172,254,0.35), rgba(245,166,35,0.35), transparent);
+    }
+    nav.scrolled { background: rgba(8,8,8,0.96); }
+
+    .nav-logo { display: flex; align-items: center; gap: 0.75rem; text-decoration: none; }
+    .nav-logo-icon {
+      width: 36px; height: 36px; border-radius: 9px;
+      display: flex; align-items: center; justify-content: center;
+      position: relative; overflow: hidden;
+    }
+    .nav-logo-icon-bg {
+      position: absolute; inset: 0;
+      background: linear-gradient(110deg,
+        #001933 0%, #003366 20%, #0066cc 35%, #4facfe 50%,
+        #a8d8ff 60%, #4facfe 70%, #0066cc 85%, #001933 100%
+      );
+      background-size: 220% 220%;
+      animation: metal-flow 4s ease-in-out infinite;
+    }
+    .nav-logo-icon svg { position: relative; z-index: 1; width: 20px; height: 20px; }
+    .nav-logo-name {
+      display: block;
+      font-family: var(--font-display); font-size: 0.82rem; font-weight: 700;
+      letter-spacing: 0.08em; color: var(--white);
+    }
+    .nav-logo-sub { display: block; font-size: 0.6rem; color: var(--muted); letter-spacing: 0.05em; }
+
+    .nav-links { display: flex; gap: 2.25rem; list-style: none; }
+    .nav-links a {
+      color: var(--muted); text-decoration: none; font-size: 0.82rem;
+      font-weight: 600; letter-spacing: 0.04em; transition: color 0.2s;
+    }
+    .nav-links a:hover { color: var(--white); }
+    .nav-links a.active { color: var(--blue); }
+
+    .nav-cta {
+      position: relative; overflow: hidden;
+      padding: 0.55rem 1.4rem; border-radius: 8px;
+      font-family: var(--font-display); font-size: 0.68rem; font-weight: 700;
+      letter-spacing: 0.08em; text-decoration: none; color: #000;
+      border: none; cursor: pointer; display: inline-block;
+      box-shadow: 0 0 24px rgba(79,172,254,0.45), 0 0 48px rgba(79,172,254,0.12);
+      transition: box-shadow 0.3s, transform 0.2s;
+    }
+    .nav-cta::before {
+      content: ''; position: absolute; inset: 0;
+      background: linear-gradient(110deg,
+        #001933 0%, #003366 15%, #0066cc 28%,
+        #4facfe 38%, #7ec8fd 48%, #c8e9ff 50%,
+        #7ec8fd 52%, #4facfe 62%,
+        #0066cc 72%, #003366 85%, #001933 100%
+      );
+      background-size: 220% 220%;
+      animation: metal-flow 4s ease-in-out infinite;
+    }
+    .nav-cta span { position: relative; z-index: 1; }
+    .nav-cta:hover { box-shadow: 0 0 40px rgba(79,172,254,0.7), 0 0 80px rgba(79,172,254,0.25); transform: translateY(-1px); }
+
+    .nav-hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; padding: 4px; background: none; border: none; }
+    .nav-hamburger span { width: 24px; height: 2px; background: var(--white); border-radius: 2px; transition: 0.3s; }
+
+    /* ─── HERO ─── */
+    .page-hero {
+      position: relative;
+      padding: 10rem 4rem 7rem;
+      text-align: center;
+      overflow: hidden;
+    }
+    .page-hero-bg {
+      position: absolute; inset: 0; z-index: 0;
+      background: radial-gradient(ellipse 80% 60% at 50% 0%, rgba(245,166,35,0.06) 0%, transparent 65%),
+                  radial-gradient(ellipse 50% 50% at 20% 80%, rgba(79,172,254,0.04) 0%, transparent 60%);
+    }
+    .page-hero-grid {
+      position: absolute; inset: 0; z-index: 0; opacity: 0.035;
+      background-image:
+        linear-gradient(rgba(245,166,35,0.5) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(245,166,35,0.5) 1px, transparent 1px);
+      background-size: 60px 60px;
+      mask-image: radial-gradient(ellipse 80% 100% at 50% 0%, black 0%, transparent 80%);
+    }
+    .page-hero-eyebrow {
+      display: inline-flex; align-items: center; gap: 0.6rem;
+      font-family: var(--font-display); font-size: 0.6rem; font-weight: 600;
+      letter-spacing: 0.2em; text-transform: uppercase; margin-bottom: 1.5rem;
+      color: var(--gold);
+      animation: eyebrow-glow-gold 2.5s ease-in-out infinite alternate;
+      position: relative; z-index: 1;
+    }
+    .page-hero-eyebrow::before, .page-hero-eyebrow::after {
+      content: ''; height: 1px; background: var(--gold);
+    }
+    .page-hero-eyebrow::before { width: 28px; }
+    .page-hero-eyebrow::after  { width: 14px; }
+
+    .page-hero-headline {
+      font-family: var(--font-display);
+      font-size: clamp(2rem, 5vw, 3.8rem);
+      font-weight: 900; line-height: 1.1;
+      letter-spacing: -0.02em;
+      color: var(--white);
+      margin-bottom: 1.25rem;
+      position: relative; z-index: 1;
+    }
+    .page-hero-sub {
+      font-size: clamp(0.95rem, 1.6vw, 1.08rem);
+      color: rgba(240,240,240,0.5);
+      max-width: 520px;
+      margin: 0 auto 2.75rem;
+      line-height: 1.8;
+      position: relative; z-index: 1;
+    }
+    .page-hero-actions {
+      display: flex; gap: 1rem; flex-wrap: wrap;
+      align-items: center; justify-content: center;
+      position: relative; z-index: 1;
+    }
+    .page-hero-fade {
+      position: absolute; bottom: 0; left: 0; right: 0; height: 100px; z-index: 1;
+      background: linear-gradient(to top, var(--black), transparent);
+    }
+
+    /* ─── BUTTONS ─── */
+    .btn-primary {
+      position: relative; overflow: hidden;
+      padding: 0.95rem 2.4rem; border-radius: 10px;
+      font-family: var(--font-display); font-size: 0.72rem; font-weight: 700;
+      letter-spacing: 0.1em; text-decoration: none; color: #000;
+      border: none; cursor: pointer; display: inline-block;
+      box-shadow: 0 0 32px rgba(79,172,254,0.5), 0 0 64px rgba(79,172,254,0.15);
+      transition: box-shadow 0.3s, transform 0.25s cubic-bezier(.34,1.56,.64,1);
+    }
+    .btn-primary::before {
+      content: ''; position: absolute; inset: 0;
+      background: linear-gradient(110deg,
+        #001933 0%, #003366 12%, #0066cc 25%,
+        #4facfe 38%, #7ec8fd 48%, #c8e9ff 50%,
+        #7ec8fd 52%, #4facfe 62%,
+        #0066cc 75%, #003366 88%, #001933 100%
+      );
+      background-size: 250% 250%;
+      animation: metal-flow 4s ease-in-out infinite;
+    }
+    .btn-primary span { position: relative; z-index: 1; }
+    .btn-primary:hover { box-shadow: 0 0 50px rgba(79,172,254,0.8), 0 0 100px rgba(79,172,254,0.3); transform: translateY(-3px) scale(1.02); }
+
+    .btn-gold {
+      position: relative; overflow: hidden;
+      padding: 0.95rem 2.4rem; border-radius: 10px;
+      font-family: var(--font-display); font-size: 0.72rem; font-weight: 700;
+      letter-spacing: 0.1em; text-decoration: none; color: #000;
+      border: none; cursor: pointer; display: inline-block;
+      box-shadow: 0 0 32px rgba(245,166,35,0.45), 0 0 64px rgba(245,166,35,0.12);
+      transition: box-shadow 0.3s, transform 0.25s cubic-bezier(.34,1.56,.64,1);
+    }
+    .btn-gold::before {
+      content: ''; position: absolute; inset: 0;
+      background: linear-gradient(110deg,
+        #1a0d00 0%, #3d2000 12%, #7a4500 25%,
+        #c47a00 38%, #f5a623 48%, #fde68a 50%,
+        #f5a623 52%, #c47a00 62%,
+        #7a4500 75%, #3d2000 88%, #1a0d00 100%
+      );
+      background-size: 250% 250%;
+      animation: metal-flow 4s ease-in-out infinite reverse;
+    }
+    .btn-gold span { position: relative; z-index: 1; }
+    .btn-gold:hover { box-shadow: 0 0 50px rgba(245,166,35,0.7), 0 0 100px rgba(245,166,35,0.25); transform: translateY(-3px) scale(1.02); }
+
+    .btn-ghost {
+      position: relative; overflow: hidden;
+      padding: 0.95rem 2.4rem; border-radius: 10px;
+      font-family: var(--font-display); font-size: 0.72rem; font-weight: 600;
+      letter-spacing: 0.1em; text-decoration: none; color: var(--white);
+      background: transparent; cursor: pointer; display: inline-block;
+      transition: transform 0.25s, color 0.2s;
+      border: 1px solid transparent;
+    }
+    .btn-ghost::before {
+      content: ''; position: absolute; inset: 0; border-radius: 10px;
+      background: linear-gradient(#0d0d0d, #0d0d0d) padding-box,
+                  linear-gradient(110deg,
+                    #333 0%, #777 20%, #ccc 40%, #fff 50%,
+                    #ccc 60%, #777 80%, #333 100%
+                  ) border-box;
+      background-size: auto, 200% 200%;
+      animation: metal-flow 6s ease-in-out infinite;
+      z-index: -1;
+    }
+    .btn-ghost:hover { transform: translateY(-2px); color: var(--gold); }
+
+    /* ─── SECTION SHARED ─── */
+    .section-divider {
+      height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(79,172,254,0.2), rgba(245,166,35,0.2), transparent);
+    }
+
+    .section-label {
+      font-family: var(--font-display); font-size: 0.58rem; font-weight: 700;
+      letter-spacing: 0.2em; text-transform: uppercase; margin-bottom: 1.25rem;
+      color: var(--muted);
+    }
+
+    .section-headline {
+      font-family: var(--font-display);
+      font-size: clamp(1.7rem, 3.5vw, 2.6rem);
+      font-weight: 900; letter-spacing: -0.02em; line-height: 1.1;
+      color: var(--white); margin-bottom: 1rem;
+    }
+
+    .section-sub {
+      font-size: 1.02rem; color: rgba(240,240,240,0.55);
+      line-height: 1.85; max-width: 580px;
+    }
+
+    /* ─── PAIN POINTS / PROBLEM SECTION ─── */
+    .problem-section {
+      padding: 7rem 4rem;
+      position: relative; overflow: hidden;
+    }
+    .problem-section-bg {
+      position: absolute; inset: 0;
+      background: radial-gradient(ellipse 60% 60% at 50% 50%, rgba(245,166,35,0.03) 0%, transparent 70%);
+    }
+    .problem-inner {
+      max-width: 1100px; margin: 0 auto;
+    }
+    .problem-header {
+      text-align: center; margin-bottom: 4rem;
+    }
+    .problem-question {
+      font-family: var(--font-display);
+      font-size: clamp(1.3rem, 2.8vw, 2rem);
+      font-weight: 800; letter-spacing: -0.01em;
+      color: var(--white); margin-bottom: 0.75rem;
+      line-height: 1.3;
+    }
+    .problem-question-sub {
+      font-size: 0.98rem; color: rgba(240,240,240,0.45); line-height: 1.7;
+    }
+
+    .stat-cards {
+      display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.25rem;
+    }
+    .stat-card {
+      background: rgba(12,12,12,0.95);
+      border: 1px solid rgba(245,166,35,0.12);
+      border-radius: 16px;
+      padding: 2rem 1.5rem;
+      position: relative; overflow: hidden;
+      transition: border-color 0.3s, transform 0.3s;
+    }
+    .stat-card::before {
+      content: '';
+      position: absolute; top: 0; left: 0; right: 0; height: 2px;
+      background: linear-gradient(90deg, transparent, var(--gold), transparent);
+      opacity: 0.5; transition: opacity 0.3s;
+    }
+    .stat-card:hover {
+      border-color: rgba(245,166,35,0.28);
+      transform: translateY(-4px);
+    }
+    .stat-card:hover::before { opacity: 1; }
+
+    .stat-num {
+      font-family: var(--font-display); font-weight: 900;
+      font-size: 2.4rem; letter-spacing: -0.04em; line-height: 1;
+      color: var(--gold);
+      text-shadow: 0 0 24px rgba(245,166,35,0.45);
+      margin-bottom: 0.75rem; display: block;
+    }
+    .stat-card:nth-child(2n) .stat-num {
+      color: var(--blue);
+      text-shadow: 0 0 24px rgba(79,172,254,0.45);
+    }
+    .stat-card:nth-child(2n)::before {
+      background: linear-gradient(90deg, transparent, var(--blue), transparent);
+    }
+    .stat-card:nth-child(2n) { border-color: rgba(79,172,254,0.12); }
+    .stat-card:nth-child(2n):hover { border-color: rgba(79,172,254,0.28); }
+
+    .stat-text {
+      font-size: 0.9rem; color: rgba(240,240,240,0.6);
+      line-height: 1.55; font-weight: 600;
+    }
+    .stat-card-glow {
+      position: absolute; bottom: -40px; right: -20px;
+      width: 120px; height: 120px; border-radius: 50%;
+      background: radial-gradient(ellipse, rgba(245,166,35,0.06) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .stat-card:nth-child(2n) .stat-card-glow {
+      background: radial-gradient(ellipse, rgba(79,172,254,0.06) 0%, transparent 70%);
+    }
+
+    /* ─── BENEFITS SECTION ─── */
+    .benefits-section {
+      padding: 7rem 4rem;
+      position: relative; overflow: hidden;
+      background: rgba(255,255,255,0.008);
+    }
+    .benefits-inner {
+      max-width: 1100px; margin: 0 auto;
+    }
+    .benefits-header {
+      text-align: center; margin-bottom: 4.5rem;
+    }
+    .benefits-grid {
+      display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem;
+    }
+    .benefit-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 2.5rem 2rem;
+      position: relative; overflow: hidden;
+      transition: border-color 0.3s, transform 0.3s, box-shadow 0.3s;
+    }
+    .benefit-card::after {
+      content: '';
+      position: absolute; bottom: 0; left: 0; right: 0; height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(79,172,254,0.3), transparent);
+      opacity: 0; transition: opacity 0.3s;
+    }
+    .benefit-card:hover {
+      border-color: rgba(79,172,254,0.2);
+      transform: translateY(-6px);
+      box-shadow: 0 20px 60px rgba(0,0,0,0.4), 0 0 40px rgba(79,172,254,0.06);
+    }
+    .benefit-card:hover::after { opacity: 1; }
+    .benefit-card:nth-child(2) {
+      border-color: rgba(245,166,35,0.1);
+    }
+    .benefit-card:nth-child(2)::after {
+      background: linear-gradient(90deg, transparent, rgba(245,166,35,0.3), transparent);
+    }
+    .benefit-card:nth-child(2):hover {
+      border-color: rgba(245,166,35,0.25);
+      box-shadow: 0 20px 60px rgba(0,0,0,0.4), 0 0 40px rgba(245,166,35,0.06);
+    }
+
+    .benefit-icon-wrap {
+      width: 52px; height: 52px; border-radius: 14px;
+      display: flex; align-items: center; justify-content: center;
+      margin-bottom: 1.5rem; position: relative; overflow: hidden;
+      font-size: 1.4rem; flex-shrink: 0;
+    }
+    .benefit-icon-bg {
+      position: absolute; inset: 0;
+    }
+    .benefit-icon { position: relative; z-index: 1; }
+
+    .benefit-title {
+      font-family: var(--font-display); font-size: 0.72rem; font-weight: 800;
+      letter-spacing: 0.12em; text-transform: uppercase;
+      color: var(--blue); margin-bottom: 1rem;
+    }
+    .benefit-card:nth-child(2) .benefit-title { color: var(--gold); }
+    .benefit-card:nth-child(3) .benefit-title {
+      background: linear-gradient(110deg, #4facfe, #a8d8ff);
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .benefit-desc {
+      font-size: 0.96rem; color: rgba(240,240,240,0.6);
+      line-height: 1.8; font-weight: 500;
+    }
+    .benefit-card-glow {
+      position: absolute; top: -30px; right: -30px;
+      width: 180px; height: 180px; border-radius: 50%;
+      background: radial-gradient(ellipse, rgba(79,172,254,0.04) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .benefit-card:nth-child(2) .benefit-card-glow {
+      background: radial-gradient(ellipse, rgba(245,166,35,0.04) 0%, transparent 70%);
+    }
+
+    /* ─── HOW IT WORKS SECTION ─── */
+    .how-section {
+      padding: 7rem 4rem;
+      position: relative; overflow: hidden;
+    }
+    .how-section-bg {
+      position: absolute; inset: 0;
+      background: radial-gradient(ellipse 50% 70% at 0% 50%, rgba(79,172,254,0.03) 0%, transparent 60%),
+                  radial-gradient(ellipse 50% 70% at 100% 50%, rgba(245,166,35,0.03) 0%, transparent 60%);
+    }
+    .how-inner {
+      max-width: 900px; margin: 0 auto;
+    }
+    .how-header {
+      text-align: center; margin-bottom: 4rem;
+    }
+    .how-steps {
+      display: flex; flex-direction: column; gap: 0;
+      position: relative;
+    }
+    .how-steps::before {
+      content: '';
+      position: absolute; left: 27px; top: 0; bottom: 0; width: 1px;
+      background: linear-gradient(to bottom,
+        transparent 0%,
+        rgba(79,172,254,0.25) 10%,
+        rgba(245,166,35,0.2) 50%,
+        rgba(79,172,254,0.15) 90%,
+        transparent 100%
+      );
+    }
+    .how-step {
+      display: flex; align-items: flex-start; gap: 2rem;
+      padding: 2rem 0; position: relative;
+    }
+    .how-step-num-wrap {
+      flex-shrink: 0; position: relative; z-index: 1;
+    }
+    .how-step-num {
+      width: 56px; height: 56px; border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-family: var(--font-display); font-size: 0.85rem; font-weight: 900;
+      letter-spacing: 0.05em; color: #000;
+      position: relative; overflow: hidden;
+      box-shadow: 0 0 20px rgba(79,172,254,0.3);
+    }
+    .how-step-num-bg { position: absolute; inset: 0; }
+    .how-step-num-val { position: relative; z-index: 1; }
+
+    .how-step:nth-child(even) .how-step-num {
+      box-shadow: 0 0 20px rgba(245,166,35,0.3);
+    }
+
+    .how-step-body { padding-top: 0.9rem; flex: 1; }
+    .how-step-title {
+      font-family: var(--font-display); font-size: 0.78rem; font-weight: 800;
+      letter-spacing: 0.08em; color: var(--white); margin-bottom: 0.5rem;
+    }
+    .how-step-desc {
+      font-size: 0.97rem; color: rgba(240,240,240,0.55);
+      line-height: 1.75; font-weight: 500;
+    }
+    .how-step-badge {
+      display: inline-block; margin-top: 0.6rem;
+      font-family: var(--font-display); font-size: 0.52rem; font-weight: 700;
+      letter-spacing: 0.1em; text-transform: uppercase;
+      padding: 0.25rem 0.75rem; border-radius: 20px;
+    }
+    .badge-blue {
+      background: var(--blue-dim); color: var(--blue);
+      border: 1px solid rgba(79,172,254,0.2);
+    }
+    .badge-gold {
+      background: var(--gold-dim); color: var(--gold);
+      border: 1px solid rgba(245,166,35,0.2);
+    }
+
+    /* ─── PERKS / WHAT YOU GET ─── */
+    .perks-section {
+      padding: 7rem 4rem;
+      position: relative; overflow: hidden;
+      background: rgba(255,255,255,0.008);
+    }
+    .perks-inner {
+      max-width: 900px; margin: 0 auto;
+      display: grid; grid-template-columns: 1.1fr 0.9fr; gap: 5rem; align-items: center;
+    }
+    .perks-text .section-headline { margin-bottom: 1.5rem; }
+
+    .perks-card {
+      background: rgba(10,10,10,0.97);
+      border: 1px solid rgba(245,166,35,0.18);
+      border-radius: 22px;
+      padding: 2.5rem;
+      position: relative; overflow: hidden;
+      box-shadow: 0 30px 80px rgba(0,0,0,0.5), 0 0 50px rgba(245,166,35,0.05);
+    }
+    .perks-card::before {
+      content: '';
+      position: absolute; top: 0; left: 0; right: 0; height: 2px;
+      background: linear-gradient(90deg, transparent, var(--gold), transparent);
+      opacity: 0.7;
+    }
+    .perks-card-title {
+      font-family: var(--font-display); font-size: 0.62rem; font-weight: 700;
+      letter-spacing: 0.18em; text-transform: uppercase;
+      color: var(--gold); margin-bottom: 1.75rem;
+    }
+    .perks-list {
+      display: flex; flex-direction: column; gap: 1rem;
+      list-style: none;
+    }
+    .perks-list li {
+      display: flex; align-items: flex-start; gap: 1rem;
+      font-size: 0.96rem; color: rgba(240,240,240,0.75);
+      font-weight: 600; line-height: 1.5;
+    }
+    .perk-check {
+      flex-shrink: 0; width: 22px; height: 22px; border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 0.65rem; font-weight: 900; color: #000;
+      position: relative; overflow: hidden; margin-top: 0.05rem;
+    }
+    .perk-check-bg { position: absolute; inset: 0; }
+    .perk-check-val { position: relative; z-index: 1; }
+
+    .perks-card-glow {
+      position: absolute; bottom: -50px; right: -50px;
+      width: 200px; height: 200px; border-radius: 50%;
+      background: radial-gradient(ellipse, rgba(245,166,35,0.08) 0%, transparent 65%);
+      pointer-events: none;
+    }
+
+    /* ─── EARLY ARTIST CTA ─── */
+    .artist-cta-section {
+      padding: 8rem 4rem;
+      text-align: center;
+      position: relative; overflow: hidden;
+    }
+    .artist-cta-bg {
+      position: absolute; inset: 0;
+      background: radial-gradient(ellipse 80% 80% at 50% 50%, rgba(245,166,35,0.05) 0%, transparent 65%),
+                  radial-gradient(ellipse 40% 40% at 20% 30%, rgba(79,172,254,0.04) 0%, transparent 60%);
+    }
+    .artist-cta-eyebrow {
+      display: inline-flex; align-items: center; gap: 0.6rem;
+      font-family: var(--font-display); font-size: 0.6rem; font-weight: 600;
+      letter-spacing: 0.2em; text-transform: uppercase; margin-bottom: 1.5rem;
+      color: var(--gold);
+      animation: eyebrow-glow-gold 2.5s ease-in-out infinite alternate;
+      position: relative; z-index: 1;
+    }
+    .artist-cta-eyebrow::before, .artist-cta-eyebrow::after {
+      content: ''; height: 1px; background: var(--gold);
+    }
+    .artist-cta-eyebrow::before { width: 28px; }
+    .artist-cta-eyebrow::after  { width: 14px; }
+
+    .artist-cta-headline {
+      font-family: var(--font-display);
+      font-size: clamp(1.8rem, 4vw, 3rem);
+      font-weight: 900; letter-spacing: -0.02em;
+      color: var(--white); margin-bottom: 1rem;
+      position: relative; z-index: 1;
+    }
+    .artist-cta-sub {
+      font-size: 1.02rem; color: rgba(240,240,240,0.5);
+      max-width: 460px; margin: 0 auto 3rem;
+      line-height: 1.8; position: relative; z-index: 1;
+    }
+
+    .artist-form-wrap {
+      max-width: 480px; margin: 0 auto;
+      position: relative; z-index: 1;
+    }
+    .artist-form {
+      display: flex; flex-direction: column; gap: 0.85rem;
+    }
+    .artist-input {
+      width: 100%; padding: 0.9rem 1.25rem; border-radius: 10px;
+      background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1);
+      color: var(--white); font-family: var(--font); font-size: 0.9rem;
+      outline: none; transition: border-color 0.2s, box-shadow 0.2s;
+    }
+    .artist-input::placeholder { color: var(--muted); }
+    .artist-input:focus {
+      border-color: rgba(245,166,35,0.4);
+      box-shadow: 0 0 0 3px rgba(245,166,35,0.08);
+    }
+    .artist-submit {
+      position: relative; overflow: hidden;
+      padding: 1rem 2rem; border-radius: 10px;
+      font-family: var(--font-display); font-size: 0.72rem; font-weight: 700;
+      letter-spacing: 0.12em; color: #000; border: none; cursor: pointer;
+      box-shadow: 0 0 32px rgba(245,166,35,0.45), 0 0 64px rgba(245,166,35,0.12);
+      transition: box-shadow 0.3s, transform 0.2s;
+    }
+    .artist-submit::before {
+      content: ''; position: absolute; inset: 0;
+      background: linear-gradient(110deg,
+        #1a0d00 0%, #3d2000 12%, #7a4500 25%,
+        #c47a00 38%, #f5a623 48%, #fde68a 50%,
+        #f5a623 52%, #c47a00 62%,
+        #7a4500 75%, #3d2000 88%, #1a0d00 100%
+      );
+      background-size: 250% 250%;
+      animation: metal-flow 4s ease-in-out infinite reverse;
+    }
+    .artist-submit span { position: relative; z-index: 1; }
+    .artist-submit:hover {
+      box-shadow: 0 0 50px rgba(245,166,35,0.7), 0 0 100px rgba(245,166,35,0.25);
+      transform: translateY(-2px);
+    }
+    .artist-form-fine {
+      margin-top: 0.75rem;
+      font-size: 0.78rem; color: var(--muted); line-height: 1.6;
+    }
+
+    /* Spots counter badge */
+    .spots-badge {
+      display: inline-flex; align-items: center; gap: 0.6rem;
+      background: rgba(245,166,35,0.08);
+      border: 1px solid rgba(245,166,35,0.2);
+      border-radius: 30px; padding: 0.5rem 1.2rem;
+      margin-bottom: 2.5rem;
+      position: relative; z-index: 1;
+    }
+    .spots-dot {
+      width: 7px; height: 7px; border-radius: 50%;
+      background: var(--gold);
+      box-shadow: 0 0 8px rgba(245,166,35,0.6);
+      animation: spots-pulse 2s ease-in-out infinite;
+    }
+    @keyframes spots-pulse {
+      0%, 100% { opacity: 1; } 50% { opacity: 0.4; }
+    }
+    .spots-text {
+      font-family: var(--font-display); font-size: 0.62rem; font-weight: 700;
+      letter-spacing: 0.1em; color: var(--gold);
+    }
+
+    /* ─── FOOTER ─── */
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 3rem 4rem 2.5rem;
+      text-align: center;
+      position: relative;
+    }
+    footer::before {
+      content: '';
+      position: absolute; top: 0; left: 0; right: 0; height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(79,172,254,0.3), rgba(245,166,35,0.3), transparent);
+    }
+    .footer-logo {
+      display: inline-flex; align-items: center; gap: 0.65rem;
+      text-decoration: none; margin-bottom: 1.25rem;
+    }
+    .footer-logo-icon {
+      width: 32px; height: 32px; border-radius: 8px;
+      display: flex; align-items: center; justify-content: center;
+      position: relative; overflow: hidden;
+    }
+    .footer-logo-icon-bg {
+      position: absolute; inset: 0;
+      background: linear-gradient(110deg,
+        #001933 0%, #003366 20%, #0066cc 35%, #4facfe 50%,
+        #a8d8ff 60%, #4facfe 70%, #0066cc 85%, #001933 100%
+      );
+      background-size: 220% 220%;
+      animation: metal-flow 4s ease-in-out infinite;
+    }
+    .footer-logo-icon svg { position: relative; z-index: 1; width: 18px; height: 18px; }
+    .footer-logo-name {
+      font-family: var(--font-display); font-size: 0.75rem; font-weight: 700;
+      letter-spacing: 0.1em; color: var(--white);
+    }
+    .footer-links {
+      display: flex; justify-content: center; gap: 2rem;
+      list-style: none; margin-bottom: 1.5rem; flex-wrap: wrap;
+    }
+    .footer-links a {
+      color: var(--muted); text-decoration: none; font-size: 0.8rem;
+      font-weight: 600; letter-spacing: 0.04em; transition: color 0.2s;
+    }
+    .footer-links a:hover { color: var(--white); }
+    .footer-copy {
+      font-size: 0.75rem; color: rgba(85,85,85,0.7); letter-spacing: 0.04em;
+    }
+
+    /* ─── RESPONSIVE ─── */
+    @media (max-width: 1024px) {
+      .stat-cards { grid-template-columns: repeat(2, 1fr); }
+      .benefits-grid { grid-template-columns: 1fr; gap: 1.5rem; }
+      .perks-inner { grid-template-columns: 1fr; gap: 3rem; }
+    }
+    @media (max-width: 768px) {
+      nav { padding: 0 1.5rem; }
+      .nav-links, .nav-cta { display: none; }
+      .nav-hamburger { display: flex; }
+      .page-hero { padding: 9rem 2rem 5.5rem; }
+      .problem-section, .benefits-section, .how-section, .perks-section, .artist-cta-section { padding: 5rem 2rem; }
+      .stat-cards { grid-template-columns: 1fr 1fr; }
+      footer { padding: 2.5rem 2rem; }
+      .how-steps::before { left: 20px; }
+      .how-step-num { width: 42px; height: 42px; font-size: 0.75rem; }
+    }
+    @media (max-width: 540px) {
+      .stat-cards { grid-template-columns: 1fr; }
+      .page-hero-headline { font-size: 1.9rem; }
+      .page-hero-actions { flex-direction: column; align-items: stretch; }
+      .page-hero-actions a, .page-hero-actions button { text-align: center; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- Film grain -->
+<div id="grain"></div>
+<div id="cursor-glow"></div>
+<canvas id="particles"></canvas>
+
+<!-- ─── NAV ─── -->
+<nav id="main-nav">
+  <a href="/" class="nav-logo">
+    <div class="nav-logo-icon">
+      <div class="nav-logo-icon-bg"></div>
+      <svg viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M10 2C7.2 2 5 4.2 5 7c0 1.8.9 3.4 2.3 4.4L7 16h6l-.3-4.6C14.1 10.4 15 8.8 15 7c0-2.8-2.2-5-5-5z" fill="white"/>
+        <path d="M8 16h4l.5 2H7.5L8 16z" fill="rgba(255,255,255,0.5)"/>
+      </svg>
+    </div>
+    <div>
+      <span class="nav-logo-name">BUDDER BUDDY</span>
+      <span class="nav-logo-sub">Tattoo Healing App</span>
+    </div>
+  </a>
+
+  <ul class="nav-links">
+    <li><a href="/">Home</a></li>
+    <li><a href="/features.html">Features</a></li>
+    <li><a href="/healing-guide.html">Healing Guide</a></li>
+    <li><a href="/for-artists.html" class="active">For Artists</a></li>
+  </ul>
+
+  <a href="/#signup" class="nav-cta"><span>Get Early Access</span></a>
+  <button class="nav-hamburger" aria-label="Menu">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<!-- ═══════════════════════════════════════
+     HERO
+════════════════════════════════════════ -->
+<section class="page-hero" id="top">
+  <div class="page-hero-bg"></div>
+  <div class="page-hero-grid"></div>
+  <div class="page-hero-fade"></div>
+
+  <div class="page-hero-eyebrow reveal">For Tattoo Artists</div>
+
+  <h1 class="page-hero-headline reveal d1">
+    Send Your Clients Home<br>With More Than Instructions.
+  </h1>
+  <p class="page-hero-sub reveal d2">
+    Budder Buddy is the professional aftercare system that makes your work heal better — and market itself.
+  </p>
+
+  <div class="page-hero-actions reveal d3">
+    <a href="#artist-signup" class="btn-gold"><span>Join as an Early Artist</span></a>
+    <a href="#benefits" class="btn-ghost"><span>See How It Works</span></a>
+  </div>
+</section>
+
+<div class="section-divider"></div>
+
+<!-- ═══════════════════════════════════════
+     SECTION 1 — THE PROBLEM
+════════════════════════════════════════ -->
+<section class="problem-section" id="problem">
+  <div class="problem-section-bg"></div>
+  <div class="problem-inner">
+
+    <div class="problem-header">
+      <p class="section-label reveal">The Reality</p>
+      <h2 class="problem-question reveal d1">
+        How many times has a client texted you<br>"Is this normal?"
+      </h2>
+      <p class="problem-question-sub reveal d2">
+        The answer is probably more than you want to count. Here's what the data says about aftercare anxiety.
+      </p>
+    </div>
+
+    <div class="stat-cards">
+      <div class="stat-card reveal">
+        <div class="stat-card-glow"></div>
+        <span class="stat-num">73%</span>
+        <p class="stat-text">of clients panic during the peel phase — even when their tattoo is healing perfectly on track.</p>
+      </div>
+      <div class="stat-card reveal d1">
+        <div class="stat-card-glow"></div>
+        <span class="stat-num">8+</span>
+        <p class="stat-text">post-session texts the average artist receives per tattoo — mostly questions that a good app could answer in seconds.</p>
+      </div>
+      <div class="stat-card reveal d2">
+        <div class="stat-card-glow"></div>
+        <span class="stat-num">~60%</span>
+        <p class="stat-text">of healing issues trace back to client confusion, not bad tattooing. The work was fine. The guidance wasn't.</p>
+      </div>
+      <div class="stat-card reveal d3">
+        <div class="stat-card-glow"></div>
+        <span class="stat-num">1 Bad Heal</span>
+        <p class="stat-text">= faded ink, a cloudy healed photo, and a portfolio piece that never reflects what you actually put on skin.</p>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<div class="section-divider"></div>
+
+<!-- ═══════════════════════════════════════
+     SECTION 2 — THE SOLUTION / BENEFITS
+════════════════════════════════════════ -->
+<section class="benefits-section" id="benefits">
+  <div class="benefits-inner">
+
+    <div class="benefits-header">
+      <p class="section-label reveal">What Changes</p>
+      <h2 class="section-headline reveal d1">Three Things That Make<br>a Real Difference.</h2>
+      <p class="section-sub reveal d2" style="margin: 0 auto;">
+        When your clients heal with Budder Buddy, you get more than healed ink. You get your time back, documented results, and a reputation that compounds.
+      </p>
+    </div>
+
+    <div class="benefits-grid">
+
+      <!-- Benefit 1 -->
+      <div class="benefit-card reveal">
+        <div class="benefit-card-glow"></div>
+        <div class="benefit-icon-wrap">
+          <div class="benefit-icon-bg lm-blue" style="opacity: 0.25;"></div>
+          <span class="benefit-icon">🔕</span>
+        </div>
+        <h3 class="benefit-title">Less Noise in Your DMs</h3>
+        <p class="benefit-desc">
+          Clients have real-time guidance in the app. They won't need to text you when they're not sure if peeling is normal — the app tells them exactly what's happening and why. You get your peace back. Your response time becomes your choice, not your obligation.
+        </p>
+      </div>
+
+      <!-- Benefit 2 -->
+      <div class="benefit-card reveal d1">
+        <div class="benefit-card-glow"></div>
+        <div class="benefit-icon-wrap">
+          <div class="benefit-icon-bg lm-gold" style="opacity: 0.25;"></div>
+          <span class="benefit-icon">🎞️</span>
+        </div>
+        <h3 class="benefit-title">Your Work, Documented</h3>
+        <p class="benefit-desc">
+          Every client's timelapse captures your art healing in real time. That content lives on your client's phone — and can come back to you as portfolio gold. Day-one to fully-healed, angle-matched, automatically compiled. Content you didn't have to shoot yourself.
+        </p>
+      </div>
+
+      <!-- Benefit 3 -->
+      <div class="benefit-card reveal d2">
+        <div class="benefit-card-glow"></div>
+        <div class="benefit-icon-wrap">
+          <div class="benefit-icon-bg lm-blue" style="opacity: 0.25;"></div>
+          <span class="benefit-icon">🏆</span>
+        </div>
+        <h3 class="benefit-title">Professional Trust</h3>
+        <p class="benefit-desc">
+          When you recommend a tool this polished, clients trust your process more. It signals you care about the full experience — not just the session. That kind of detail is what separates artists clients rave about from artists clients just remember.
+        </p>
+      </div>
+
+    </div>
+
+  </div>
+</section>
+
+<div class="section-divider"></div>
+
+<!-- ═══════════════════════════════════════
+     SECTION 3 — HOW THE PROGRAM WORKS
+════════════════════════════════════════ -->
+<section class="how-section" id="how-it-works">
+  <div class="how-section-bg"></div>
+  <div class="how-inner">
+
+    <div class="how-header">
+      <p class="section-label reveal">The Program</p>
+      <h2 class="section-headline reveal d1" style="text-align: center;">How the Artist Program Works.</h2>
+      <p class="section-sub reveal d2" style="margin: 0 auto; text-align: center;">
+        Simple setup. No tech overhead. You hand off a link and the system does the rest.
+      </p>
+    </div>
+
+    <div class="how-steps">
+
+      <div class="how-step reveal">
+        <div class="how-step-num-wrap">
+          <div class="how-step-num">
+            <div class="how-step-num-bg lm-blue"></div>
+            <span class="how-step-num-val">01</span>
+          </div>
+        </div>
+        <div class="how-step-body">
+          <p class="how-step-title">Join Early</p>
+          <p class="how-step-desc">Get your artist profile set up before public launch. You're in the first cohort — which means your spot, your name, and your studio link are locked in ahead of everyone else.</p>
+          <span class="how-step-badge badge-blue">Early Partner</span>
+        </div>
+      </div>
+
+      <div class="how-step reveal d1">
+        <div class="how-step-num-wrap">
+          <div class="how-step-num">
+            <div class="how-step-num-bg lm-gold"></div>
+            <span class="how-step-num-val">02</span>
+          </div>
+        </div>
+        <div class="how-step-body">
+          <p class="how-step-title">Share Your Link or QR at Checkout</p>
+          <p class="how-step-desc">Every client gets your unique referral link or a printable QR code for your station. Works on aftercare cards, printed receipts, or just spoken at the end of the session. Takes five seconds.</p>
+          <span class="how-step-badge badge-gold">Zero Friction</span>
+        </div>
+      </div>
+
+      <div class="how-step reveal d2">
+        <div class="how-step-num-wrap">
+          <div class="how-step-num">
+            <div class="how-step-num-bg lm-blue"></div>
+            <span class="how-step-num-val">03</span>
+          </div>
+        </div>
+        <div class="how-step-body">
+          <p class="how-step-title">Clients Sign Up Under Your Studio</p>
+          <p class="how-step-desc">When clients create their Budder Buddy account through your link, they're associated with your studio automatically. No action required from you. The connection is permanent.</p>
+          <span class="how-step-badge badge-blue">Automatic</span>
+        </div>
+      </div>
+
+      <div class="how-step reveal d3">
+        <div class="how-step-num-wrap">
+          <div class="how-step-num">
+            <div class="how-step-num-bg lm-gold"></div>
+            <span class="how-step-num-val">04</span>
+          </div>
+        </div>
+        <div class="how-step-body">
+          <p class="how-step-title">See Healing Trends Across Your Clients</p>
+          <p class="how-step-desc">Your artist dashboard shows aggregated, anonymous healing data across all clients referred through your link — average healing timelines, common concerns, check-in completion rates. Useful signal, zero privacy exposure.</p>
+          <span class="how-step-badge badge-gold">Coming Soon</span>
+        </div>
+      </div>
+
+      <div class="how-step reveal d4">
+        <div class="how-step-num-wrap">
+          <div class="how-step-num">
+            <div class="how-step-num-bg lm-blue"></div>
+            <span class="how-step-num-val">05</span>
+          </div>
+        </div>
+        <div class="how-step-body">
+          <p class="how-step-title">Your Studio Name Travels With the Content</p>
+          <p class="how-step-desc">When timelapse content goes public — shared by clients on social media, submitted to our gallery, or featured in-app — your studio name is attached. Your work keeps moving after the client walks out the door.</p>
+          <span class="how-step-badge badge-blue">Built-In Attribution</span>
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+</section>
+
+<div class="section-divider"></div>
+
+<!-- ═══════════════════════════════════════
+     SECTION 4 — WHAT YOU GET
+════════════════════════════════════════ -->
+<section class="perks-section" id="perks">
+  <div class="perks-inner" style="max-width: 1000px; margin: 0 auto;">
+
+    <div class="perks-text">
+      <p class="section-label reveal">The Package</p>
+      <h2 class="section-headline reveal d1">
+        Everything Included.<br>Nothing Held Back.
+      </h2>
+      <p class="section-sub reveal d2">
+        Early artist partners don't get a trial. They get the full program, locked in free, from day one. We're building this alongside people who actually do the work — and that has value we don't want to charge for.
+      </p>
+    </div>
+
+    <div class="perks-card reveal d2">
+      <div class="perks-card-glow"></div>
+      <p class="perks-card-title">Artist Partner Benefits</p>
+      <ul class="perks-list">
+        <li>
+          <div class="perk-check">
+            <div class="perk-check-bg lm-gold"></div>
+            <span class="perk-check-val">✓</span>
+          </div>
+          Free forever for you and your clients at launch
+        </li>
+        <li>
+          <div class="perk-check">
+            <div class="perk-check-bg lm-gold"></div>
+            <span class="perk-check-val">✓</span>
+          </div>
+          Branded referral link with your shop name
+        </li>
+        <li>
+          <div class="perk-check">
+            <div class="perk-check-bg lm-gold"></div>
+            <span class="perk-check-val">✓</span>
+          </div>
+          Fewer "is this normal?" messages in your inbox
+        </li>
+        <li>
+          <div class="perk-check">
+            <div class="perk-check-bg lm-gold"></div>
+            <span class="perk-check-val">✓</span>
+          </div>
+          Clients documenting your work for you, automatically
+        </li>
+        <li>
+          <div class="perk-check">
+            <div class="perk-check-bg lm-blue"></div>
+            <span class="perk-check-val">✓</span>
+          </div>
+          Early access to artist dashboard — coming soon
+        </li>
+        <li>
+          <div class="perk-check">
+            <div class="perk-check-bg lm-blue"></div>
+            <span class="perk-check-val">✓</span>
+          </div>
+          Priority support and direct line for feature input
+        </li>
+      </ul>
+    </div>
+
+  </div>
+</section>
+
+<div class="section-divider"></div>
+
+<!-- ═══════════════════════════════════════
+     SECTION 5 — EARLY ARTIST SIGNUP
+════════════════════════════════════════ -->
+<section class="artist-cta-section" id="artist-signup">
+  <div class="artist-cta-bg"></div>
+
+  <div class="spots-badge reveal">
+    <span class="spots-dot"></span>
+    <span class="spots-text">50 Artist Spots Available</span>
+  </div>
+
+  <div class="artist-cta-eyebrow reveal d1">Early Artist Program</div>
+
+  <h2 class="artist-cta-headline reveal d2">
+    Be One of the First 50 Artist Partners.
+  </h2>
+  <p class="artist-cta-sub reveal d3">
+    We're working with early artist partners to shape the product. If you're in — you're in for free, forever.
+  </p>
+
+  <div class="artist-form-wrap reveal d4">
+    <form class="artist-form" id="artist-form" onsubmit="handleArtistSignup(event)">
+      <input
+        type="email"
+        class="artist-input"
+        id="artist-email"
+        placeholder="your@email.com"
+        required
+        autocomplete="email"
+      />
+      <input
+        type="text"
+        class="artist-input"
+        id="artist-studio"
+        placeholder="Studio name (optional)"
+        autocomplete="organization"
+      />
+      <button type="submit" class="artist-submit" id="artist-submit-btn">
+        <span>Claim My Spot</span>
+      </button>
+    </form>
+    <p class="artist-form-fine">No spam. No fees. No credit card. Just your spot reserved before the doors open.</p>
+  </div>
+
+</section>
+
+<!-- ─── FOOTER ─── -->
+<footer>
+  <a href="/" class="footer-logo">
+    <div class="footer-logo-icon">
+      <div class="footer-logo-icon-bg"></div>
+      <svg viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M10 2C7.2 2 5 4.2 5 7c0 1.8.9 3.4 2.3 4.4L7 16h6l-.3-4.6C14.1 10.4 15 8.8 15 7c0-2.8-2.2-5-5-5z" fill="white"/>
+        <path d="M8 16h4l.5 2H7.5L8 16z" fill="rgba(255,255,255,0.5)"/>
+      </svg>
+    </div>
+    <span class="footer-logo-name">BUDDER BUDDY</span>
+  </a>
+
+  <ul class="footer-links">
+    <li><a href="/">Home</a></li>
+    <li><a href="/features.html">Features</a></li>
+    <li><a href="/healing-guide.html">Healing Guide</a></li>
+    <li><a href="/for-artists.html">For Artists</a></li>
+    <li><a href="/#signup">Get Early Access</a></li>
+  </ul>
+
+  <p class="footer-copy">
+    &copy; 2026 Budder Buddy &nbsp;&middot;&nbsp; All rights reserved &nbsp;&middot;&nbsp; budderbuddy.org
+  </p>
+</footer>
+
+<!-- ─── SCRIPTS ─── -->
+<script>
+  // Cursor glow
+  const cg = document.getElementById('cursor-glow');
+  document.addEventListener('mousemove', e => {
+    cg.style.left = e.clientX + 'px';
+    cg.style.top  = e.clientY + 'px';
+  });
+
+  // Nav scroll class
+  const nav = document.getElementById('main-nav');
+  window.addEventListener('scroll', () => {
+    nav.classList.toggle('scrolled', window.scrollY > 40);
+  }, { passive: true });
+
+  // Reveal on scroll
+  const reveals = document.querySelectorAll('.reveal');
+  const io = new IntersectionObserver(entries => {
+    entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('on'); });
+  }, { threshold: 0.1 });
+  reveals.forEach(el => io.observe(el));
+
+  // Starfield particles
+  (function() {
+    const canvas = document.getElementById('particles');
+    const ctx    = canvas.getContext('2d');
+    let W, H, stars = [];
+
+    function resize() {
+      W = canvas.width  = window.innerWidth;
+      H = canvas.height = window.innerHeight;
+    }
+    resize();
+    window.addEventListener('resize', resize);
+
+    for (let i = 0; i < 120; i++) {
+      stars.push({
+        x: Math.random() * window.innerWidth,
+        y: Math.random() * window.innerHeight,
+        r: Math.random() * 0.9 + 0.2,
+        a: Math.random(),
+        da: (Math.random() - 0.5) * 0.004,
+        dx: (Math.random() - 0.5) * 0.06,
+        dy: (Math.random() - 0.5) * 0.06,
+      });
+    }
+
+    function tick() {
+      ctx.clearRect(0, 0, W, H);
+      stars.forEach(s => {
+        s.a += s.da;
+        if (s.a <= 0 || s.a >= 1) s.da *= -1;
+        s.x = (s.x + s.dx + W) % W;
+        s.y = (s.y + s.dy + H) % H;
+        ctx.beginPath();
+        ctx.arc(s.x, s.y, s.r, 0, Math.PI * 2);
+        ctx.fillStyle = `rgba(240,240,240,${s.a * 0.35})`;
+        ctx.fill();
+      });
+      requestAnimationFrame(tick);
+    }
+    tick();
+  })();
+
+  // Artist signup form
+  function handleArtistSignup(e) {
+    e.preventDefault();
+    const form   = e.target;
+    const email  = document.getElementById('artist-email').value;
+    const studio = document.getElementById('artist-studio').value;
+    const btn    = document.getElementById('artist-submit-btn');
+
+    btn.innerHTML = '<span>YOU\'RE IN ✓</span>';
+    btn.style.pointerEvents = 'none';
+    document.getElementById('artist-email').value = '';
+    document.getElementById('artist-studio').value = '';
+    document.getElementById('artist-email').placeholder = 'Spot reserved. See you at launch.';
+
+    console.log('Artist signup:', { email, studio });
+  }
+</script>
+
+</body>
+</html>

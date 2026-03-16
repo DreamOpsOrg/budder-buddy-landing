@@ -1,0 +1,1648 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Tattoo Healing Guide: Stages, Aftercare & What's Normal — Budder Buddy</title>
+  <link rel="canonical" href="https://budderbuddy.org/healing-guide.html" />
+  <meta name="description" content="The complete tattoo healing guide. Learn every stage of the healing process — from Day 1 inflammation to full dermal healing — plus a complete do's and don'ts list, warning signs to watch for, and expert FAQ." />
+  <meta property="og:title" content="Tattoo Healing Guide: Stages, Aftercare & What's Normal — Budder Buddy" />
+  <meta property="og:description" content="Everything you need to know about the tattoo healing process — from Day 1 to fully healed. Stages, aftercare do's and don'ts, warning signs, and FAQ." />
+  <meta property="og:url" content="https://budderbuddy.org/healing-guide.html" />
+  <meta property="og:type" content="article" />
+  <meta name="twitter:card" content="summary_large_image" />
+
+  <!-- Schema.org Article markup for SEO -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "headline": "Tattoo Healing: What's Normal, What's Not, and How to Get It Right",
+    "description": "A comprehensive guide to the tattoo healing process, covering all 4 healing stages, aftercare do's and don'ts, warning signs of infection, and frequently asked questions.",
+    "author": { "@type": "Organization", "name": "Budder Buddy" },
+    "publisher": { "@type": "Organization", "name": "Budder Buddy", "url": "https://budderbuddy.org" },
+    "url": "https://budderbuddy.org/healing-guide.html",
+    "mainEntityOfPage": "https://budderbuddy.org/healing-guide.html"
+  }
+  </script>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;700;800;900&family=Nunito:ital,wght@0,400;0,600;0,700;0,800;1,700&display=swap" rel="stylesheet" />
+
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --black:      #080808;
+      --dark:       #0d0d0d;
+      --dark2:      #121212;
+      --card:       rgba(14,14,14,0.92);
+      --card2:      rgba(16,16,20,0.95);
+      --blue:       #4facfe;
+      --blue-dim:   rgba(79,172,254,0.1);
+      --blue-glow:  rgba(79,172,254,0.35);
+      --gold:       #f5a623;
+      --gold-dim:   rgba(245,166,35,0.1);
+      --gold-glow:  rgba(245,166,35,0.35);
+      --red:        #ff4d4d;
+      --red-dim:    rgba(255,77,77,0.1);
+      --white:      #f0f0f0;
+      --muted:      #555;
+      --muted2:     #888;
+      --border:     rgba(255,255,255,0.07);
+      --font-display: 'Orbitron', monospace;
+      --font:       'Nunito', sans-serif;
+    }
+
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: var(--font);
+      background: var(--black);
+      color: var(--white);
+      line-height: 1.7;
+      overflow-x: hidden;
+    }
+
+    /* ─── LIQUID METAL ─── */
+    @keyframes metal-flow {
+      0%   { background-position: 0%   50%; }
+      50%  { background-position: 100% 50%; }
+      100% { background-position: 0%   50%; }
+    }
+    .lm-blue {
+      background: linear-gradient(110deg,
+        #001933 0%, #003366 12%, #0066cc 22%,
+        #2196f3 32%, #4facfe 42%, #a8d8ff 50%,
+        #4facfe 58%, #2196f3 68%,
+        #0066cc 78%, #003366 88%, #001933 100%
+      );
+      background-size: 220% 220%;
+      animation: metal-flow 5s ease-in-out infinite;
+    }
+    .lm-gold {
+      background: linear-gradient(110deg,
+        #1a0d00 0%, #3d2000 12%, #7a4500 22%,
+        #c47a00 32%, #f5a623 42%, #fde68a 50%,
+        #f5a623 58%, #c47a00 68%,
+        #7a4500 78%, #3d2000 88%, #1a0d00 100%
+      );
+      background-size: 220% 220%;
+      animation: metal-flow 5s ease-in-out infinite reverse;
+    }
+
+    /* ─── ANIMATIONS ─── */
+    @keyframes eyebrow-glow {
+      from { text-shadow: 0 0 8px rgba(79,172,254,0.4); }
+      to   { text-shadow: 0 0 20px rgba(79,172,254,0.9), 0 0 40px rgba(79,172,254,0.3); }
+    }
+    @keyframes glow-pulse-blue {
+      0%, 100% { box-shadow: 0 0 24px rgba(79,172,254,0.4), 0 0 60px rgba(79,172,254,0.12); }
+      50%       { box-shadow: 0 0 48px rgba(79,172,254,0.7), 0 0 100px rgba(79,172,254,0.25); }
+    }
+    @keyframes float-up-slow {
+      0%, 100% { transform: translateY(0px); }
+      50%       { transform: translateY(-10px); }
+    }
+    @keyframes sheen-slide {
+      0%   { transform: translateX(-120%) skewX(-15deg); }
+      100% { transform: translateX(220%)  skewX(-15deg); }
+    }
+    @keyframes progress-fill {
+      from { width: 0%; }
+      to   { width: var(--progress-w); }
+    }
+    @keyframes warning-pulse {
+      0%, 100% { box-shadow: 0 0 0 0 rgba(255,77,77,0.0); }
+      50%       { box-shadow: 0 0 0 6px rgba(255,77,77,0.12); }
+    }
+    @keyframes blob-drift {
+      0%, 100% { border-radius: 60% 40% 70% 30% / 50% 60% 40% 60%; transform: rotate(0deg) scale(1); }
+      33%  { border-radius: 40% 60% 30% 70% / 60% 40% 60% 40%; transform: rotate(120deg) scale(1.05); }
+      66%  { border-radius: 70% 30% 50% 50% / 30% 70% 50% 50%; transform: rotate(240deg) scale(0.97); }
+    }
+
+    /* ─── UTILS ─── */
+    #grain {
+      position: fixed; inset: 0; z-index: 9997; pointer-events: none; opacity: 0.028;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='250' height='250'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='250' height='250' filter='url(%23n)'/%3E%3C/svg%3E");
+    }
+    #cursor-glow {
+      pointer-events: none; position: fixed;
+      width: 500px; height: 500px; border-radius: 50%;
+      background: radial-gradient(circle, rgba(79,172,254,0.05) 0%, transparent 70%);
+      transform: translate(-50%,-50%); z-index: 9999; transition: opacity 0.3s;
+    }
+
+    .reveal { opacity: 0; transform: translateY(24px); transition: opacity 0.65s ease, transform 0.65s ease; }
+    .reveal.on { opacity: 1; transform: none; }
+    .d1{transition-delay:.08s} .d2{transition-delay:.17s} .d3{transition-delay:.26s}
+    .d4{transition-delay:.35s} .d5{transition-delay:.44s} .d6{transition-delay:.53s}
+
+    /* ─── NAV ─── */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 0 2.5rem; height: 68px;
+      background: rgba(8,8,8,0.75);
+      backdrop-filter: blur(24px) saturate(160%);
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+      transition: background 0.4s;
+    }
+    nav::after {
+      content: '';
+      position: absolute; bottom: 0; left: 0; right: 0; height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(79,172,254,0.35), rgba(245,166,35,0.35), transparent);
+    }
+    nav.scrolled { background: rgba(8,8,8,0.96); }
+
+    .nav-logo { display: flex; align-items: center; gap: 0.75rem; text-decoration: none; }
+    .nav-logo-icon {
+      width: 36px; height: 36px; border-radius: 9px;
+      display: flex; align-items: center; justify-content: center;
+      position: relative; overflow: hidden;
+    }
+    .nav-logo-icon-bg {
+      position: absolute; inset: 0;
+      background: linear-gradient(110deg,
+        #001933 0%, #003366 20%, #0066cc 35%, #4facfe 50%,
+        #a8d8ff 60%, #4facfe 70%, #0066cc 85%, #001933 100%
+      );
+      background-size: 220% 220%;
+      animation: metal-flow 4s ease-in-out infinite;
+    }
+    .nav-logo-icon svg { position: relative; z-index: 1; width: 20px; height: 20px; }
+    .nav-logo-name {
+      display: block;
+      font-family: var(--font-display); font-size: 0.82rem; font-weight: 700;
+      letter-spacing: 0.08em; color: var(--white);
+    }
+    .nav-logo-sub { display: block; font-size: 0.6rem; color: var(--muted); letter-spacing: 0.05em; }
+
+    .nav-links { display: flex; gap: 2.25rem; list-style: none; }
+    .nav-links a {
+      color: var(--muted); text-decoration: none; font-size: 0.82rem;
+      font-weight: 600; letter-spacing: 0.04em; transition: color 0.2s;
+    }
+    .nav-links a:hover { color: var(--white); }
+    .nav-links a.active { color: var(--blue); }
+
+    .nav-cta {
+      position: relative; overflow: hidden;
+      padding: 0.55rem 1.4rem; border-radius: 8px;
+      font-family: var(--font-display); font-size: 0.68rem; font-weight: 700;
+      letter-spacing: 0.08em; text-decoration: none; color: #000;
+      border: none; cursor: pointer; display: inline-block;
+      box-shadow: 0 0 24px rgba(79,172,254,0.45), 0 0 48px rgba(79,172,254,0.12);
+      transition: box-shadow 0.3s, transform 0.2s;
+    }
+    .nav-cta::before {
+      content: ''; position: absolute; inset: 0;
+      background: linear-gradient(110deg,
+        #001933 0%, #003366 15%, #0066cc 28%,
+        #4facfe 38%, #7ec8fd 48%, #c8e9ff 50%,
+        #7ec8fd 52%, #4facfe 62%,
+        #0066cc 72%, #003366 85%, #001933 100%
+      );
+      background-size: 220% 220%;
+      animation: metal-flow 4s ease-in-out infinite;
+    }
+    .nav-cta span { position: relative; z-index: 1; }
+    .nav-cta:hover { box-shadow: 0 0 40px rgba(79,172,254,0.7), 0 0 80px rgba(79,172,254,0.25); transform: translateY(-1px); }
+
+    .nav-hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; padding: 4px; background: none; border: none; }
+    .nav-hamburger span { width: 24px; height: 2px; background: var(--white); border-radius: 2px; }
+
+    /* ─── HERO ─── */
+    .guide-hero {
+      position: relative;
+      padding: 9rem 4rem 5rem;
+      text-align: center;
+      overflow: hidden;
+    }
+    .guide-hero-bg {
+      position: absolute; inset: 0; z-index: 0;
+      background: radial-gradient(ellipse 80% 60% at 50% 0%, rgba(79,172,254,0.07) 0%, transparent 70%);
+    }
+    .guide-hero-grid {
+      position: absolute; inset: 0; z-index: 0; opacity: 0.04;
+      background-image:
+        linear-gradient(rgba(79,172,254,0.5) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(79,172,254,0.5) 1px, transparent 1px);
+      background-size: 60px 60px;
+      mask-image: radial-gradient(ellipse 80% 100% at 50% 0%, black 0%, transparent 80%);
+    }
+    .blob-hero {
+      position: absolute; pointer-events: none; z-index: 0;
+      border-radius: 60% 40% 70% 30% / 50% 60% 40% 60%;
+      animation: blob-drift 24s ease-in-out infinite;
+    }
+    .blob-hero-blue {
+      width: 600px; height: 600px;
+      background: radial-gradient(ellipse, rgba(79,172,254,0.055) 0%, transparent 70%);
+      top: -100px; left: -100px;
+    }
+    .blob-hero-gold {
+      width: 500px; height: 500px;
+      background: radial-gradient(ellipse, rgba(245,166,35,0.04) 0%, transparent 70%);
+      top: -80px; right: -80px;
+      animation-delay: -8s; animation-direction: reverse;
+    }
+
+    .guide-hero-eyebrow {
+      display: inline-flex; align-items: center; gap: 0.6rem;
+      font-family: var(--font-display); font-size: 0.6rem; font-weight: 600;
+      letter-spacing: 0.2em; text-transform: uppercase; margin-bottom: 1.5rem;
+      color: var(--blue);
+      animation: eyebrow-glow 2.5s ease-in-out infinite alternate;
+      position: relative; z-index: 1;
+    }
+    .guide-hero-eyebrow::before, .guide-hero-eyebrow::after {
+      content: ''; height: 1px; background: var(--blue);
+    }
+    .guide-hero-eyebrow::before { width: 32px; }
+    .guide-hero-eyebrow::after  { width: 16px; }
+
+    .guide-hero h1 {
+      font-family: var(--font-display);
+      font-size: clamp(1.6rem, 4.5vw, 3rem);
+      font-weight: 900; line-height: 1.12;
+      letter-spacing: -0.025em;
+      color: var(--white);
+      margin-bottom: 1.2rem;
+      position: relative; z-index: 1;
+      max-width: 820px; margin-left: auto; margin-right: auto;
+    }
+    .guide-hero h1 .h1-period { color: var(--gold); }
+
+    .guide-hero-sub {
+      font-size: clamp(0.95rem, 1.5vw, 1.05rem);
+      color: rgba(240,240,240,0.5);
+      max-width: 560px;
+      margin: 0 auto 1.5rem;
+      line-height: 1.8;
+      position: relative; z-index: 1;
+    }
+    .guide-hero-meta {
+      display: inline-flex; align-items: center; gap: 1rem;
+      position: relative; z-index: 1;
+      font-size: 0.78rem; color: var(--muted); letter-spacing: 0.04em;
+    }
+    .guide-hero-meta-dot { width: 3px; height: 3px; border-radius: 50%; background: var(--muted); }
+    .read-time {
+      display: inline-flex; align-items: center; gap: 0.4rem;
+      color: var(--blue); font-weight: 700; font-family: var(--font-display);
+      font-size: 0.68rem; letter-spacing: 0.08em;
+    }
+
+    .guide-hero-fade {
+      position: absolute; bottom: 0; left: 0; right: 0; height: 80px; z-index: 1;
+      background: linear-gradient(to top, var(--black), transparent);
+    }
+
+    /* ─── TOC STICKY BAR ─── */
+    .toc-bar {
+      position: sticky; top: 68px; z-index: 900;
+      background: rgba(8,8,8,0.92);
+      backdrop-filter: blur(20px);
+      border-bottom: 1px solid var(--border);
+      overflow-x: auto;
+    }
+    .toc-bar::-webkit-scrollbar { height: 0; }
+    .toc-bar-inner {
+      display: flex; min-width: max-content;
+      padding: 0 3rem;
+    }
+    .toc-item {
+      padding: 0.9rem 1.2rem;
+      font-family: var(--font-display); font-size: 0.55rem; font-weight: 600;
+      letter-spacing: 0.1em; text-transform: uppercase;
+      color: var(--muted); text-decoration: none;
+      border-bottom: 2px solid transparent;
+      transition: color 0.2s, border-color 0.2s;
+      white-space: nowrap;
+    }
+    .toc-item:hover { color: var(--white); }
+    .toc-item.active-toc { color: var(--blue); border-bottom-color: var(--blue); }
+
+    /* ─── MAIN LAYOUT ─── */
+    .guide-body {
+      max-width: 820px;
+      margin: 0 auto;
+      padding: 4rem 2rem 0;
+    }
+
+    /* ─── SECTION HEADERS ─── */
+    .guide-section { margin-bottom: 5rem; }
+    .guide-section:last-child { margin-bottom: 0; }
+
+    .section-eyebrow {
+      font-family: var(--font-display); font-size: 0.58rem; font-weight: 600;
+      letter-spacing: 0.18em; text-transform: uppercase;
+      color: var(--blue); margin-bottom: 0.6rem;
+      display: flex; align-items: center; gap: 0.5rem;
+    }
+    .section-eyebrow::after {
+      content: ''; flex: 1; height: 1px;
+      background: linear-gradient(to right, rgba(79,172,254,0.3), transparent);
+    }
+
+    .section-eyebrow-gold {
+      color: var(--gold);
+    }
+    .section-eyebrow-gold::after {
+      background: linear-gradient(to right, rgba(245,166,35,0.3), transparent);
+    }
+
+    .guide-section h2 {
+      font-family: var(--font-display);
+      font-size: clamp(1.25rem, 3vw, 1.75rem);
+      font-weight: 800; line-height: 1.2;
+      letter-spacing: -0.02em;
+      color: var(--white);
+      margin-bottom: 1rem;
+    }
+    .h2-blue { color: var(--blue); }
+    .h2-gold { color: var(--gold); }
+
+    .guide-body p {
+      font-size: 1rem; color: rgba(240,240,240,0.72);
+      line-height: 1.85; margin-bottom: 1.1rem;
+    }
+    .guide-body p:last-child { margin-bottom: 0; }
+    .guide-body strong { color: var(--white); font-weight: 700; }
+
+    /* ─── OVERVIEW STATS ─── */
+    .overview-stats {
+      display: grid; grid-template-columns: repeat(3, 1fr);
+      gap: 1rem; margin: 2rem 0;
+    }
+    .ov-stat {
+      background: var(--card); border: 1px solid var(--border);
+      border-radius: 12px; padding: 1.25rem;
+      text-align: center;
+      transition: border-color 0.2s, box-shadow 0.2s;
+    }
+    .ov-stat:hover { border-color: rgba(79,172,254,0.25); box-shadow: 0 0 20px rgba(79,172,254,0.06); }
+    .ov-stat-val {
+      font-family: var(--font-display); font-size: 1.25rem; font-weight: 800;
+      color: var(--blue); letter-spacing: -0.02em; display: block; margin-bottom: 0.3rem;
+    }
+    .ov-stat-val.gold { color: var(--gold); }
+    .ov-stat-label { font-size: 0.78rem; color: var(--muted); letter-spacing: 0.04em; }
+
+    /* ─── STAGE CARDS ─── */
+    .stage-card {
+      position: relative;
+      background: var(--card2);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 2rem;
+      margin-bottom: 1.5rem;
+      overflow: hidden;
+      transition: border-color 0.3s, box-shadow 0.3s;
+    }
+    .stage-card:hover { border-color: rgba(79,172,254,0.2); box-shadow: 0 0 32px rgba(79,172,254,0.06); }
+    .stage-card.gold-accent:hover { border-color: rgba(245,166,35,0.2); box-shadow: 0 0 32px rgba(245,166,35,0.06); }
+
+    .stage-card-glow {
+      position: absolute; top: 0; left: 0; right: 0; height: 1px;
+    }
+    .stage-card-glow.blue { background: linear-gradient(90deg, transparent, rgba(79,172,254,0.5), transparent); }
+    .stage-card-glow.gold { background: linear-gradient(90deg, transparent, rgba(245,166,35,0.5), transparent); }
+
+    .stage-header {
+      display: flex; align-items: flex-start; gap: 1.25rem; margin-bottom: 1.5rem;
+    }
+    .stage-num-block {
+      position: relative; flex-shrink: 0;
+      width: 52px; height: 52px; border-radius: 12px;
+      display: flex; align-items: center; justify-content: center;
+      overflow: hidden;
+    }
+    .stage-num-bg { position: absolute; inset: 0; }
+    .stage-num {
+      position: relative; z-index: 1;
+      font-family: var(--font-display); font-size: 1.1rem; font-weight: 900;
+      color: #000; letter-spacing: -0.02em;
+    }
+    .stage-title-group { flex: 1; }
+    .stage-label {
+      font-family: var(--font-display); font-size: 0.58rem; font-weight: 600;
+      letter-spacing: 0.18em; text-transform: uppercase;
+      margin-bottom: 0.3rem;
+    }
+    .stage-label.blue { color: var(--blue); }
+    .stage-label.gold { color: var(--gold); }
+    .stage-title-group h3 {
+      font-family: var(--font-display);
+      font-size: clamp(1rem, 2.2vw, 1.2rem);
+      font-weight: 800; line-height: 1.2;
+      letter-spacing: -0.015em; color: var(--white);
+    }
+
+    /* Timeline progress bar */
+    .stage-timeline {
+      display: flex; align-items: center; gap: 0.75rem; margin-bottom: 1.5rem;
+    }
+    .stage-tl-label {
+      font-family: var(--font-display); font-size: 0.55rem; font-weight: 600;
+      letter-spacing: 0.1em; color: var(--muted); white-space: nowrap;
+    }
+    .stage-tl-track {
+      flex: 1; height: 4px; background: rgba(255,255,255,0.07); border-radius: 2px;
+      overflow: hidden;
+    }
+    .stage-tl-fill {
+      height: 100%; border-radius: 2px;
+      width: var(--progress-w, 25%);
+    }
+    .stage-tl-fill.blue { background: linear-gradient(90deg, #0066cc, #4facfe); }
+    .stage-tl-fill.gold { background: linear-gradient(90deg, #7a4500, #f5a623); }
+    .stage-period {
+      font-family: var(--font-display); font-size: 0.58rem; font-weight: 700;
+      letter-spacing: 0.06em; white-space: nowrap;
+    }
+    .stage-period.blue { color: var(--blue); }
+    .stage-period.gold { color: var(--gold); }
+
+    .stage-grid {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-top: 1.25rem;
+    }
+    .stage-col h4 {
+      font-family: var(--font-display); font-size: 0.6rem; font-weight: 700;
+      letter-spacing: 0.12em; text-transform: uppercase;
+      margin-bottom: 0.75rem; padding-bottom: 0.5rem;
+      border-bottom: 1px solid var(--border);
+    }
+    .stage-col.what-see h4 { color: var(--blue); }
+    .stage-col.what-do h4 { color: rgba(240,240,240,0.5); }
+    .stage-col.what-not h4 { color: var(--red); }
+    .stage-col.what-happen h4 { color: var(--gold); }
+
+    .stage-list {
+      list-style: none; display: flex; flex-direction: column; gap: 0.5rem;
+    }
+    .stage-list li {
+      font-size: 0.88rem; color: rgba(240,240,240,0.65);
+      line-height: 1.5; padding-left: 1.2rem; position: relative;
+    }
+    .stage-list li::before {
+      content: ''; position: absolute; left: 0; top: 0.55em;
+      width: 5px; height: 5px; border-radius: 50%;
+    }
+    .stage-col.what-see .stage-list li::before { background: var(--blue); }
+    .stage-col.what-do .stage-list li::before { background: rgba(240,240,240,0.3); }
+    .stage-col.what-not .stage-list li::before { background: var(--red); }
+    .stage-col.what-happen .stage-list li::before { background: var(--gold); }
+
+    .stage-body-text {
+      font-size: 0.9rem; color: rgba(240,240,240,0.65); line-height: 1.8;
+      margin-bottom: 0;
+    }
+    .stage-body-text.full-col {
+      grid-column: 1 / -1;
+      padding: 1rem; background: rgba(255,255,255,0.025); border-radius: 8px;
+      border-left: 3px solid;
+    }
+    .stage-body-text.full-col.blue { border-color: var(--blue); }
+    .stage-body-text.full-col.gold { border-color: var(--gold); }
+
+    .stage-callout {
+      margin-top: 1rem; padding: 1rem 1.25rem;
+      border-radius: 10px; font-size: 0.88rem;
+      line-height: 1.6; grid-column: 1 / -1;
+    }
+    .stage-callout.blue { background: var(--blue-dim); border: 1px solid rgba(79,172,254,0.15); color: rgba(240,240,240,0.7); }
+    .stage-callout.gold { background: var(--gold-dim); border: 1px solid rgba(245,166,35,0.15); color: rgba(240,240,240,0.7); }
+    .stage-callout strong { color: var(--white); }
+
+    /* ─── DOS AND DONTS ─── */
+    .dos-donts-grid {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; margin-top: 1.5rem;
+    }
+    .dos-col, .donts-col {
+      background: var(--card2); border: 1px solid var(--border);
+      border-radius: 14px; padding: 1.5rem; overflow: hidden; position: relative;
+    }
+    .dos-col { border-top: 2px solid rgba(79,172,254,0.4); }
+    .donts-col { border-top: 2px solid rgba(255,77,77,0.4); }
+
+    .dos-col-header, .donts-col-header {
+      display: flex; align-items: center; gap: 0.65rem; margin-bottom: 1.25rem;
+    }
+    .dos-icon, .donts-icon {
+      width: 32px; height: 32px; border-radius: 8px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1rem; flex-shrink: 0;
+    }
+    .dos-icon { background: rgba(79,172,254,0.15); }
+    .donts-icon { background: rgba(255,77,77,0.15); }
+    .dos-col-title {
+      font-family: var(--font-display); font-size: 0.68rem; font-weight: 700;
+      letter-spacing: 0.12em; color: var(--blue);
+    }
+    .donts-col-title {
+      font-family: var(--font-display); font-size: 0.68rem; font-weight: 700;
+      letter-spacing: 0.12em; color: var(--red);
+    }
+
+    .dd-list { list-style: none; display: flex; flex-direction: column; gap: 0.75rem; }
+    .dd-list li {
+      display: flex; align-items: flex-start; gap: 0.6rem;
+      font-size: 0.9rem; color: rgba(240,240,240,0.68); line-height: 1.5;
+    }
+    .dd-check {
+      flex-shrink: 0; width: 18px; height: 18px; border-radius: 5px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 0.65rem; font-weight: 800; margin-top: 0.1rem;
+    }
+    .dd-check.check { background: rgba(79,172,254,0.2); color: var(--blue); }
+    .dd-check.x { background: rgba(255,77,77,0.2); color: var(--red); }
+
+    /* ─── WARNING SIGNS ─── */
+    .warning-grid {
+      display: grid; grid-template-columns: repeat(2, 1fr); gap: 1rem; margin-top: 1.5rem;
+    }
+    .warning-card {
+      background: rgba(255,77,77,0.05); border: 1px solid rgba(255,77,77,0.15);
+      border-radius: 12px; padding: 1.25rem;
+      animation: warning-pulse 4s ease-in-out infinite;
+    }
+    .warning-card:nth-child(2) { animation-delay: -1s; }
+    .warning-card:nth-child(3) { animation-delay: -2s; }
+    .warning-card:nth-child(4) { animation-delay: -3s; }
+    .warning-icon {
+      font-size: 1.25rem; margin-bottom: 0.5rem; display: block;
+    }
+    .warning-card h4 {
+      font-family: var(--font-display); font-size: 0.68rem; font-weight: 700;
+      letter-spacing: 0.08em; color: var(--red); margin-bottom: 0.4rem;
+    }
+    .warning-card p {
+      font-size: 0.85rem; color: rgba(240,240,240,0.6); line-height: 1.6;
+      margin-bottom: 0 !important;
+    }
+    .warning-note {
+      margin-top: 1.5rem; padding: 1rem 1.25rem;
+      background: rgba(245,166,35,0.07); border: 1px solid rgba(245,166,35,0.2);
+      border-radius: 10px; font-size: 0.88rem; color: rgba(240,240,240,0.7); line-height: 1.7;
+    }
+    .warning-note strong { color: var(--gold); }
+
+    /* ─── FAQ ─── */
+    .faq-list { margin-top: 1.5rem; display: flex; flex-direction: column; gap: 0; }
+    .faq-item {
+      border-bottom: 1px solid var(--border);
+    }
+    .faq-item:first-child { border-top: 1px solid var(--border); }
+    .faq-q {
+      width: 100%; background: none; border: none; cursor: pointer;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 1.25rem 0; text-align: left; gap: 1rem;
+      transition: color 0.2s;
+    }
+    .faq-q:hover .faq-q-text { color: var(--white); }
+    .faq-q-text {
+      font-size: 0.97rem; font-weight: 700; color: rgba(240,240,240,0.82);
+      font-family: var(--font); line-height: 1.4; flex: 1;
+      transition: color 0.2s;
+    }
+    .faq-arrow {
+      flex-shrink: 0; width: 22px; height: 22px; border-radius: 50%;
+      background: rgba(79,172,254,0.1); border: 1px solid rgba(79,172,254,0.2);
+      display: flex; align-items: center; justify-content: center;
+      color: var(--blue); font-size: 0.7rem; font-weight: 700;
+      transition: background 0.2s, transform 0.3s;
+    }
+    .faq-item.open .faq-arrow { background: rgba(79,172,254,0.2); transform: rotate(45deg); }
+    .faq-a {
+      overflow: hidden; max-height: 0;
+      transition: max-height 0.4s ease, padding 0.3s ease;
+    }
+    .faq-item.open .faq-a { max-height: 400px; }
+    .faq-a-inner {
+      padding-bottom: 1.25rem;
+      font-size: 0.92rem; color: rgba(240,240,240,0.62); line-height: 1.8;
+    }
+    .faq-a-inner strong { color: var(--white); }
+
+    /* ─── CTA SECTION ─── */
+    .cta-section {
+      position: relative;
+      padding: 6rem 4rem;
+      text-align: center;
+      overflow: hidden;
+      margin-top: 5rem;
+    }
+    .cta-section-bg {
+      position: absolute; inset: 0; z-index: 0;
+      background:
+        radial-gradient(ellipse 60% 50% at 50% 50%, rgba(79,172,254,0.07) 0%, transparent 70%),
+        radial-gradient(ellipse 40% 40% at 80% 20%, rgba(245,166,35,0.04) 0%, transparent 60%);
+      border-top: 1px solid var(--border);
+    }
+    .cta-eyebrow {
+      position: relative; z-index: 1;
+      font-family: var(--font-display); font-size: 0.6rem; font-weight: 600;
+      letter-spacing: 0.2em; text-transform: uppercase;
+      color: var(--blue); margin-bottom: 1rem;
+      animation: eyebrow-glow 2.5s ease-in-out infinite alternate;
+    }
+    .cta-headline {
+      font-family: var(--font-display);
+      font-size: clamp(1.5rem, 4vw, 2.4rem);
+      font-weight: 900; line-height: 1.1;
+      letter-spacing: -0.025em; color: var(--white);
+      margin-bottom: 1rem;
+      position: relative; z-index: 1;
+    }
+    .cta-sub {
+      font-size: clamp(0.9rem, 1.5vw, 1rem); color: rgba(240,240,240,0.5);
+      max-width: 520px; margin: 0 auto 2rem; line-height: 1.75;
+      position: relative; z-index: 1;
+    }
+    .cta-pitch {
+      display: grid; grid-template-columns: repeat(3, 1fr);
+      gap: 1rem; max-width: 640px; margin: 0 auto 2.5rem;
+      position: relative; z-index: 1;
+    }
+    .cta-pitch-item {
+      background: var(--card2); border: 1px solid var(--border);
+      border-radius: 12px; padding: 1rem;
+      font-size: 0.82rem; color: rgba(240,240,240,0.6);
+      line-height: 1.5;
+    }
+    .cta-pitch-item strong {
+      display: block; font-family: var(--font-display); font-size: 0.6rem;
+      letter-spacing: 0.1em; color: var(--blue); margin-bottom: 0.35rem; font-weight: 700;
+    }
+    .cta-form {
+      position: relative; z-index: 1;
+      display: flex; gap: 0.75rem; justify-content: center;
+      max-width: 460px; margin: 0 auto;
+    }
+    .cta-input {
+      flex: 1; background: rgba(255,255,255,0.05); border: 1px solid var(--border);
+      border-radius: 10px; padding: 0.85rem 1.2rem;
+      color: var(--white); font-family: var(--font); font-size: 0.9rem;
+      outline: none; transition: border-color 0.2s, box-shadow 0.2s;
+    }
+    .cta-input::placeholder { color: var(--muted); }
+    .cta-input:focus { border-color: rgba(79,172,254,0.4); box-shadow: 0 0 0 3px rgba(79,172,254,0.08); }
+    .cta-btn {
+      position: relative; overflow: hidden; flex-shrink: 0;
+      padding: 0.85rem 1.75rem; border-radius: 10px;
+      font-family: var(--font-display); font-size: 0.68rem; font-weight: 700;
+      letter-spacing: 0.08em; color: #000; border: none; cursor: pointer;
+      box-shadow: 0 0 28px rgba(79,172,254,0.45), 0 0 60px rgba(79,172,254,0.12);
+      transition: box-shadow 0.3s, transform 0.2s;
+    }
+    .cta-btn::before {
+      content: ''; position: absolute; inset: 0;
+      background: linear-gradient(110deg,
+        #001933 0%, #003366 15%, #0066cc 28%,
+        #4facfe 38%, #7ec8fd 48%, #c8e9ff 50%,
+        #7ec8fd 52%, #4facfe 62%,
+        #0066cc 72%, #003366 85%, #001933 100%
+      );
+      background-size: 220% 220%;
+      animation: metal-flow 4s ease-in-out infinite;
+    }
+    .cta-btn span { position: relative; z-index: 1; }
+    .cta-btn:hover { box-shadow: 0 0 44px rgba(79,172,254,0.7), 0 0 88px rgba(79,172,254,0.25); transform: translateY(-2px); }
+    .cta-fine {
+      position: relative; z-index: 1;
+      margin-top: 1rem; font-size: 0.78rem; color: var(--muted);
+    }
+
+    /* ─── SECTION DIVIDER ─── */
+    .guide-divider {
+      height: 1px; margin: 5rem 0;
+      background: linear-gradient(90deg, transparent, rgba(79,172,254,0.2), rgba(245,166,35,0.2), transparent);
+    }
+
+    /* ─── FOOTER ─── */
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 3rem 4rem 2.5rem;
+      text-align: center;
+      position: relative;
+    }
+    footer::before {
+      content: '';
+      position: absolute; top: 0; left: 0; right: 0; height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(79,172,254,0.3), rgba(245,166,35,0.3), transparent);
+    }
+    .footer-logo {
+      display: inline-flex; align-items: center; gap: 0.65rem;
+      text-decoration: none; margin-bottom: 1.25rem;
+    }
+    .footer-logo-icon {
+      width: 32px; height: 32px; border-radius: 8px;
+      display: flex; align-items: center; justify-content: center;
+      position: relative; overflow: hidden;
+    }
+    .footer-logo-icon-bg {
+      position: absolute; inset: 0;
+      background: linear-gradient(110deg,
+        #001933 0%, #003366 20%, #0066cc 35%, #4facfe 50%,
+        #a8d8ff 60%, #4facfe 70%, #0066cc 85%, #001933 100%
+      );
+      background-size: 220% 220%;
+      animation: metal-flow 4s ease-in-out infinite;
+    }
+    .footer-logo-icon svg { position: relative; z-index: 1; width: 18px; height: 18px; }
+    .footer-logo-name {
+      font-family: var(--font-display); font-size: 0.75rem; font-weight: 700;
+      letter-spacing: 0.1em; color: var(--white);
+    }
+    .footer-links {
+      display: flex; justify-content: center; gap: 2rem;
+      list-style: none; margin-bottom: 1.5rem; flex-wrap: wrap;
+    }
+    .footer-links a {
+      color: var(--muted); text-decoration: none; font-size: 0.8rem;
+      font-weight: 600; letter-spacing: 0.04em; transition: color 0.2s;
+    }
+    .footer-links a:hover { color: var(--white); }
+    .footer-copy {
+      font-size: 0.75rem; color: rgba(85,85,85,0.7); letter-spacing: 0.04em;
+    }
+
+    /* ─── RESPONSIVE ─── */
+    @media (max-width: 960px) {
+      .guide-hero { padding: 8rem 2rem 4rem; }
+      .guide-body { padding: 3rem 1.5rem 0; }
+      .overview-stats { grid-template-columns: 1fr 1fr; }
+      .overview-stats .ov-stat:last-child { grid-column: 1 / -1; }
+      .dos-donts-grid { grid-template-columns: 1fr; }
+      .warning-grid { grid-template-columns: 1fr; }
+      .cta-section { padding: 5rem 2rem; }
+      .cta-pitch { grid-template-columns: 1fr; max-width: 340px; }
+      .cta-form { flex-direction: column; }
+      footer { padding: 2.5rem 2rem; }
+    }
+    @media (max-width: 768px) {
+      nav { padding: 0 1.5rem; }
+      .nav-links, .nav-cta { display: none; }
+      .nav-hamburger { display: flex; }
+      .stage-grid { grid-template-columns: 1fr; }
+      .guide-hero h1 { font-size: clamp(1.4rem, 6vw, 2.2rem); }
+    }
+    @media (max-width: 480px) {
+      .overview-stats { grid-template-columns: 1fr; }
+      .overview-stats .ov-stat:last-child { grid-column: 1; }
+      .toc-bar-inner { padding: 0 1rem; }
+    }
+  </style>
+</head>
+<body>
+
+<div id="grain"></div>
+<div id="cursor-glow"></div>
+
+<!-- ─── NAV ─── -->
+<nav id="main-nav">
+  <a href="/" class="nav-logo">
+    <div class="nav-logo-icon">
+      <div class="nav-logo-icon-bg"></div>
+      <svg viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <path d="M10 2C7.2 2 5 4.2 5 7c0 1.8.9 3.4 2.3 4.4L7 16h6l-.3-4.6C14.1 10.4 15 8.8 15 7c0-2.8-2.2-5-5-5z" fill="white"/>
+        <path d="M8 16h4l.5 2H7.5L8 16z" fill="rgba(255,255,255,0.5)"/>
+      </svg>
+    </div>
+    <div>
+      <span class="nav-logo-name">BUDDER BUDDY</span>
+      <span class="nav-logo-sub">Tattoo Healing App</span>
+    </div>
+  </a>
+
+  <ul class="nav-links">
+    <li><a href="/">Home</a></li>
+    <li><a href="/features.html">Features</a></li>
+    <li><a href="/healing-guide.html" class="active" aria-current="page">Healing Guide</a></li>
+    <li><a href="/for-artists.html">For Artists</a></li>
+  </ul>
+
+  <a class="nav-cta" href="/#signup"><span>GET EARLY ACCESS</span></a>
+
+  <button class="nav-hamburger" aria-label="Open menu" onclick="this.classList.toggle('open')">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<!-- ─── HERO ─── -->
+<header class="guide-hero">
+  <div class="guide-hero-bg"></div>
+  <div class="guide-hero-grid" aria-hidden="true"></div>
+  <div class="blob-hero blob-hero-blue" aria-hidden="true"></div>
+  <div class="blob-hero blob-hero-gold" aria-hidden="true"></div>
+
+  <div class="guide-hero-eyebrow">The Complete Guide</div>
+
+  <h1>Tattoo Healing: What's Normal, What's Not, and How to Get It Right<span class="h1-period">.</span></h1>
+
+  <p class="guide-hero-sub">
+    Everything you need to know about the tattoo healing process — from Day 1 to fully healed.
+  </p>
+
+  <div class="guide-hero-meta">
+    <span class="read-time">12 min read</span>
+    <span class="guide-hero-meta-dot"></span>
+    <span>4 Healing Stages</span>
+    <span class="guide-hero-meta-dot"></span>
+    <span>Full Do's & Don'ts</span>
+    <span class="guide-hero-meta-dot"></span>
+    <span>FAQ</span>
+  </div>
+
+  <div class="guide-hero-fade" aria-hidden="true"></div>
+</header>
+
+<!-- ─── STICKY TOC BAR ─── -->
+<nav class="toc-bar" aria-label="Table of contents">
+  <div class="toc-bar-inner">
+    <a href="#overview"  class="toc-item active-toc">Overview</a>
+    <a href="#stage-1"   class="toc-item">Stage 1</a>
+    <a href="#stage-2"   class="toc-item">Stage 2</a>
+    <a href="#stage-3"   class="toc-item">Stage 3</a>
+    <a href="#stage-4"   class="toc-item">Stage 4</a>
+    <a href="#dos-donts" class="toc-item">Do's &amp; Don'ts</a>
+    <a href="#warning"   class="toc-item">Warning Signs</a>
+    <a href="#faq"       class="toc-item">FAQ</a>
+    <a href="#signup"    class="toc-item">Track With Budder Buddy</a>
+  </div>
+</nav>
+
+<!-- ─── MAIN CONTENT ─── -->
+<main class="guide-body">
+
+  <!-- ═══ SECTION: OVERVIEW ═══ -->
+  <article class="guide-section reveal" id="overview">
+    <div class="section-eyebrow">Overview</div>
+    <h2>The Tattoo Healing Process <span class="h2-blue">Overview</span></h2>
+
+    <p>
+      A tattoo is a wound — a beautiful, intentional one, but a wound nonetheless. Your artist's machine deposits ink into the <strong>dermis</strong>, the second layer of your skin, by puncturing through the outer layer (epidermis) thousands of times per minute. From the moment your session ends, your body begins healing that wound, and understanding what's happening at each stage is the difference between a tattoo that looks incredible for decades and one that fades prematurely or heals patchy.
+    </p>
+
+    <div class="overview-stats" aria-label="Healing timeline statistics">
+      <div class="ov-stat">
+        <span class="ov-stat-val">2–3 weeks</span>
+        <span class="ov-stat-label">Surface healing (outer skin)</span>
+      </div>
+      <div class="ov-stat">
+        <span class="ov-stat-val gold">2–4 months</span>
+        <span class="ov-stat-label">Full deep healing (dermis)</span>
+      </div>
+      <div class="ov-stat">
+        <span class="ov-stat-val">4 stages</span>
+        <span class="ov-stat-label">Distinct phases to track</span>
+      </div>
+    </div>
+
+    <p>
+      There are two layers of healing happening simultaneously. The <strong>surface</strong> — your epidermis — heals relatively quickly, usually within 2 to 3 weeks. The skin will look closed and feel normal to the touch. But beneath that, the <strong>deeper dermal layers</strong> are still working through the healing process, which can take 2 to 4 months for the ink to fully bond and settle. This is why a tattoo that looks "healed" on the outside may still look slightly muted or cloudy — the final vibrancy emerges later.
+    </p>
+    <p>
+      Proper aftercare during the entire healing window directly affects the quality of the final result. Ink fallout, blowouts, patchiness, and faded color are almost always tied to something that happened — or didn't happen — during the heal. Every stage has specific risks and specific things you should and shouldn't do. Here's the full breakdown.
+    </p>
+  </article>
+
+  <div class="guide-divider" aria-hidden="true"></div>
+
+  <!-- ═══ STAGE 1 ═══ -->
+  <section class="guide-section" id="stage-1">
+    <div class="section-eyebrow reveal">The 4 Healing Stages</div>
+    <h2 class="reveal d1">Stage 1 — <span class="h2-blue">Days 1–3</span>: Fresh Wound Phase</h2>
+
+    <div class="stage-card reveal d2">
+      <div class="stage-card-glow blue" aria-hidden="true"></div>
+
+      <div class="stage-header">
+        <div class="stage-num-block">
+          <div class="stage-num-bg lm-blue"></div>
+          <span class="stage-num">01</span>
+        </div>
+        <div class="stage-title-group">
+          <div class="stage-label blue">Days 1–3</div>
+          <h3>Fresh Wound &amp; Inflammation Phase</h3>
+        </div>
+      </div>
+
+      <div class="stage-timeline" aria-label="Timeline position">
+        <span class="stage-tl-label">Heal progress</span>
+        <div class="stage-tl-track">
+          <div class="stage-tl-fill blue" style="--progress-w: 8%;"></div>
+        </div>
+        <span class="stage-period blue">Days 1–3</span>
+      </div>
+
+      <p class="stage-body-text">
+        Your body's immune system kicks into high gear the moment the tattoo is finished. White blood cells rush to the site to clean the wound and begin building new tissue. This is completely normal, expected, and necessary — your job right now is to keep the area clean and let your body do its work.
+      </p>
+
+      <div class="stage-grid">
+        <div class="stage-col what-see">
+          <h4>What You'll See</h4>
+          <ul class="stage-list">
+            <li>Redness and puffiness around the tattooed area</li>
+            <li>Surface weeping — a clear or slightly pink plasma fluid (not pus)</li>
+            <li>Ink on the surface that may wipe off (excess ink, not your design)</li>
+            <li>Tenderness and warmth to the touch</li>
+            <li>Slight swelling, especially on fleshy areas like forearms or thighs</li>
+          </ul>
+        </div>
+        <div class="stage-col what-happen">
+          <h4>What's Happening</h4>
+          <ul class="stage-list">
+            <li>Inflammatory response: blood flow increases to the area</li>
+            <li>White blood cells (macrophages) engulf bacteria and excess ink</li>
+            <li>Fibroblasts begin producing collagen to repair the dermis</li>
+            <li>Plasma weeping flushes debris from the wound</li>
+            <li>Your body is literally sealing off thousands of tiny puncture wounds</li>
+          </ul>
+        </div>
+        <div class="stage-col what-do">
+          <h4>Do This</h4>
+          <ul class="stage-list">
+            <li>Follow your artist's wrap instructions (second skin or plastic wrap)</li>
+            <li>Once unwrapped: gently wash 2–3x daily with fragrance-free soap</li>
+            <li>Pat dry with a clean paper towel — never rub</li>
+            <li>Apply a thin layer of fragrance-free, unscented moisturizer</li>
+            <li>Wear loose, breathable clothing over the tattoo</li>
+          </ul>
+        </div>
+        <div class="stage-col what-not">
+          <h4>Do NOT Do This</h4>
+          <ul class="stage-list">
+            <li>Touch the tattoo with unwashed hands</li>
+            <li>Submerge in water — no baths, pools, hot tubs, or ocean</li>
+            <li>Expose to direct sunlight</li>
+            <li>Re-wrap tightly without artist's instruction</li>
+            <li>Apply thick, occlusive ointments that trap moisture and bacteria</li>
+          </ul>
+        </div>
+        <div class="stage-callout blue">
+          <strong>Note on weeping:</strong> The clear plasma fluid you see is normal and healthy — it's part of the wound-flushing process. Gently blot it away when washing. If the fluid is yellow or green, that is not plasma — see the Warning Signs section below.
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ STAGE 2 ═══ -->
+  <section class="guide-section" id="stage-2">
+    <h2 class="reveal">Stage 2 — <span class="h2-gold">Days 4–7</span>: The Peel</h2>
+
+    <div class="stage-card gold-accent reveal d1">
+      <div class="stage-card-glow gold" aria-hidden="true"></div>
+
+      <div class="stage-header">
+        <div class="stage-num-block">
+          <div class="stage-num-bg lm-gold"></div>
+          <span class="stage-num">02</span>
+        </div>
+        <div class="stage-title-group">
+          <div class="stage-label gold">Days 4–7</div>
+          <h3>The Peel — Dead Skin Shedding</h3>
+        </div>
+      </div>
+
+      <div class="stage-timeline">
+        <span class="stage-tl-label">Heal progress</span>
+        <div class="stage-tl-track">
+          <div class="stage-tl-fill gold" style="--progress-w: 20%;"></div>
+        </div>
+        <span class="stage-period gold">Days 4–7</span>
+      </div>
+
+      <p class="stage-body-text">
+        This is the stage that freaks most people out, and it shouldn't. What you're seeing is completely normal and is actually a sign that healing is progressing properly. Your epidermis is shedding its damaged outer layer and growing fresh, new skin beneath it.
+      </p>
+
+      <div class="stage-grid">
+        <div class="stage-col what-see">
+          <h4>What You'll See</h4>
+          <ul class="stage-list">
+            <li>Skin starting to flake and peel — similar to a sunburn</li>
+            <li>The ink may look cloudy, dull, or muted underneath</li>
+            <li>Possible itching — one of the most common complaints this week</li>
+            <li>Small flakes may contain traces of color — this is surface ink, not your design</li>
+            <li>The tattoo may look "faded" — this is temporary</li>
+          </ul>
+        </div>
+        <div class="stage-col what-happen">
+          <h4>What's Happening</h4>
+          <ul class="stage-list">
+            <li>Dead epidermal cells are being shed — your body's natural process</li>
+            <li>New keratinocyte cells are growing underneath to replace them</li>
+            <li>The ink is now locked into the dermis, covered by this shedding layer</li>
+            <li>The muted look is a thin layer of dead skin obscuring the ink — not ink loss</li>
+            <li>Itching is caused by histamine release as new skin grows</li>
+          </ul>
+        </div>
+        <div class="stage-col what-do">
+          <h4>Do This</h4>
+          <ul class="stage-list">
+            <li>Let the skin peel off naturally on its own schedule</li>
+            <li>Keep moisturizing 2–3x daily to minimize itching</li>
+            <li>Stay well hydrated — it helps skin regenerate faster</li>
+            <li>Continue gentle washing routine</li>
+            <li>If itchy: lightly tap the area, never drag fingernails across it</li>
+          </ul>
+        </div>
+        <div class="stage-col what-not">
+          <h4>Do NOT Do This</h4>
+          <ul class="stage-list">
+            <li><strong>DO NOT pick, scratch, or peel the flaking skin</strong></li>
+            <li>Do not let nails drag across the surface under any circumstances</li>
+            <li>Do not apply ice directly to the skin</li>
+            <li>Do not soak in water</li>
+            <li>Do not cover in heavy, thick ointments that smother the skin</li>
+          </ul>
+        </div>
+        <div class="stage-callout gold">
+          <strong>The #1 cause of ink fallout and patchiness</strong> is picking or scratching during Stage 2. When you pull a flake before it's ready, you pull living skin cells and ink along with it, leaving permanent bald spots in your tattoo. If it itches badly, moisturize more. Resist the itch.
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ STAGE 3 ═══ -->
+  <section class="guide-section" id="stage-3">
+    <h2 class="reveal">Stage 3 — <span class="h2-blue">Weeks 2–3</span>: Surface Closure</h2>
+
+    <div class="stage-card reveal d1">
+      <div class="stage-card-glow blue" aria-hidden="true"></div>
+
+      <div class="stage-header">
+        <div class="stage-num-block">
+          <div class="stage-num-bg lm-blue"></div>
+          <span class="stage-num">03</span>
+        </div>
+        <div class="stage-title-group">
+          <div class="stage-label blue">Weeks 2–3</div>
+          <h3>Surface Closure — The Milky Phase</h3>
+        </div>
+      </div>
+
+      <div class="stage-timeline">
+        <span class="stage-tl-label">Heal progress</span>
+        <div class="stage-tl-track">
+          <div class="stage-tl-fill blue" style="--progress-w: 50%;"></div>
+        </div>
+        <span class="stage-period blue">Weeks 2–3</span>
+      </div>
+
+      <p class="stage-body-text">
+        The tattoo looks healed on the surface. The peeling has stopped, redness is gone, and your skin feels more or less normal again. Many people think the healing process is over. It isn't. A thin layer of new skin has formed over the ink that can make the tattoo look slightly milky, dull, or washed out — especially on darker or more saturated pieces. This is temporary and extremely common.
+      </p>
+
+      <div class="stage-grid">
+        <div class="stage-col what-see">
+          <h4>What You'll See</h4>
+          <ul class="stage-list">
+            <li>Skin looks and feels healed on the surface</li>
+            <li>Colors may still look muted, milky, or less sharp than expected</li>
+            <li>Skin may feel slightly tight or have a subtle sheen</li>
+            <li>Occasional dry patches or small areas of residual flaking</li>
+            <li>The tattoo may look slightly raised in areas — still normal</li>
+          </ul>
+        </div>
+        <div class="stage-col what-happen">
+          <h4>What's Happening</h4>
+          <ul class="stage-list">
+            <li>The epidermis has closed, but the dermis is still healing</li>
+            <li>A thin layer of new skin sits between the ink and the surface</li>
+            <li>This layer is slightly more opaque than mature skin, causing the milky look</li>
+            <li>The skin is still regenerating and remodeling at the dermal level</li>
+            <li>Ink that looks "gone" is almost always just obscured — it's there</li>
+          </ul>
+        </div>
+        <div class="stage-col what-do">
+          <h4>Do This</h4>
+          <ul class="stage-list">
+            <li>Continue moisturizing daily — your skin still benefits from it</li>
+            <li><strong>Start using SPF on the tattoo</strong> if it will be exposed to sun</li>
+            <li>Protect from friction (seatbelts, clothing waistbands, backpack straps)</li>
+            <li>Stay patient — the milky phase resolves on its own</li>
+            <li>Keep the area clean and hydrated</li>
+          </ul>
+        </div>
+        <div class="stage-col what-not">
+          <h4>Do NOT Do This</h4>
+          <ul class="stage-list">
+            <li>Assume the healing is complete and stop aftercare</li>
+            <li>Expose to prolonged direct sunlight without SPF — UV damage is permanent</li>
+            <li>Submerge in pools, hot tubs, or the ocean</li>
+            <li>Apply self-tanner or chemical exfoliants on or near the tattoo</li>
+            <li>Aggressively exfoliate the area to "clear" the milky look</li>
+          </ul>
+        </div>
+        <div class="stage-callout blue">
+          <strong>Sun is the long-term enemy of tattoo ink.</strong> UV radiation breaks down the pigment in your tattoo over time. The habit you build now — applying SPF whenever the tattoo is in the sun — will determine how sharp and vibrant your tattoo looks in 10 years.
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ STAGE 4 ═══ -->
+  <section class="guide-section" id="stage-4">
+    <h2 class="reveal">Stage 4 — <span class="h2-gold">Months 1–3</span>: Deep Heal &amp; True Colors</h2>
+
+    <div class="stage-card gold-accent reveal d1">
+      <div class="stage-card-glow gold" aria-hidden="true"></div>
+
+      <div class="stage-header">
+        <div class="stage-num-block">
+          <div class="stage-num-bg lm-gold"></div>
+          <span class="stage-num">04</span>
+        </div>
+        <div class="stage-title-group">
+          <div class="stage-label gold">Months 1–3</div>
+          <h3>Deep Heal — Ink Settling &amp; True Colors</h3>
+        </div>
+      </div>
+
+      <div class="stage-timeline">
+        <span class="stage-tl-label">Heal progress</span>
+        <div class="stage-tl-track">
+          <div class="stage-tl-fill gold" style="--progress-w: 90%;"></div>
+        </div>
+        <span class="stage-period gold">Months 1–3</span>
+      </div>
+
+      <p class="stage-body-text">
+        This is the payoff phase. As the deeper dermal layers complete their healing cycle, the milky overlay clears, the ink fully bonds with the surrounding tissue, and your tattoo begins to look the way it's going to look for the long haul. Colors clarify, black lines sharpen, and the overall definition increases. The thin new-skin layer that caused the clouding gradually matures and becomes transparent.
+      </p>
+
+      <div class="stage-grid">
+        <div class="stage-col what-see">
+          <h4>What You'll See</h4>
+          <ul class="stage-list">
+            <li>Colors brightening and clarifying week by week</li>
+            <li>Lines looking sharper and more defined than they did at week 2</li>
+            <li>Skin texture and feel returning completely to normal</li>
+            <li>The milky haze dissipating — your tattoo's true final look emerging</li>
+            <li>Any minor patchiness from Stage 2 becoming apparent now</li>
+          </ul>
+        </div>
+        <div class="stage-col what-happen">
+          <h4>What's Happening</h4>
+          <ul class="stage-list">
+            <li>Deep dermal collagen remodeling is completing</li>
+            <li>Ink molecules are being permanently encapsulated by fibroblasts</li>
+            <li>The new epidermal skin matures and becomes more transparent</li>
+            <li>The ink-skin interface stabilizes — this is the permanent state</li>
+            <li>Any ink that was going to fall out has already fallen out by now</li>
+          </ul>
+        </div>
+        <div class="stage-col what-do">
+          <h4>Do This</h4>
+          <ul class="stage-list">
+            <li>Apply SPF 30–50 whenever the tattoo is exposed to sun — make it a habit</li>
+            <li>Stay hydrated and maintain healthy skin care</li>
+            <li>Evaluate the healed result at the 3-month mark</li>
+            <li>Schedule a touch-up if any areas healed patchy (your artist may offer one free)</li>
+            <li>Show off your work — it's finished</li>
+          </ul>
+        </div>
+        <div class="stage-col what-not">
+          <h4>Do NOT Do This</h4>
+          <ul class="stage-list">
+            <li>Expose to unprotected sun repeatedly — long-term UV damage accumulates</li>
+            <li>Use tanning beds (ever)</li>
+            <li>Apply harsh chemical exfoliants or retinoids directly on the tattoo</li>
+            <li>Neglect skin hydration — dry skin makes tattoos look flat and aged faster</li>
+          </ul>
+        </div>
+        <div class="stage-callout gold">
+          <strong>When to assess for a touch-up:</strong> Wait the full 3 months before judging any patchiness or soft spots. Tattoos that look uneven at week 3 often look perfectly even at month 3 once the deep layers fully clear. Never get a touch-up on a tattoo that isn't fully healed.
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="guide-divider" aria-hidden="true"></div>
+
+  <!-- ═══ DOS AND DONTS ═══ -->
+  <section class="guide-section" id="dos-donts">
+    <div class="section-eyebrow reveal">Complete Reference</div>
+    <h2 class="reveal d1">Tattoo Aftercare <span class="h2-blue">Do's</span> &amp; <span style="color:var(--red)">Don'ts</span></h2>
+    <p class="reveal d2">A consolidated reference covering the full healing window. Bookmark this.</p>
+
+    <div class="dos-donts-grid">
+
+      <div class="dos-col reveal d2">
+        <div class="dos-col-header">
+          <div class="dos-icon" aria-hidden="true">&#10003;</div>
+          <span class="dos-col-title">DO — Best Practices</span>
+        </div>
+        <ul class="dd-list" aria-label="Tattoo aftercare do list">
+          <li>
+            <span class="dd-check check" aria-hidden="true">&#10003;</span>
+            <span><strong>Wash gently 2–3x daily</strong> with fragrance-free antibacterial soap and lukewarm water. Lather lightly with fingertips only.</span>
+          </li>
+          <li>
+            <span class="dd-check check" aria-hidden="true">&#10003;</span>
+            <span><strong>Use fragrance-free, dye-free products</strong> throughout the entire healing period. Fragrances and dyes are common irritants on healing skin.</span>
+          </li>
+          <li>
+            <span class="dd-check check" aria-hidden="true">&#10003;</span>
+            <span><strong>Moisturize consistently</strong> — a thin layer is all you need, 2–3x daily. Keeps the skin supple, reduces itching, and supports healing.</span>
+          </li>
+          <li>
+            <span class="dd-check check" aria-hidden="true">&#10003;</span>
+            <span><strong>Stay well hydrated</strong>. Proper hydration directly supports skin cell turnover and healing speed.</span>
+          </li>
+          <li>
+            <span class="dd-check check" aria-hidden="true">&#10003;</span>
+            <span><strong>Sleep on clean sheets</strong> — change pillowcases frequently during the first two weeks. Bacteria in bedding can cause issues overnight.</span>
+          </li>
+          <li>
+            <span class="dd-check check" aria-hidden="true">&#10003;</span>
+            <span><strong>Wear loose, breathable clothing</strong> over the tattoo. Friction against tight waistbands, seams, or straps is a persistent low-level irritant.</span>
+          </li>
+          <li>
+            <span class="dd-check check" aria-hidden="true">&#10003;</span>
+            <span><strong>Apply SPF 30–50</strong> whenever the healed tattoo will be in direct sunlight. UV is the number one long-term fade factor.</span>
+          </li>
+          <li>
+            <span class="dd-check check" aria-hidden="true">&#10003;</span>
+            <span><strong>Let it breathe</strong> when at home — air exposure supports healing as long as the environment is clean.</span>
+          </li>
+        </ul>
+      </div>
+
+      <div class="donts-col reveal d3">
+        <div class="donts-col-header">
+          <div class="donts-icon" aria-hidden="true">&#10007;</div>
+          <span class="donts-col-title">DON'T — Common Mistakes</span>
+        </div>
+        <ul class="dd-list" aria-label="Tattoo aftercare don't list">
+          <li>
+            <span class="dd-check x" aria-hidden="true">&#10007;</span>
+            <span><strong>Don't pick or scratch.</strong> The single most reliable way to pull ink out of a healing tattoo. No exceptions.</span>
+          </li>
+          <li>
+            <span class="dd-check x" aria-hidden="true">&#10007;</span>
+            <span><strong>Don't submerge in water</strong> — no baths, pools, hot tubs, lakes, or ocean until fully healed (8–12 weeks minimum). Soaking softens the skin and leaches ink.</span>
+          </li>
+          <li>
+            <span class="dd-check x" aria-hidden="true">&#10007;</span>
+            <span><strong>Don't expose to direct sun</strong> on an unhealed tattoo. Even brief exposure without protection can cause fading, blistering, and compromised healing.</span>
+          </li>
+          <li>
+            <span class="dd-check x" aria-hidden="true">&#10007;</span>
+            <span><strong>Don't apply petroleum jelly or Neosporin.</strong> Thick occlusives trap bacteria. Antibiotic ointments applied unnecessarily can trigger allergic reactions.</span>
+          </li>
+          <li>
+            <span class="dd-check x" aria-hidden="true">&#10007;</span>
+            <span><strong>Don't use scented lotions or soaps.</strong> Fragrances are common irritants and can cause redness, rashes, and delayed healing on fresh skin.</span>
+          </li>
+          <li>
+            <span class="dd-check x" aria-hidden="true">&#10007;</span>
+            <span><strong>Don't let pets lick the tattoo.</strong> Animal saliva carries bacteria incompatible with healing skin. Keep pets away from fresh work entirely.</span>
+          </li>
+          <li>
+            <span class="dd-check x" aria-hidden="true">&#10007;</span>
+            <span><strong>Don't work out intensely</strong> in the first few days. Heavy sweating creates moisture and friction on the wound. Light activity is fine after day 3.</span>
+          </li>
+          <li>
+            <span class="dd-check x" aria-hidden="true">&#10007;</span>
+            <span><strong>Don't apply too much moisturizer.</strong> Over-moisturizing is a thing — excess product clogs pores and traps bacteria. Thin layer only.</span>
+          </li>
+        </ul>
+      </div>
+
+    </div>
+  </section>
+
+  <div class="guide-divider" aria-hidden="true"></div>
+
+  <!-- ═══ WARNING SIGNS ═══ -->
+  <section class="guide-section" id="warning">
+    <div class="section-eyebrow section-eyebrow-gold reveal">Know the Difference</div>
+    <h2 class="reveal d1">Warning Signs — When to <span style="color:var(--red)">Contact Your Artist</span></h2>
+    <p class="reveal d2">
+      Most symptoms in the first few days are completely normal. Redness, swelling, plasma weeping, and itching are expected reactions. Warning signs are things that <strong>don't resolve</strong> — or actively get worse — after the initial inflammatory period.
+    </p>
+
+    <div class="warning-grid">
+      <div class="warning-card reveal d2">
+        <span class="warning-icon" aria-hidden="true">&#9888;</span>
+        <h4>Spreading Redness After Day 3</h4>
+        <p>Some redness directly around the tattoo is normal early on. If the redness is spreading beyond the tattooed area or intensifying after day 3 rather than fading, it can indicate an infection developing.</p>
+      </div>
+      <div class="warning-card reveal d3">
+        <span class="warning-icon" aria-hidden="true">&#128293;</span>
+        <h4>Hot to the Touch After Day 3</h4>
+        <p>Warmth at the site during Stage 1 is normal inflammation. Heat that persists or increases after the first 3 days — especially with redness — is a sign the body may be fighting something beyond normal healing.</p>
+      </div>
+      <div class="warning-card reveal d4">
+        <span class="warning-icon" aria-hidden="true">&#9940;</span>
+        <h4>Yellow or Green Discharge</h4>
+        <p>Clear plasma is normal. Yellow or green pus is not. Any opaque, colored discharge is a sign of bacterial infection and warrants contacting your artist or a medical professional promptly.</p>
+      </div>
+      <div class="warning-card reveal d5">
+        <span class="warning-icon" aria-hidden="true">&#128327;</span>
+        <h4>Fever or Chills</h4>
+        <p>A systemic fever alongside a new tattoo is a serious warning sign. This indicates your body is fighting an infection that has moved beyond the local site. Seek medical attention — do not wait this one out.</p>
+      </div>
+      <div class="warning-card reveal d2">
+        <span class="warning-icon" aria-hidden="true">&#128200;</span>
+        <h4>Raised Bumps After Initial Healing</h4>
+        <p>Small bumps appearing weeks after you thought the tattoo healed can indicate a delayed allergic reaction (most commonly to red, yellow, or white pigments), an infection in a hair follicle, or a granuloma. Contact your artist or a dermatologist.</p>
+      </div>
+      <div class="warning-card reveal d3">
+        <span class="warning-icon" aria-hidden="true">&#9998;</span>
+        <h4>Patchy Ink After Full Heal</h4>
+        <p>Soft spots or missing ink after the full 3-month heal are not a medical concern, but they do need attention. Contact your artist — many offer a free touch-up within a set timeframe. This is often caused by picking, friction, or placement on areas with frequent movement.</p>
+      </div>
+    </div>
+
+    <div class="warning-note reveal d4">
+      <strong>Important:</strong> The symptoms listed above are normal in the first 24–72 hours and should progressively improve. The rule of thumb is simple — if something is getting worse instead of better after the first 3 days, or if it looks or feels infected, reach out to your tattoo artist first. Most experienced artists can help you distinguish normal healing from a real problem. For anything involving fever, spreading infection, or severe swelling, consult a medical professional.
+    </div>
+  </section>
+
+  <div class="guide-divider" aria-hidden="true"></div>
+
+  <!-- ═══ FAQ ═══ -->
+  <section class="guide-section" id="faq">
+    <div class="section-eyebrow reveal">Common Questions</div>
+    <h2 class="reveal d1">Frequently Asked <span class="h2-blue">Questions</span></h2>
+
+    <div class="faq-list reveal d2" role="list">
+
+      <div class="faq-item" role="listitem">
+        <button class="faq-q" aria-expanded="false" onclick="toggleFaq(this)">
+          <span class="faq-q-text">How long does a tattoo take to heal?</span>
+          <span class="faq-arrow" aria-hidden="true">+</span>
+        </button>
+        <div class="faq-a" role="region">
+          <div class="faq-a-inner">
+            <strong>Surface healing</strong> takes roughly 2–3 weeks — the skin will look and feel normal on the outside. But <strong>full, deep healing</strong> of the dermis takes 2–4 months. During that window, the ink is still settling, and colors will continue to clarify. Do not judge the final result before the 3-month mark, and do not get a touch-up before then either.
+          </div>
+        </div>
+      </div>
+
+      <div class="faq-item" role="listitem">
+        <button class="faq-q" aria-expanded="false" onclick="toggleFaq(this)">
+          <span class="faq-q-text">Can I shower with a new tattoo?</span>
+          <span class="faq-arrow" aria-hidden="true">+</span>
+        </button>
+        <div class="faq-a" role="region">
+          <div class="faq-a-inner">
+            Yes — brief, cool-to-lukewarm showers are fine. Let water run over the tattoo gently; don't point the showerhead directly at it at high pressure. The key restriction is <strong>no soaking</strong>. Standing in a shower for a normal length of time is fine. Sitting in a bath, hot tub, pool, or any body of water where the tattoo is submerged is not, until fully healed (8–12 weeks minimum).
+          </div>
+        </div>
+      </div>
+
+      <div class="faq-item" role="listitem">
+        <button class="faq-q" aria-expanded="false" onclick="toggleFaq(this)">
+          <span class="faq-q-text">Why is my tattoo so itchy?</span>
+          <span class="faq-arrow" aria-hidden="true">+</span>
+        </button>
+        <div class="faq-a" role="region">
+          <div class="faq-a-inner">
+            Itching is completely normal and extremely common during Stage 2 (Days 4–7) when the skin is peeling, and again during Stage 3 as the new skin finishes forming. It's caused by <strong>histamine release</strong> — a byproduct of the healing and skin-regeneration process. The solution is to moisturize more frequently. If you need physical relief, lightly <strong>tap</strong> the area with clean fingertips — never drag nails across it. The itch will pass as healing progresses.
+          </div>
+        </div>
+      </div>
+
+      <div class="faq-item" role="listitem">
+        <button class="faq-q" aria-expanded="false" onclick="toggleFaq(this)">
+          <span class="faq-q-text">Can I work out with a new tattoo?</span>
+          <span class="faq-arrow" aria-hidden="true">+</span>
+        </button>
+        <div class="faq-a" role="region">
+          <div class="faq-a-inner">
+            <strong>Light activity</strong> is generally fine after the first 3 days — walking, easy cycling, upper body work when the tattoo is on a leg, that sort of thing. What you want to avoid is heavy sweating directly on the tattooed area, clothing friction over the site from workout gear, and anything that puts physical stress on the skin (stretching a tattoo on a joint like the elbow or knee repeatedly). If you're going to gym, protect the tattoo from friction and wash it immediately after.
+          </div>
+        </div>
+      </div>
+
+      <div class="faq-item" role="listitem">
+        <button class="faq-q" aria-expanded="false" onclick="toggleFaq(this)">
+          <span class="faq-q-text">Why does my tattoo look faded or dull after healing?</span>
+          <span class="faq-arrow" aria-hidden="true">+</span>
+        </button>
+        <div class="faq-a" role="region">
+          <div class="faq-a-inner">
+            This is one of the most common concerns and almost always resolves on its own. During Stages 2 and 3, a layer of dead skin and new skin sits over the ink, making it look cloudy, milky, or muted. This is called the <strong>cloud layer</strong> or "second skin effect." The true, final colors and definition emerge as the deeper layers complete healing — typically between 4 and 12 weeks. If your tattoo still looks significantly dull or faded at the 3-month mark, contact your artist to assess whether a touch-up is warranted.
+          </div>
+        </div>
+      </div>
+
+      <div class="faq-item" role="listitem">
+        <button class="faq-q" aria-expanded="false" onclick="toggleFaq(this)">
+          <span class="faq-q-text">Should I use Aquaphor on my tattoo?</span>
+          <span class="faq-arrow" aria-hidden="true">+</span>
+        </button>
+        <div class="faq-a" role="region">
+          <div class="faq-a-inner">
+            A <strong>very thin layer</strong> of Aquaphor is okay, particularly in Stage 1 when the skin needs more protection. However, it's a semi-occlusive ointment — too much creates a barrier that traps moisture, heat, and bacteria, which can cause issues. Many artists and dermatologists have moved away from Aquaphor in favor of lighter, water-based, fragrance-free lotions (like Lubriderm unscented or CeraVe Daily Moisturizing). Follow your artist's recommendation, and regardless of product — always use a thin layer, not a thick coat.
+          </div>
+        </div>
+      </div>
+
+      <div class="faq-item" role="listitem">
+        <button class="faq-q" aria-expanded="false" onclick="toggleFaq(this)">
+          <span class="faq-q-text">What if a small patch of ink fell out?</span>
+          <span class="faq-arrow" aria-hidden="true">+</span>
+        </button>
+        <div class="faq-a" role="region">
+          <div class="faq-a-inner">
+            Small ink fallout — soft spots, light patches, or areas where coverage looks thin — is fairly common and <strong>does not necessarily mean anything went wrong</strong>. Some of the most common causes: picking or scratching during Stage 2, repeated friction against clothing or a seatbelt, placement on a high-movement area (hands, feet, elbows, knees), or skin that simply healed that particular spot more aggressively. Wait the full 3 months, then contact your artist. Touch-ups are a normal part of the tattoo process and most artists expect to do at least one.
+          </div>
+        </div>
+      </div>
+
+      <div class="faq-item" role="listitem">
+        <button class="faq-q" aria-expanded="false" onclick="toggleFaq(this)">
+          <span class="faq-q-text">Can I go swimming after 2 weeks?</span>
+          <span class="faq-arrow" aria-hidden="true">+</span>
+        </button>
+        <div class="faq-a" role="region">
+          <div class="faq-a-inner">
+            <strong>No.</strong> At 2 weeks the surface skin looks healed, but the deeper layers are not. Submerging a tattoo that is surface-healed but not fully healed exposes the dermis to bacteria, chlorine (pools), salt (ocean), and prolonged moisture — all of which can disrupt the deep healing process and cause ink migration or infection. The minimum recommended wait time is <strong>8–12 weeks</strong>, and that's only if the tattoo looks and feels fully healed. When in doubt, ask your artist before swimming.
+          </div>
+        </div>
+      </div>
+
+      <div class="faq-item" role="listitem">
+        <button class="faq-q" aria-expanded="false" onclick="toggleFaq(this)">
+          <span class="faq-q-text">Does placement affect healing time?</span>
+          <span class="faq-arrow" aria-hidden="true">+</span>
+        </button>
+        <div class="faq-a" role="region">
+          <div class="faq-a-inner">
+            Yes, significantly. Tattoos on areas with <strong>frequent movement</strong> (hands, fingers, feet, elbows, knees, inner wrists) heal slower and have higher rates of ink fallout because the skin is constantly stretching and flexing. Areas with <strong>thin skin</strong> (ribs, neck, inner arm) can be more sensitive and slower to heal. Tattoos on areas with <strong>high friction</strong> (waistline, underarms, bra strap line) are prone to disruption. Larger pieces take longer than small ones simply due to the amount of trauma. Your artist will factor placement into their aftercare recommendations.
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+</main>
+
+<!-- ═══ CTA ═══ -->
+<section class="cta-section" id="signup">
+  <div class="cta-section-bg" aria-hidden="true"></div>
+
+  <div class="cta-eyebrow reveal">Track Every Stage</div>
+  <h2 class="cta-headline reveal d1">Let Budder Buddy Handle All of This.</h2>
+  <p class="cta-sub reveal d2">
+    Now that you know what to expect, let the app keep you on track. Daily reminders, AI healing stage detection, live UV alerts, and a full photographic record of your heal — automatically.
+  </p>
+
+  <div class="cta-pitch reveal d3" aria-label="App features">
+    <div class="cta-pitch-item">
+      <strong>AI Stage Detection</strong>
+      Submit a check-in photo and know exactly which stage you're in — with guidance on what to do next.
+    </div>
+    <div class="cta-pitch-item">
+      <strong>UV Alerts</strong>
+      Live daily UV index for your location. Know before you leave the house whether sun protection is critical.
+    </div>
+    <div class="cta-pitch-item">
+      <strong>Healing Timelapse</strong>
+      Every check-in photo is compiled into a timelapse. Watch your tattoo heal in real time.
+    </div>
+  </div>
+
+  <form class="cta-form reveal d4" onsubmit="handleSignup(event)" novalidate>
+    <label for="guide-cta-email" class="sr-only">Email address</label>
+    <input
+      type="email"
+      id="guide-cta-email"
+      class="cta-input"
+      placeholder="your@email.com"
+      required
+      autocomplete="email"
+    />
+    <button type="submit" class="cta-btn"><span>JOIN WAITLIST</span></button>
+  </form>
+  <p class="cta-fine reveal d5">Free for first adopters. No spam. Unsubscribe anytime.</p>
+</section>
+
+<!-- ─── FOOTER ─── -->
+<footer>
+  <a href="/" class="footer-logo">
+    <div class="footer-logo-icon">
+      <div class="footer-logo-icon-bg"></div>
+      <svg viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <path d="M10 2C7.2 2 5 4.2 5 7c0 1.8.9 3.4 2.3 4.4L7 16h6l-.3-4.6C14.1 10.4 15 8.8 15 7c0-2.8-2.2-5-5-5z" fill="white"/>
+        <path d="M8 16h4l.5 2H7.5L8 16z" fill="rgba(255,255,255,0.5)"/>
+      </svg>
+    </div>
+    <span class="footer-logo-name">BUDDER BUDDY</span>
+  </a>
+
+  <ul class="footer-links">
+    <li><a href="/">Home</a></li>
+    <li><a href="/features.html">Features</a></li>
+    <li><a href="/healing-guide.html" aria-current="page">Healing Guide</a></li>
+    <li><a href="/for-artists.html">For Artists</a></li>
+    <li><a href="/#signup">Get Early Access</a></li>
+  </ul>
+
+  <p class="footer-copy">
+    &copy; 2026 Budder Buddy &nbsp;&middot;&nbsp; All rights reserved &nbsp;&middot;&nbsp; budderbuddy.org
+  </p>
+</footer>
+
+<!-- ─── SCRIPTS ─── -->
+<script>
+  // ── Cursor glow ──
+  const cg = document.getElementById('cursor-glow');
+  document.addEventListener('mousemove', e => {
+    cg.style.left = e.clientX + 'px';
+    cg.style.top  = e.clientY + 'px';
+  });
+
+  // ── Nav scroll class ──
+  const mainNav = document.getElementById('main-nav');
+  window.addEventListener('scroll', () => {
+    mainNav.classList.toggle('scrolled', window.scrollY > 40);
+    updateActiveToc();
+  }, { passive: true });
+
+  // ── Reveal on scroll ──
+  const reveals = document.querySelectorAll('.reveal');
+  const io = new IntersectionObserver(entries => {
+    entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('on'); });
+  }, { threshold: 0.1 });
+  reveals.forEach(el => io.observe(el));
+
+  // ── Active TOC on scroll ──
+  const sections = document.querySelectorAll('section[id], article[id]');
+  const tocItems = document.querySelectorAll('.toc-item');
+
+  function updateActiveToc() {
+    let current = '';
+    sections.forEach(sec => {
+      const rect = sec.getBoundingClientRect();
+      if (rect.top <= 160) current = sec.id;
+    });
+    tocItems.forEach(item => {
+      const href = item.getAttribute('href').replace('#', '');
+      item.classList.toggle('active-toc', href === current);
+    });
+  }
+
+  // Smooth scroll for TOC items (offset for sticky nav + sticky TOC bar)
+  tocItems.forEach(item => {
+    item.addEventListener('click', e => {
+      const href = item.getAttribute('href');
+      if (!href.startsWith('#')) return;
+      e.preventDefault();
+      const target = document.querySelector(href);
+      if (target) {
+        const offset = 68 + 42; // nav height + toc bar height
+        const top = target.getBoundingClientRect().top + window.scrollY - offset - 24;
+        window.scrollTo({ top, behavior: 'smooth' });
+      }
+    });
+  });
+
+  // ── FAQ accordion ──
+  function toggleFaq(btn) {
+    const item = btn.closest('.faq-item');
+    const isOpen = item.classList.contains('open');
+    // Close all
+    document.querySelectorAll('.faq-item.open').forEach(el => {
+      el.classList.remove('open');
+      el.querySelector('.faq-q').setAttribute('aria-expanded', 'false');
+    });
+    // Open clicked if it was closed
+    if (!isOpen) {
+      item.classList.add('open');
+      btn.setAttribute('aria-expanded', 'true');
+    }
+  }
+
+  // ── Signup form ──
+  function handleSignup(e) {
+    e.preventDefault();
+    const form = e.target;
+    const email = form.querySelector('input').value;
+    const btn   = form.querySelector('button');
+    btn.innerHTML = '<span>YOU\'RE IN &#10003;</span>';
+    btn.style.pointerEvents = 'none';
+    form.querySelector('input').value = '';
+    form.querySelector('input').placeholder = 'See you on launch day.';
+    console.log('Signup:', email);
+  }
+
+  // ── Screen reader only utility ──
+  const style = document.createElement('style');
+  style.textContent = '.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border-width:0}';
+  document.head.appendChild(style);
+</script>
+
+</body>
+</html>
