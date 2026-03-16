@@ -1,0 +1,1318 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Budder Buddy — Tattoo Healing, Reimagined</title>
+  <link rel="canonical" href="https://budderbuddy.org" />
+  <meta name="description" content="Budder Buddy tracks every day of your tattoo's recovery — ghost-camera check-ins, UV alerts, AI healing guidance, and a full timelapse of the journey. Free for first adopters." />
+  <meta property="og:title" content="Budder Buddy — Tattoo Healing, Reimagined" />
+  <meta property="og:description" content="Ghost camera check-ins, live UV alerts, AI healing guidance. Free for first adopters." />
+  <meta property="og:url" content="https://budderbuddy.org" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;700;800;900&family=Nunito:ital,wght@0,400;0,600;0,700;0,800;1,700&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --black:    #080808;
+      --dark:     #0d0d0d;
+      --dark2:    #121212;
+      --card:     rgba(14,14,14,0.9);
+      --blue:     #4facfe;
+      --blue-dim: rgba(79,172,254,0.12);
+      --blue-glow:rgba(79,172,254,0.35);
+      --gold:     #f5a623;
+      --gold-dim: rgba(245,166,35,0.12);
+      --gold-glow:rgba(245,166,35,0.35);
+      --white:    #f0f0f0;
+      --muted:    #555;
+      --border:   rgba(255,255,255,0.07);
+      --font-display: 'Orbitron', monospace;
+      --font:     'Nunito', sans-serif;
+    }
+
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: var(--font);
+      background: var(--black);
+      color: var(--white);
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    /* ────────────────────────────────
+       LIQUID METAL SYSTEM
+    ──────────────────────────────── */
+    @keyframes metal-flow {
+      0%   { background-position: 0%   50%; }
+      50%  { background-position: 100% 50%; }
+      100% { background-position: 0%   50%; }
+    }
+
+    /* Blue liquid metal */
+    .lm-blue {
+      background: linear-gradient(110deg,
+        #001933 0%, #003366 12%, #0066cc 22%,
+        #2196f3 32%, #4facfe 42%, #a8d8ff 50%,
+        #4facfe 58%, #2196f3 68%,
+        #0066cc 78%, #003366 88%, #001933 100%
+      );
+      background-size: 220% 220%;
+      animation: metal-flow 5s ease-in-out infinite;
+    }
+
+    /* Gold liquid metal */
+    .lm-gold {
+      background: linear-gradient(110deg,
+        #1a0d00 0%, #3d2000 12%, #7a4500 22%,
+        #c47a00 32%, #f5a623 42%, #fde68a 50%,
+        #f5a623 58%, #c47a00 68%,
+        #7a4500 78%, #3d2000 88%, #1a0d00 100%
+      );
+      background-size: 220% 220%;
+      animation: metal-flow 5s ease-in-out infinite reverse;
+    }
+
+    /* Chrome liquid metal */
+    .lm-chrome {
+      background: linear-gradient(110deg,
+        #111 0%, #2a2a2a 15%, #555 27%,
+        #aaa 37%, #e8e8e8 46%, #fff 50%,
+        #e8e8e8 54%, #aaa 63%,
+        #555 73%, #2a2a2a 85%, #111 100%
+      );
+      background-size: 220% 220%;
+      animation: metal-flow 6s ease-in-out infinite;
+    }
+
+    /* ── Sheen slide ── */
+    @keyframes sheen-slide {
+      0%   { transform: translateX(-120%) skewX(-15deg); }
+      100% { transform: translateX(220%)  skewX(-15deg); }
+    }
+
+    /* ── Hero accent word block ── */
+    .hero-accent {
+      display: inline-block; position: relative;
+      padding: 0.02em 0.18em; color: #000; isolation: isolate;
+    }
+    .hero-accent-bg {
+      position: absolute; inset: 0; z-index: -1; border-radius: 5px;
+    }
+    /* specular top highlight */
+    .hero-accent::after {
+      content: '';
+      position: absolute; top: 8%; left: 5%; right: 5%; height: 28%;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.38), transparent);
+      border-radius: 2px; z-index: 1; pointer-events: none;
+    }
+    /* moving sheen */
+    .hero-accent::before {
+      content: '';
+      position: absolute; top: 0; bottom: 0; width: 40%;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.22), transparent);
+      z-index: 2; pointer-events: none;
+      animation: sheen-slide 4s ease-in-out infinite;
+    }
+    .hero-accent.blue-accent::before { animation-delay: 0.4s; }
+    .hero-accent.gold-accent::before { animation-delay: 2.5s; }
+
+    /* ────────────────────────────────
+       UTILS
+    ──────────────────────────────── */
+    #grain {
+      position: fixed; inset: 0; z-index: 9997; pointer-events: none; opacity: 0.028;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='250' height='250'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='250' height='250' filter='url(%23n)'/%3E%3C/svg%3E");
+    }
+    #cursor-glow {
+      pointer-events: none; position: fixed;
+      width: 500px; height: 500px; border-radius: 50%;
+      background: radial-gradient(circle, rgba(79,172,254,0.05) 0%, transparent 70%);
+      transform: translate(-50%,-50%); z-index: 9999; transition: opacity 0.3s;
+    }
+    #particles { position: fixed; inset: 0; z-index: 0; pointer-events: none; }
+
+    /* ── Reveal ── */
+    .reveal { opacity: 0; transform: translateY(28px); transition: opacity 0.7s ease, transform 0.7s ease; }
+    .reveal.on { opacity: 1; transform: none; }
+    .d1{transition-delay:.08s} .d2{transition-delay:.17s} .d3{transition-delay:.26s}
+    .d4{transition-delay:.35s} .d5{transition-delay:.44s} .d6{transition-delay:.53s}
+
+    /* ── Animations ── */
+    @keyframes float-phone {
+      0%, 100% { transform: translateY(0px) rotate(-1deg); }
+      50%       { transform: translateY(-20px) rotate(1deg); }
+    }
+    @keyframes fade-up {
+      from { opacity: 0; transform: translateY(32px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes glow-pulse-blue {
+      0%, 100% { box-shadow: 0 0 24px rgba(79,172,254,0.4), 0 0 60px rgba(79,172,254,0.12); }
+      50%       { box-shadow: 0 0 48px rgba(79,172,254,0.7), 0 0 100px rgba(79,172,254,0.25); }
+    }
+    @keyframes eyebrow-glow {
+      from { text-shadow: 0 0 8px rgba(79,172,254,0.4); }
+      to   { text-shadow: 0 0 20px rgba(79,172,254,0.9), 0 0 40px rgba(79,172,254,0.3); }
+    }
+    @keyframes rim-blue-pulse {
+      0%, 100% { opacity: 0.5; transform: scaleX(1); }
+      50%       { opacity: 0.9; transform: scaleX(1.3); }
+    }
+    @keyframes rim-gold-pulse {
+      0%, 100% { opacity: 0.35; }
+      50%       { opacity: 0.65; }
+    }
+    @keyframes scan-line {
+      0%   { top: -2px; }
+      100% { top: 100%; }
+    }
+    @keyframes blob-drift {
+      0%, 100% { border-radius: 60% 40% 70% 30% / 50% 60% 40% 60%; transform: rotate(0deg) scale(1); }
+      33%  { border-radius: 40% 60% 30% 70% / 60% 40% 60% 40%; transform: rotate(120deg) scale(1.05); }
+      66%  { border-radius: 70% 30% 50% 50% / 30% 70% 50% 50%; transform: rotate(240deg) scale(0.97); }
+    }
+
+    /* ────────────────────────────────
+       NAV
+    ──────────────────────────────── */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 0 2.5rem; height: 68px;
+      background: rgba(8,8,8,0.75);
+      backdrop-filter: blur(24px) saturate(160%);
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+      transition: background 0.4s;
+    }
+    nav::after {
+      content: '';
+      position: absolute; bottom: 0; left: 0; right: 0; height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(79,172,254,0.35), rgba(245,166,35,0.35), transparent);
+    }
+    nav.scrolled { background: rgba(8,8,8,0.96); }
+
+    .nav-logo { display: flex; align-items: center; gap: 0.75rem; text-decoration: none; }
+    .nav-logo-icon {
+      width: 36px; height: 36px; border-radius: 9px;
+      display: flex; align-items: center; justify-content: center;
+      position: relative; overflow: hidden;
+    }
+    .nav-logo-icon-bg {
+      position: absolute; inset: 0;
+      background: linear-gradient(110deg,
+        #001933 0%, #003366 20%, #0066cc 35%, #4facfe 50%,
+        #a8d8ff 60%, #4facfe 70%, #0066cc 85%, #001933 100%
+      );
+      background-size: 220% 220%;
+      animation: metal-flow 4s ease-in-out infinite;
+    }
+    .nav-logo-icon svg { position: relative; z-index: 1; width: 20px; height: 20px; }
+    .nav-logo-name {
+      display: block;
+      font-family: var(--font-display); font-size: 0.82rem; font-weight: 700;
+      letter-spacing: 0.08em; color: var(--white);
+    }
+    .nav-logo-sub { display: block; font-size: 0.6rem; color: var(--muted); letter-spacing: 0.05em; }
+
+    .nav-links { display: flex; gap: 2.25rem; list-style: none; }
+    .nav-links a {
+      color: var(--muted); text-decoration: none; font-size: 0.82rem;
+      font-weight: 600; letter-spacing: 0.04em; transition: color 0.2s;
+    }
+    .nav-links a:hover { color: var(--white); }
+
+    .nav-cta {
+      position: relative; overflow: hidden;
+      padding: 0.55rem 1.4rem; border-radius: 8px;
+      font-family: var(--font-display); font-size: 0.68rem; font-weight: 700;
+      letter-spacing: 0.08em; text-decoration: none; color: #000;
+      border: none; cursor: pointer; display: inline-block;
+      box-shadow: 0 0 24px rgba(79,172,254,0.45), 0 0 48px rgba(79,172,254,0.12);
+      transition: box-shadow 0.3s, transform 0.2s;
+    }
+    .nav-cta::before {
+      content: ''; position: absolute; inset: 0;
+      background: linear-gradient(110deg,
+        #001933 0%, #003366 15%, #0066cc 28%,
+        #4facfe 38%, #7ec8fd 48%, #c8e9ff 50%,
+        #7ec8fd 52%, #4facfe 62%,
+        #0066cc 72%, #003366 85%, #001933 100%
+      );
+      background-size: 220% 220%;
+      animation: metal-flow 4s ease-in-out infinite;
+    }
+    .nav-cta span { position: relative; z-index: 1; }
+    .nav-cta:hover { box-shadow: 0 0 40px rgba(79,172,254,0.7), 0 0 80px rgba(79,172,254,0.25); transform: translateY(-1px); }
+
+    /* ────────────────────────────────
+       HERO
+    ──────────────────────────────── */
+    .hero {
+      position: relative; min-height: 100vh;
+      display: flex; align-items: center;
+      padding: 8rem 4rem 6rem;
+      overflow: hidden; z-index: 1;
+    }
+
+    /* ambient blobs */
+    .blob {
+      position: absolute; pointer-events: none; z-index: 0;
+      border-radius: 60% 40% 70% 30% / 50% 60% 40% 60%;
+      animation: blob-drift 22s ease-in-out infinite;
+    }
+    .blob-blue {
+      width: 700px; height: 700px;
+      background: radial-gradient(ellipse, rgba(79,172,254,0.07) 0%, transparent 70%);
+      top: -150px; left: -200px;
+    }
+    .blob-gold {
+      width: 500px; height: 500px;
+      background: radial-gradient(ellipse, rgba(245,166,35,0.05) 0%, transparent 70%);
+      bottom: -100px; right: 20%;
+      animation-delay: -11s; animation-direction: reverse;
+    }
+
+    /* Phone mockup on right */
+    .hero-phone-wrap {
+      position: absolute; right: 5%; top: 50%; transform: translateY(-50%);
+      z-index: 2;
+    }
+    .hero-phone {
+      width: 260px; height: 520px; border-radius: 38px;
+      overflow: hidden; position: relative;
+      border: 1px solid rgba(79,172,254,0.25);
+      box-shadow:
+        0 40px 100px rgba(0,0,0,0.7),
+        0 0 0 1px rgba(255,255,255,0.04),
+        inset 0 1px 0 rgba(255,255,255,0.1);
+      animation: float-phone 8s ease-in-out infinite;
+    }
+    .hero-phone img {
+      width: 100%; height: 100%;
+      object-fit: cover; object-position: top;
+    }
+    /* Rim lights on phone */
+    .rim-blue {
+      position: absolute; top: 4%; left: -28px;
+      width: 160px; height: 92%; border-radius: 50%;
+      background: radial-gradient(ellipse at left, rgba(79,172,254,0.5) 0%, transparent 70%);
+      filter: blur(24px); pointer-events: none;
+      animation: rim-blue-pulse 4.5s ease-in-out infinite;
+    }
+    .rim-gold {
+      position: absolute; bottom: 5%; right: -20px;
+      width: 200px; height: 70%;
+      background: radial-gradient(ellipse at right, rgba(245,166,35,0.35) 0%, transparent 70%);
+      filter: blur(30px); pointer-events: none;
+      animation: rim-gold-pulse 7s ease-in-out infinite;
+    }
+    /* Scan line on phone */
+    .phone-scan::after {
+      content: ''; position: absolute; left: 0; right: 0; height: 2px;
+      background: linear-gradient(to right, transparent, rgba(79,172,254,0.5), transparent);
+      animation: scan-line 4s linear infinite; pointer-events: none; z-index: 3;
+    }
+    /* Scanlines texture */
+    .scanlines {
+      position: absolute; inset: 0; pointer-events: none; z-index: 2;
+      background: repeating-linear-gradient(
+        to bottom, transparent, transparent 3px,
+        rgba(0,0,0,0.07) 3px, rgba(0,0,0,0.07) 4px
+      );
+      opacity: 0.5;
+    }
+    /* Left fade for text readability */
+    .hero-fade {
+      position: absolute; inset: 0; z-index: 1;
+      background: linear-gradient(
+        90deg,
+        rgba(8,8,8,1) 0%,
+        rgba(8,8,8,0.92) 30%,
+        rgba(8,8,8,0.4) 65%,
+        transparent 100%
+      );
+    }
+    .hero-fade-bottom {
+      position: absolute; bottom: 0; left: 0; right: 0; height: 160px; z-index: 1;
+      background: linear-gradient(to top, var(--black), transparent);
+    }
+
+    /* Hero text */
+    .hero-content {
+      position: relative; z-index: 2; max-width: 660px;
+    }
+    .hero-eyebrow {
+      display: inline-flex; align-items: center; gap: 0.6rem;
+      font-family: var(--font-display); font-size: 0.62rem; font-weight: 600;
+      letter-spacing: 0.18em; text-transform: uppercase; margin-bottom: 2rem;
+      color: var(--blue);
+      animation: eyebrow-glow 2.5s ease-in-out infinite alternate;
+    }
+    .hero-eyebrow::before, .hero-eyebrow::after {
+      content: ''; height: 1px; background: var(--blue);
+    }
+    .hero-eyebrow::before { width: 28px; }
+    .hero-eyebrow::after  { width: 14px; }
+
+    .hero-headline {
+      font-family: var(--font-display);
+      font-weight: 900; line-height: 1.0;
+      margin-bottom: 2rem;
+    }
+    .hero-line {
+      display: block;
+      font-size: clamp(3rem, 7.5vw, 6.5rem);
+      letter-spacing: -0.02em;
+      color: var(--white);
+      margin-bottom: 0.1em;
+    }
+
+    .hero-sub {
+      font-size: clamp(0.95rem, 1.8vw, 1.08rem);
+      color: rgba(240,240,240,0.55);
+      max-width: 480px; line-height: 1.8;
+      margin-bottom: 2.75rem; font-weight: 500;
+    }
+
+    /* CTA buttons */
+    .hero-actions { display: flex; gap: 1rem; flex-wrap: wrap; align-items: center; }
+
+    .btn-primary {
+      position: relative; overflow: hidden;
+      padding: 0.95rem 2.4rem; border-radius: 10px;
+      font-family: var(--font-display); font-size: 0.72rem; font-weight: 700;
+      letter-spacing: 0.1em; text-decoration: none; color: #000;
+      border: none; cursor: pointer; display: inline-block;
+      box-shadow: 0 0 32px rgba(79,172,254,0.5), 0 0 64px rgba(79,172,254,0.15);
+      transition: box-shadow 0.3s, transform 0.25s cubic-bezier(.34,1.56,.64,1);
+    }
+    .btn-primary::before {
+      content: ''; position: absolute; inset: 0;
+      background: linear-gradient(110deg,
+        #001933 0%, #003366 12%, #0066cc 25%,
+        #4facfe 38%, #7ec8fd 48%, #c8e9ff 50%,
+        #7ec8fd 52%, #4facfe 62%,
+        #0066cc 75%, #003366 88%, #001933 100%
+      );
+      background-size: 250% 250%;
+      animation: metal-flow 4s ease-in-out infinite;
+    }
+    .btn-primary span { position: relative; z-index: 1; }
+    .btn-primary:hover { box-shadow: 0 0 50px rgba(79,172,254,0.8), 0 0 100px rgba(79,172,254,0.3); transform: translateY(-3px) scale(1.02); }
+
+    .btn-ghost {
+      position: relative; overflow: hidden;
+      padding: 0.95rem 2.4rem; border-radius: 10px;
+      font-family: var(--font-display); font-size: 0.72rem; font-weight: 600;
+      letter-spacing: 0.1em; text-decoration: none; color: var(--white);
+      background: transparent; cursor: pointer; display: inline-block;
+      transition: transform 0.25s, color 0.2s;
+      border: 1px solid transparent;
+    }
+    .btn-ghost::before {
+      content: ''; position: absolute; inset: 0; border-radius: 10px;
+      background: linear-gradient(#0d0d0d, #0d0d0d) padding-box,
+                  linear-gradient(110deg,
+                    #333 0%, #777 20%, #ccc 40%, #fff 50%,
+                    #ccc 60%, #777 80%, #333 100%
+                  ) border-box;
+      background-size: auto, 200% 200%;
+      animation: metal-flow 6s ease-in-out infinite;
+      z-index: -1;
+    }
+    .btn-ghost:hover { transform: translateY(-2px); color: var(--blue); }
+
+    /* Stats bar */
+    .hero-stats-bar {
+      position: absolute; bottom: 0; left: 0; right: 0; z-index: 3;
+      display: flex; border-top: 1px solid rgba(255,255,255,0.06);
+      background: rgba(8,8,8,0.8); backdrop-filter: blur(16px);
+    }
+    .hstat {
+      flex: 1; text-align: center; padding: 1.3rem 1rem;
+      border-right: 1px solid rgba(255,255,255,0.06);
+      position: relative; overflow: hidden; cursor: default;
+    }
+    .hstat:last-child { border-right: none; }
+    .hstat::after {
+      content: ''; position: absolute; bottom: 0; left: 20%; right: 20%; height: 1px;
+      opacity: 0; transition: opacity 0.3s;
+    }
+    .hstat:nth-child(odd)::after   { background: var(--blue); }
+    .hstat:nth-child(even)::after  { background: var(--gold); }
+    .hstat:hover::after { opacity: 1; }
+    .hstat-num {
+      display: block; font-family: var(--font-display); font-weight: 900;
+      font-size: 1.5rem; letter-spacing: -0.03em; line-height: 1;
+    }
+    .hstat:nth-child(odd)  .hstat-num { color: var(--blue); text-shadow: 0 0 20px rgba(79,172,254,0.5); }
+    .hstat:nth-child(even) .hstat-num { color: var(--gold); text-shadow: 0 0 20px rgba(245,166,35,0.5); }
+    .hstat-label { font-size: 0.6rem; color: var(--muted); text-transform: uppercase; letter-spacing: 0.12em; margin-top: 0.25rem; display: block; }
+
+    /* ────────────────────────────────
+       PHONE MOCKUP STRIP
+    ──────────────────────────────── */
+    .mockup-strip {
+      padding: 80px 0; overflow: hidden; position: relative; z-index: 2;
+      background: linear-gradient(to bottom, transparent, rgba(79,172,254,0.02), transparent);
+    }
+    .mockup-track {
+      display: flex; gap: 24px; width: max-content;
+      animation: marquee 32s linear infinite;
+    }
+    .mockup-track:hover { animation-play-state: paused; }
+    @keyframes marquee {
+      from { transform: translateX(0); }
+      to   { transform: translateX(-50%); }
+    }
+    .phone-mockup {
+      width: 210px; height: 420px; border-radius: 30px;
+      overflow: hidden; border: 1px solid rgba(79,172,254,0.18);
+      box-shadow: 0 20px 60px rgba(0,0,0,0.6), inset 0 1px 0 rgba(255,255,255,0.06);
+      flex-shrink: 0; position: relative;
+      transition: transform 0.3s, box-shadow 0.3s; cursor: pointer;
+    }
+    .phone-mockup:hover { transform: scale(1.04) translateY(-8px); box-shadow: 0 30px 80px rgba(0,0,0,0.7), 0 0 30px rgba(79,172,254,0.18); }
+    .phone-mockup img { width: 100%; height: 100%; object-fit: cover; object-position: top; }
+    .phone-mockup::after {
+      content: ''; position: absolute; left: 0; right: 0; height: 2px;
+      background: linear-gradient(to right, transparent, rgba(79,172,254,0.45), transparent);
+      animation: scan-line 4s linear infinite; pointer-events: none;
+    }
+
+    /* ────────────────────────────────
+       SECTIONS
+    ──────────────────────────────── */
+    .sec { padding: 8rem 2.5rem; max-width: 1180px; margin: 0 auto; position: relative; z-index: 2; }
+    .sec-full { padding: 8rem 2.5rem; position: relative; z-index: 2; }
+    .sec-full-inner { max-width: 1180px; margin: 0 auto; }
+
+    .section-tag {
+      display: inline-flex; align-items: center; gap: 0.6rem;
+      font-family: var(--font-display); font-size: 0.6rem; font-weight: 600;
+      letter-spacing: 0.2em; text-transform: uppercase; margin-bottom: 1rem;
+    }
+    .section-tag.blue-tag { color: var(--blue); }
+    .section-tag.blue-tag::before { content: ''; width: 24px; height: 1px; background: var(--blue); display: block; }
+    .section-tag.gold-tag { color: var(--gold); }
+    .section-tag.gold-tag::before { content: ''; width: 24px; height: 1px; background: var(--gold); display: block; }
+
+    .section-title {
+      font-family: var(--font-display);
+      font-size: clamp(1.9rem, 4vw, 3rem); font-weight: 900;
+      line-height: 1.1; margin-bottom: 1rem; letter-spacing: -0.02em;
+    }
+    .section-sub { color: var(--muted); font-size: 1rem; max-width: 520px; line-height: 1.8; }
+
+    /* inline metal accent for section titles */
+    .title-blue {
+      display: inline-block; position: relative; padding: 0 0.12em; color: #000; isolation: isolate;
+    }
+    .title-blue::before {
+      content: ''; position: absolute; inset: -2px; z-index: -1; border-radius: 4px;
+      background: linear-gradient(110deg,
+        #001933 0%, #003366 20%, #0066cc 35%, #4facfe 50%,
+        #a8d8ff 60%, #4facfe 70%, #0066cc 85%, #001933 100%
+      );
+      background-size: 220% 220%;
+      animation: metal-flow 5s ease-in-out infinite;
+    }
+    .title-gold {
+      display: inline-block; position: relative; padding: 0 0.12em; color: #000; isolation: isolate;
+    }
+    .title-gold::before {
+      content: ''; position: absolute; inset: -2px; z-index: -1; border-radius: 4px;
+      background: linear-gradient(110deg,
+        #1a0d00 0%, #3d2000 20%, #7a4500 35%, #f5a623 50%,
+        #fde68a 60%, #f5a623 70%, #7a4500 85%, #1a0d00 100%
+      );
+      background-size: 220% 220%;
+      animation: metal-flow 5s ease-in-out infinite reverse;
+    }
+
+    /* ────────────────────────────────
+       FEATURE CARDS
+    ──────────────────────────────── */
+    .features-grid {
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(310px, 1fr));
+      gap: 1px; margin-top: 5rem;
+      background: rgba(255,255,255,0.05); border-radius: 24px; overflow: hidden;
+    }
+    .feat-card {
+      background: var(--dark); padding: 2.75rem 2.5rem;
+      position: relative; transition: background 0.3s;
+    }
+    .feat-card:hover { background: var(--dark2); }
+    .feat-card::before {
+      content: ''; position: absolute; top: 0; left: 0; right: 0; height: 1px;
+      opacity: 0; transition: opacity 0.3s;
+    }
+    .feat-card.blue-card::before { background: linear-gradient(90deg, transparent, var(--blue), transparent); }
+    .feat-card.gold-card::before { background: linear-gradient(90deg, transparent, var(--gold), transparent); }
+    .feat-card:hover::before { opacity: 1; }
+
+    .feat-num {
+      width: 52px; height: 52px; border-radius: 14px; margin-bottom: 1.6rem;
+      display: flex; align-items: center; justify-content: center;
+      font-family: var(--font-display); font-weight: 900; font-size: 0.85rem;
+      position: relative; overflow: hidden; color: #000;
+    }
+    .feat-num-bg { position: absolute; inset: 0; }
+    .feat-num span { position: relative; z-index: 1; }
+
+    .feat-tag {
+      display: inline-block; padding: 3px 10px; border-radius: 20px;
+      font-family: var(--font-display); font-size: 0.58rem; font-weight: 700;
+      letter-spacing: 0.12em; text-transform: uppercase; margin-bottom: 1rem;
+    }
+    .feat-tag.blue { background: rgba(79,172,254,0.1); border: 1px solid rgba(79,172,254,0.25); color: var(--blue); }
+    .feat-tag.gold { background: rgba(245,166,35,0.1); border: 1px solid rgba(245,166,35,0.25); color: var(--gold); }
+
+    .feat-title { font-family: var(--font-display); font-size: 1.05rem; font-weight: 800; margin-bottom: 0.8rem; letter-spacing: 0.02em; }
+    .feat-desc { color: rgba(240,240,240,0.5); font-size: 0.88rem; line-height: 1.75; }
+
+    /* ────────────────────────────────
+       HEALING STAGES
+    ──────────────────────────────── */
+    .stages-grid {
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 24px; margin-top: 5rem;
+    }
+    @media(max-width:768px){ .stages-grid { grid-template-columns: 1fr; } }
+
+    .stage-card {
+      background: var(--card); border: 1px solid var(--border);
+      border-radius: 20px; padding: 2.25rem;
+      display: flex; gap: 1.5rem; align-items: flex-start;
+      transition: border-color 0.3s, box-shadow 0.3s;
+    }
+    .stage-card:hover {
+      border-color: rgba(79,172,254,0.3);
+      box-shadow: 0 0 40px rgba(79,172,254,0.06);
+    }
+    .stage-num {
+      width: 48px; height: 48px; border-radius: 12px; flex-shrink: 0;
+      display: flex; align-items: center; justify-content: center;
+      font-family: var(--font-display); font-weight: 900; font-size: 0.85rem;
+      position: relative; overflow: hidden; color: #000;
+    }
+    .stage-num-bg { position: absolute; inset: 0; }
+    .stage-num span { position: relative; z-index: 1; }
+    .stage-day { font-family: var(--font-display); font-size: 0.6rem; font-weight: 600; letter-spacing: 0.15em; color: var(--blue); text-transform: uppercase; margin-bottom: 0.4rem; }
+    .stage-title { font-family: var(--font-display); font-size: 0.95rem; font-weight: 800; margin-bottom: 0.5rem; }
+    .stage-desc { color: rgba(240,240,240,0.5); font-size: 0.85rem; line-height: 1.7; }
+
+    /* ────────────────────────────────
+       WHO IT'S FOR
+    ──────────────────────────────── */
+    .audience-grid {
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 24px; margin-top: 5rem;
+    }
+    @media(max-width:768px){ .audience-grid { grid-template-columns: 1fr; } }
+
+    .audience-card {
+      border-radius: 24px; padding: 3rem; position: relative; overflow: hidden;
+      border: 1px solid var(--border); background: var(--dark);
+    }
+    .audience-card::after {
+      content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px;
+    }
+    .audience-card.artist::after {
+      background: linear-gradient(90deg, transparent, var(--blue), transparent);
+    }
+    .audience-card.client::after {
+      background: linear-gradient(90deg, transparent, var(--gold), transparent);
+    }
+    .audience-badge {
+      display: inline-block; padding: 4px 12px; border-radius: 20px;
+      font-family: var(--font-display); font-size: 0.58rem; font-weight: 700;
+      letter-spacing: 0.14em; text-transform: uppercase; margin-bottom: 1.5rem;
+    }
+    .artist-badge { background: rgba(79,172,254,0.1); border: 1px solid rgba(79,172,254,0.3); color: var(--blue); }
+    .client-badge  { background: rgba(245,166,35,0.1);  border: 1px solid rgba(245,166,35,0.3);  color: var(--gold); }
+
+    .audience-title { font-family: var(--font-display); font-size: 1.3rem; font-weight: 900; margin-bottom: 1rem; line-height: 1.2; }
+    .audience-desc  { color: rgba(240,240,240,0.5); font-size: 0.9rem; line-height: 1.75; margin-bottom: 2rem; }
+
+    .check-list { list-style: none; display: flex; flex-direction: column; gap: 0.6rem; }
+    .check-list li {
+      display: flex; align-items: flex-start; gap: 0.65rem;
+      font-size: 0.82rem; color: rgba(240,240,240,0.6); line-height: 1.5;
+    }
+    .check-list li::before {
+      content: '✓'; flex-shrink: 0; margin-top: 0.05rem;
+      font-family: var(--font-display); font-size: 0.6rem; font-weight: 800;
+      width: 16px; height: 16px; border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .audience-card.artist .check-list li::before { background: rgba(79,172,254,0.12); color: var(--blue); }
+    .audience-card.client  .check-list li::before { background: rgba(245,166,35,0.1);  color: var(--gold); }
+
+    /* ────────────────────────────────
+       CTA SECTION
+    ──────────────────────────────── */
+    .cta-section {
+      padding: 10rem 2.5rem; position: relative; z-index: 2;
+      text-align: center; overflow: hidden;
+    }
+    .cta-glow {
+      position: absolute; top: 50%; left: 50%; transform: translate(-50%,-50%);
+      width: 900px; height: 500px; pointer-events: none; z-index: 0;
+      background: radial-gradient(ellipse, rgba(79,172,254,0.08) 0%, transparent 60%);
+    }
+    .cta-glow-gold {
+      position: absolute; top: 60%; left: 40%; transform: translate(-50%,-50%);
+      width: 600px; height: 400px; pointer-events: none; z-index: 0;
+      background: radial-gradient(ellipse, rgba(245,166,35,0.05) 0%, transparent 60%);
+    }
+    .cta-inner { max-width: 660px; margin: 0 auto; position: relative; z-index: 1; }
+
+    .free-badge {
+      display: inline-flex; align-items: center; gap: 0.6rem;
+      padding: 6px 18px; border-radius: 20px;
+      font-family: var(--font-display); font-size: 0.6rem; font-weight: 700;
+      letter-spacing: 0.12em; text-transform: uppercase; margin-bottom: 2rem;
+      background: rgba(245,166,35,0.08); border: 1px solid rgba(245,166,35,0.3);
+      color: var(--gold);
+    }
+    .free-badge::before {
+      content: ''; width: 6px; height: 6px; border-radius: 50%; background: var(--gold);
+      animation: glow-pulse-blue 1.5s infinite; box-shadow: 0 0 8px rgba(245,166,35,0.6);
+    }
+
+    .cta-title {
+      font-family: var(--font-display); font-size: clamp(2rem, 5vw, 3.8rem);
+      font-weight: 900; line-height: 1.05; letter-spacing: -0.02em; margin-bottom: 1.25rem;
+    }
+    .cta-sub { color: rgba(240,240,240,0.5); font-size: 1rem; margin-bottom: 3rem; line-height: 1.8; }
+
+    .cta-form {
+      display: flex; flex-direction: column; gap: 14px;
+      align-items: center; max-width: 500px; margin: 0 auto;
+    }
+    .form-row {
+      display: flex; gap: 0; width: 100%;
+      background: rgba(14,14,14,0.9);
+      border: 1px solid rgba(79,172,254,0.2);
+      border-radius: 12px; overflow: hidden;
+      transition: border-color 0.3s, box-shadow 0.3s;
+    }
+    .form-row:focus-within {
+      border-color: rgba(79,172,254,0.5);
+      box-shadow: 0 0 0 3px rgba(79,172,254,0.08);
+    }
+    .role-select {
+      background: rgba(79,172,254,0.06); border: none;
+      border-right: 1px solid rgba(79,172,254,0.15);
+      color: var(--blue); padding: 14px 16px;
+      font-family: var(--font-display); font-size: 0.65rem; font-weight: 700;
+      letter-spacing: 0.06em; cursor: pointer; outline: none;
+    }
+    .role-select option { background: #0d0d0d; color: var(--white); }
+    .email-input {
+      background: transparent; border: none; outline: none;
+      color: var(--white); padding: 14px 20px; font-size: 0.95rem;
+      flex: 1; font-family: var(--font);
+    }
+    .email-input::placeholder { color: #333; }
+
+    .btn-cta {
+      position: relative; overflow: hidden; width: 100%;
+      padding: 15px; border-radius: 12px;
+      font-family: var(--font-display); font-size: 0.72rem; font-weight: 700;
+      letter-spacing: 0.12em; text-transform: uppercase; color: #000;
+      border: none; cursor: pointer;
+      box-shadow: 0 0 32px rgba(79,172,254,0.45), 0 0 64px rgba(79,172,254,0.12);
+      transition: box-shadow 0.3s, transform 0.25s cubic-bezier(.34,1.56,.64,1);
+    }
+    .btn-cta::before {
+      content: ''; position: absolute; inset: 0;
+      background: linear-gradient(110deg,
+        #001933 0%, #003366 12%, #0066cc 25%,
+        #4facfe 38%, #7ec8fd 48%, #c8e9ff 50%,
+        #7ec8fd 52%, #4facfe 62%,
+        #0066cc 75%, #003366 88%, #001933 100%
+      );
+      background-size: 250% 250%;
+      animation: metal-flow 4s ease-in-out infinite;
+    }
+    .btn-cta span { position: relative; z-index: 1; }
+    .btn-cta:hover { box-shadow: 0 0 50px rgba(79,172,254,0.8), 0 0 100px rgba(79,172,254,0.3); transform: translateY(-3px); }
+    .cta-note { font-size: 0.75rem; color: var(--muted); margin-top: 0.75rem; }
+
+    /* ────────────────────────────────
+       QUOTE
+    ──────────────────────────────── */
+    .quote-section { padding: 6rem 2.5rem; text-align: center; position: relative; z-index: 2; }
+    .quote-inner { max-width: 800px; margin: 0 auto; }
+    .quote-divider {
+      width: 60px; height: 1px; margin: 0 auto 2rem;
+      background: linear-gradient(to right, var(--blue), var(--gold));
+    }
+    .big-quote {
+      font-family: var(--font-display); font-size: clamp(1.3rem, 3vw, 2rem);
+      font-weight: 800; line-height: 1.45; letter-spacing: -0.01em;
+      color: var(--white); margin-bottom: 1.5rem;
+    }
+    .big-quote .q-gold {
+      display: inline-block; position: relative; padding: 0 0.1em; color: #000; isolation: isolate;
+    }
+    .big-quote .q-gold::before {
+      content: ''; position: absolute; inset: -1px; z-index: -1; border-radius: 3px;
+      background: linear-gradient(110deg,
+        #3d2000 0%, #7a4500 25%, #f5a623 50%, #fde68a 60%, #f5a623 70%, #3d2000 100%
+      );
+      background-size: 220% 220%;
+      animation: metal-flow 5s ease-in-out infinite reverse;
+    }
+
+    /* ────────────────────────────────
+       FOOTER
+    ──────────────────────────────── */
+    footer {
+      border-top: 1px solid var(--border); padding: 2.5rem;
+      text-align: center; color: var(--muted); font-size: 0.8rem;
+      position: relative; z-index: 2;
+    }
+    footer::before {
+      content: ''; position: absolute; top: 0; left: 0; right: 0; height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(79,172,254,0.25), rgba(245,166,35,0.2), transparent);
+    }
+    footer a { color: var(--blue); text-decoration: none; }
+    .footer-logo { display: flex; align-items: center; justify-content: center; gap: 0.75rem; margin-bottom: 1rem; }
+    .footer-logo-icon {
+      width: 30px; height: 30px; border-radius: 8px;
+      position: relative; overflow: hidden;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .footer-logo-icon-bg { position: absolute; inset: 0; }
+    .footer-logo-icon svg { position: relative; z-index: 1; width: 16px; height: 16px; }
+    .footer-logo-name { font-family: var(--font-display); font-size: 0.82rem; font-weight: 700; color: var(--white); letter-spacing: 0.08em; }
+
+    /* ── Toast ── */
+    #toast {
+      position: fixed; bottom: 32px; right: 32px; z-index: 10000;
+      background: linear-gradient(135deg, #0a0a0a, #141414);
+      border: 1px solid rgba(79,172,254,0.35); border-radius: 14px;
+      padding: 16px 22px; color: var(--white);
+      display: flex; align-items: center; gap: 12px;
+      box-shadow: 0 20px 60px rgba(0,0,0,0.6), 0 0 30px rgba(79,172,254,0.12);
+      transform: translateY(100px); opacity: 0;
+      transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+      max-width: 340px;
+    }
+    #toast.show { transform: translateY(0); opacity: 1; }
+    #toast .toast-icon { font-size: 1.3rem; }
+    #toast .toast-text strong { display: block; font-family: var(--font-display); font-size: 0.75rem; font-weight: 700; letter-spacing: 0.06em; margin-bottom: 2px; }
+    #toast .toast-text span { font-size: 0.8rem; color: #555; }
+
+    /* ── Mobile ── */
+    @media(max-width:900px){
+      .hero-phone-wrap { display: none; }
+      .hero-fade { display: none; }
+    }
+    @media(max-width:640px){
+      nav { padding: 0 1.25rem; }
+      .nav-links { display: none; }
+      .hero { padding: 7rem 1.5rem 5rem; }
+      .sec, .sec-full { padding: 5rem 1.25rem; }
+      .cta-section { padding: 6rem 1.25rem; }
+      footer { padding: 2rem 1.25rem; }
+    }
+  </style>
+</head>
+<body>
+
+<div id="grain"></div>
+<div id="cursor-glow"></div>
+<canvas id="particles"></canvas>
+
+<!-- ── NAV ── -->
+<nav id="nav">
+  <a class="nav-logo" href="#">
+    <div class="nav-logo-icon">
+      <div class="nav-logo-icon-bg"></div>
+      <svg viewBox="0 0 24 24" fill="none">
+        <path d="M12 2C12 2 5 10 5 14.5C5 18.09 8.13 21 12 21C15.87 21 19 18.09 19 14.5C19 10 12 2 12 2Z" fill="white" fill-opacity="0.95"/>
+        <path d="M10.5 15h3M12 13.5v3" stroke="#0066cc" stroke-width="1.6" stroke-linecap="round"/>
+      </svg>
+    </div>
+    <div class="nav-logo-text">
+      <span class="nav-logo-name">BUDDER BUDDY</span>
+      <span class="nav-logo-sub">Tattoo Healing System</span>
+    </div>
+  </a>
+  <ul class="nav-links">
+    <li><a href="#features">Features</a></li>
+    <li><a href="#stages">Healing</a></li>
+    <li><a href="#who">Who It's For</a></li>
+  </ul>
+  <a class="nav-cta" href="#signup"><span>GET EARLY ACCESS</span></a>
+</nav>
+
+<!-- ── HERO ── -->
+<section class="hero">
+  <div class="blob blob-blue"></div>
+  <div class="blob blob-gold"></div>
+  <div class="hero-fade"></div>
+  <div class="hero-fade-bottom"></div>
+
+  <!-- Phone mockup right side -->
+  <div class="hero-phone-wrap">
+    <div class="rim-blue"></div>
+    <div class="rim-gold"></div>
+    <div class="hero-phone phone-scan">
+      <div class="scanlines"></div>
+      <img src="assets/screenshots/IMG_9590.png" alt="Budder Buddy App" />
+    </div>
+  </div>
+
+  <div class="hero-content">
+    <div class="hero-eyebrow">Now in Beta &nbsp;·&nbsp; Free for First Adopters</div>
+
+    <h1 class="hero-headline">
+      <span class="hero-line">HEAL YOUR</span>
+      <span class="hero-line">
+        <span class="hero-accent blue-accent">
+          <div class="hero-accent-bg lm-blue"></div>
+          INK
+        </span>
+      </span>
+      <span class="hero-line">THE RIGHT</span>
+      <span class="hero-line">
+        <span class="hero-accent gold-accent">
+          <div class="hero-accent-bg lm-gold"></div>
+          WAY.
+        </span>
+      </span>
+    </h1>
+
+    <p class="hero-sub">
+      Budder Buddy tracks every day of your tattoo's recovery — ghost-camera check-ins, live UV alerts, AI healing guidance, and a full timelapse of the journey.
+    </p>
+
+    <div class="hero-actions">
+      <button class="btn-primary" onclick="document.getElementById('signup').scrollIntoView({behavior:'smooth'})">
+        <span>GET EARLY ACCESS</span>
+      </button>
+      <a class="btn-ghost" href="#features">SEE HOW IT WORKS</a>
+    </div>
+  </div>
+
+  <!-- Stats bar -->
+  <div class="hero-stats-bar">
+    <div class="hstat">
+      <span class="hstat-num">100%</span>
+      <span class="hstat-label">Free at Launch</span>
+    </div>
+    <div class="hstat">
+      <span class="hstat-num">DAY 1</span>
+      <span class="hstat-label">Start Tracking</span>
+    </div>
+    <div class="hstat">
+      <span class="hstat-num">👻</span>
+      <span class="hstat-label">Ghost Camera</span>
+    </div>
+    <div class="hstat">
+      <span class="hstat-num">UV</span>
+      <span class="hstat-label">Live UV Alerts</span>
+    </div>
+    <div class="hstat">
+      <span class="hstat-num">∞</span>
+      <span class="hstat-label">Tattoos Tracked</span>
+    </div>
+  </div>
+</section>
+
+<!-- ── PHONE STRIP ── -->
+<div class="mockup-strip">
+  <div class="mockup-track" id="mockup-track">
+    <div class="phone-mockup"><img src="assets/screenshots/IMG_9587.png" alt="Splash" loading="lazy"/></div>
+    <div class="phone-mockup"><img src="assets/screenshots/IMG_9590.png" alt="Add tattoo" loading="lazy"/></div>
+    <div class="phone-mockup"><img src="assets/screenshots/IMG_9591.png" alt="Detail" loading="lazy"/></div>
+    <div class="phone-mockup"><img src="assets/screenshots/IMG_9592.png" alt="Learn" loading="lazy"/></div>
+    <div class="phone-mockup"><img src="assets/screenshots/IMG_9593.png" alt="Guide" loading="lazy"/></div>
+    <div class="phone-mockup"><img src="assets/screenshots/IMG_9594.png" alt="Mistakes" loading="lazy"/></div>
+    <div class="phone-mockup"><img src="assets/screenshots/IMG_9595.png" alt="Contact" loading="lazy"/></div>
+    <!-- duplicate -->
+    <div class="phone-mockup"><img src="assets/screenshots/IMG_9587.png" alt="" loading="lazy"/></div>
+    <div class="phone-mockup"><img src="assets/screenshots/IMG_9590.png" alt="" loading="lazy"/></div>
+    <div class="phone-mockup"><img src="assets/screenshots/IMG_9591.png" alt="" loading="lazy"/></div>
+    <div class="phone-mockup"><img src="assets/screenshots/IMG_9592.png" alt="" loading="lazy"/></div>
+    <div class="phone-mockup"><img src="assets/screenshots/IMG_9593.png" alt="" loading="lazy"/></div>
+    <div class="phone-mockup"><img src="assets/screenshots/IMG_9594.png" alt="" loading="lazy"/></div>
+    <div class="phone-mockup"><img src="assets/screenshots/IMG_9595.png" alt="" loading="lazy"/></div>
+  </div>
+</div>
+
+<!-- ── FEATURES ── -->
+<div class="sec reveal" id="features">
+  <div class="section-tag blue-tag">Built Different</div>
+  <h2 class="section-title">
+    Everything your heal needs.<br>
+    <span class="title-blue">In one app.</span>
+  </h2>
+  <p class="section-sub">We built the app that should have existed the first time you ever got tattooed.</p>
+
+  <div class="features-grid">
+
+    <div class="feat-card blue-card reveal d1">
+      <div class="feat-num">
+        <div class="feat-num-bg lm-blue"></div>
+        <span>01</span>
+      </div>
+      <div class="feat-tag blue">Signature Feature</div>
+      <div class="feat-title">GHOST CAMERA</div>
+      <p class="feat-desc">Overlay your previous photo on your camera screen so every check-in captures the exact same angle, distance, and pose. Progress photos that actually make sense.</p>
+    </div>
+
+    <div class="feat-card gold-card reveal d2">
+      <div class="feat-num">
+        <div class="feat-num-bg lm-gold"></div>
+        <span>02</span>
+      </div>
+      <div class="feat-tag gold">Fan Favorite</div>
+      <div class="feat-title">HEALING TIMELAPSE</div>
+      <p class="feat-desc">When your tattoo finishes healing, download a smooth timelapse of every check-in compiled into one shareable video. Watch your ink come to life, start to finish.</p>
+    </div>
+
+    <div class="feat-card blue-card reveal d3">
+      <div class="feat-num">
+        <div class="feat-num-bg lm-blue"></div>
+        <span>03</span>
+      </div>
+      <div class="feat-tag blue">AI-Powered</div>
+      <div class="feat-title">HEALING STAGE GUIDE</div>
+      <p class="feat-desc">AI-powered analysis identifies exactly what you're seeing — peeling, redness, clouding — and tells you whether it's normal or worth calling your artist about.</p>
+    </div>
+
+    <div class="feat-card gold-card reveal d4">
+      <div class="feat-num">
+        <div class="feat-num-bg lm-gold"></div>
+        <span>04</span>
+      </div>
+      <div class="feat-tag gold">Smart Alerts</div>
+      <div class="feat-title">LIVE UV RATING</div>
+      <p class="feat-desc">Real-time UV index built directly into the app. Know exactly when sun exposure is a risk to your healing ink — before you step outside.</p>
+    </div>
+
+    <div class="feat-card blue-card reveal d5">
+      <div class="feat-num">
+        <div class="feat-num-bg lm-blue"></div>
+        <span>05</span>
+      </div>
+      <div class="feat-tag blue">Stay On Track</div>
+      <div class="feat-title">SMART REMINDERS</div>
+      <p class="feat-desc">Customized notifications remind you exactly when to wash, moisturize, and check in — based on your tattoo's age and healing stage. Never miss a step again.</p>
+    </div>
+
+    <div class="feat-card gold-card reveal d6">
+      <div class="feat-num">
+        <div class="feat-num-bg lm-gold"></div>
+        <span>06</span>
+      </div>
+      <div class="feat-tag gold">Knowledge Base</div>
+      <div class="feat-title">INK VAULT + LEARN HUB</div>
+      <p class="feat-desc">Archive every tattoo with full healing diaries. Plus a comprehensive guide covering peeling timelines, infection warning signs, and everything in between.</p>
+    </div>
+
+  </div>
+</div>
+
+<!-- ── HEALING STAGES ── -->
+<div class="sec-full reveal" id="stages">
+  <div class="sec-full-inner">
+    <div class="section-tag gold-tag">The Journey</div>
+    <h2 class="section-title">
+      Know <span class="title-gold">what's normal.</span><br>
+      Every single day.
+    </h2>
+    <p class="section-sub">Budder Buddy walks you through every phase so nothing feels scary or unknown.</p>
+
+    <div class="stages-grid">
+      <div class="stage-card reveal d1">
+        <div class="stage-num">
+          <div class="stage-num-bg lm-blue"></div>
+          <span>01</span>
+        </div>
+        <div>
+          <div class="stage-day">Day 1–3</div>
+          <div class="stage-title">FRESH WOUND PHASE</div>
+          <p class="stage-desc">Redness, swelling, and plasma weeping are completely normal. Budder Buddy keeps you on your wash and moisturize schedule and tells you exactly what you're seeing.</p>
+        </div>
+      </div>
+      <div class="stage-card reveal d2">
+        <div class="stage-num">
+          <div class="stage-num-bg lm-gold"></div>
+          <span>02</span>
+        </div>
+        <div>
+          <div class="stage-day">Day 4–7</div>
+          <div class="stage-title">PEELING BEGINS</div>
+          <p class="stage-desc">The outer layer starts to flake. Your ink may look cloudy or dull — that's your skin healing over it. The app tells you exactly what's normal so you don't panic.</p>
+        </div>
+      </div>
+      <div class="stage-card reveal d3">
+        <div class="stage-num">
+          <div class="stage-num-bg lm-blue"></div>
+          <span>03</span>
+        </div>
+        <div>
+          <div class="stage-day">Week 2–3</div>
+          <div class="stage-title">SURFACE HEAL</div>
+          <p class="stage-desc">The outer skin closes. It may feel tight and look slightly faded. UV protection becomes critical here. Your UV alerts are working hard for your investment.</p>
+        </div>
+      </div>
+      <div class="stage-card reveal d4">
+        <div class="stage-num">
+          <div class="stage-num-bg lm-gold"></div>
+          <span>04</span>
+        </div>
+        <div>
+          <div class="stage-day">Month 1–3</div>
+          <div class="stage-title">DEEP HEAL + TRUE COLORS</div>
+          <p class="stage-desc">The deeper layers finish healing and your true ink colors emerge. Download your timelapse, share your journey, and start tracking your next piece.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ── WHO IT'S FOR ── -->
+<div class="sec reveal" id="who">
+  <div style="text-align:center;margin-bottom:0;">
+    <div class="section-tag blue-tag" style="justify-content:center;">Who It's For</div>
+    <h2 class="section-title" style="text-align:center;">
+      Built for <span class="title-blue">both sides</span><br>
+      of the needle.
+    </h2>
+  </div>
+
+  <div class="audience-grid">
+    <div class="audience-card artist reveal d1">
+      <span class="audience-badge artist-badge">FOR ARTISTS</span>
+      <div class="audience-title">LEVEL UP YOUR<br>AFTERCARE GAME</div>
+      <p class="audience-desc">Give your clients a professional-grade healing tool with your name behind it. Less "is this normal?" texts, more confident clients, better healed work.</p>
+      <ul class="check-list">
+        <li>Reduce post-session anxiety calls</li>
+        <li>Clients document their heal with your work in it</li>
+        <li>Timelapse content = free marketing for your portfolio</li>
+        <li>Recommend through your shop — builds trust instantly</li>
+        <li>Free for you and your clients at launch</li>
+      </ul>
+    </div>
+    <div class="audience-card client reveal d2">
+      <span class="audience-badge client-badge">FOR CLIENTS</span>
+      <div class="audience-title">NEVER GUESS YOUR<br>WAY THROUGH A HEAL</div>
+      <p class="audience-desc">Stop googling "is my tattoo infected" at 2am. Budder Buddy gives you real guidance, smart reminders, and a complete visual record of every tattoo you've ever gotten.</p>
+      <ul class="check-list">
+        <li>Ghost camera for perfect progress photo alignment</li>
+        <li>AI tells you what you're seeing and what to do</li>
+        <li>UV alerts keep your investment protected</li>
+        <li>Timelapse download when healing completes</li>
+        <li>Full ink vault — every tattoo, every heal, archived</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<!-- ── QUOTE ── -->
+<section class="quote-section">
+  <div class="quote-inner reveal">
+    <div class="quote-divider"></div>
+    <p class="big-quote">
+      "Your tattoo is an investment.<br>
+      <span class="q-gold">Treat the heal like one.</span>"
+    </p>
+    <p style="font-family:var(--font-display);font-size:0.62rem;letter-spacing:0.12em;color:var(--muted);text-transform:uppercase;">— The Budder Buddy Team</p>
+  </div>
+</section>
+
+<!-- ── CTA ── -->
+<section class="cta-section" id="signup">
+  <div class="cta-glow"></div>
+  <div class="cta-glow-gold"></div>
+  <div class="cta-inner">
+    <div class="free-badge">Free forever for first adopters — artists &amp; clients</div>
+    <h2 class="cta-title reveal">
+      GET IN <span class="title-blue">EARLY.</span><br>
+      IT'S FREE.
+    </h2>
+    <p class="cta-sub reveal d1">
+      We're opening access to a limited group of artists and clients before the full launch. Lock in free access now — it won't be free forever.
+    </p>
+
+    <form class="cta-form reveal d2" id="cta-form" onsubmit="handleSignup(event,'cta')">
+      <div class="form-row">
+        <select class="role-select" id="cta-role">
+          <option value="">ROLE</option>
+          <option value="client">CLIENT</option>
+          <option value="artist">ARTIST</option>
+        </select>
+        <input class="email-input" type="email" id="cta-email" placeholder="your@email.com" required />
+      </div>
+      <button class="btn-cta" type="submit">
+        <span>CLAIM MY FREE EARLY ACCESS →</span>
+      </button>
+      <p class="cta-note">No spam. No credit card. Unsubscribe anytime.</p>
+    </form>
+  </div>
+</section>
+
+<!-- ── FOOTER ── -->
+<footer>
+  <div class="footer-logo">
+    <div class="footer-logo-icon">
+      <div class="footer-logo-icon-bg lm-blue"></div>
+      <svg viewBox="0 0 24 24" fill="none">
+        <path d="M12 2C12 2 5 10 5 14.5C5 18.09 8.13 21 12 21C15.87 21 19 18.09 19 14.5C19 10 12 2 12 2Z" fill="white" fill-opacity="0.95"/>
+        <path d="M10.5 15h3M12 13.5v3" stroke="#0066cc" stroke-width="1.6" stroke-linecap="round"/>
+      </svg>
+    </div>
+    <span class="footer-logo-name">BUDDER BUDDY</span>
+  </div>
+  <p>Your Tattoo Aftercare Companion · <a href="#signup">Get Early Access</a></p>
+  <p style="margin-top:6px;font-size:0.72rem;">© 2026 Budder Buddy. All rights reserved.</p>
+</footer>
+
+<!-- ── TOAST ── -->
+<div id="toast">
+  <span class="toast-icon">⚡</span>
+  <div class="toast-text">
+    <strong>YOU'RE ON THE LIST</strong>
+    <span>We'll reach out when access opens.</span>
+  </div>
+</div>
+
+<script>
+  /* ── Cursor glow ── */
+  const glow = document.getElementById('cursor-glow');
+  document.addEventListener('mousemove', e => {
+    glow.style.left = e.clientX + 'px';
+    glow.style.top  = e.clientY + 'px';
+  });
+
+  /* ── Nav scroll ── */
+  const nav = document.getElementById('nav');
+  window.addEventListener('scroll', () => {
+    nav.classList.toggle('scrolled', window.scrollY > 60);
+  });
+
+  /* ── Starfield ── */
+  const canvas = document.getElementById('particles');
+  const ctx    = canvas.getContext('2d');
+  let W, H, stars = [], shootingStars = [];
+
+  function resize() { W = canvas.width = window.innerWidth; H = canvas.height = window.innerHeight; }
+  resize();
+  window.addEventListener('resize', resize);
+
+  class Star {
+    constructor() { this.init(); }
+    init() {
+      this.x  = Math.random() * W;
+      this.y  = Math.random() * H;
+      this.r  = Math.random() * 1.1 + 0.15;
+      this.baseA = Math.random() * 0.5 + 0.08;
+      this.a  = this.baseA;
+      this.phase = Math.random() * Math.PI * 2;
+      this.speed = Math.random() * 0.018 + 0.004;
+      this.vx = (Math.random() - 0.5) * 0.035;
+      this.vy = (Math.random() - 0.5) * 0.035;
+      const t = Math.random();
+      this.color = t < 0.55 ? '235,245,255' : t < 0.8 ? '147,197,253' : '253,230,138';
+    }
+    update() {
+      this.phase += this.speed;
+      this.a = this.baseA * (0.55 + 0.45 * Math.sin(this.phase));
+      this.x += this.vx; this.y += this.vy;
+      if (this.x < -2 || this.x > W + 2 || this.y < -2 || this.y > H + 2) this.init();
+    }
+    draw() {
+      ctx.beginPath();
+      ctx.arc(this.x, this.y, this.r, 0, Math.PI * 2);
+      ctx.fillStyle = `rgba(${this.color},${this.a})`;
+      ctx.fill();
+    }
+  }
+
+  class ShootingStar {
+    constructor() { this.reset(); }
+    reset() {
+      this.x = Math.random() * W * 1.5; this.y = Math.random() * H * 0.4;
+      this.len = Math.random() * 90 + 60; this.speed = Math.random() * 5 + 3;
+      this.a = 0; this.life = 0; this.maxLife = Math.random() * 60 + 40;
+      this.angle = Math.PI / 6 + (Math.random() - 0.5) * 0.3;
+      this.active = false; this.tick = 0;
+      this.nextSpawn = Math.random() * 500 + 300;
+    }
+    update() {
+      this.tick++;
+      if (!this.active) { if (this.tick > this.nextSpawn) { this.active = true; this.tick = 0; } return; }
+      this.life++;
+      this.x += Math.cos(this.angle) * this.speed;
+      this.y += Math.sin(this.angle) * this.speed;
+      this.a = this.life < 10 ? this.life / 10 : this.life > this.maxLife - 10 ? (this.maxLife - this.life) / 10 : 1;
+      if (this.life >= this.maxLife) this.reset();
+    }
+    draw() {
+      if (!this.active || this.a <= 0) return;
+      const tx = this.x - Math.cos(this.angle) * this.len;
+      const ty = this.y - Math.sin(this.angle) * this.len;
+      const g = ctx.createLinearGradient(tx, ty, this.x, this.y);
+      g.addColorStop(0, 'rgba(255,255,255,0)');
+      g.addColorStop(1, `rgba(200,230,255,${this.a * 0.75})`);
+      ctx.beginPath(); ctx.moveTo(tx, ty); ctx.lineTo(this.x, this.y);
+      ctx.strokeStyle = g; ctx.lineWidth = 1.1; ctx.stroke();
+    }
+  }
+
+  for (let i = 0; i < 200; i++) stars.push(new Star());
+  for (let i = 0; i < 3; i++) shootingStars.push(new ShootingStar());
+
+  function animStars() {
+    ctx.clearRect(0, 0, W, H);
+    stars.forEach(s => { s.update(); s.draw(); });
+    shootingStars.forEach(s => { s.update(); s.draw(); });
+    requestAnimationFrame(animStars);
+  }
+  animStars();
+
+  /* ── Scroll reveal ── */
+  const revealEls = document.querySelectorAll('.reveal');
+  const observer  = new IntersectionObserver(entries => {
+    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('on'); observer.unobserve(e.target); } });
+  }, { threshold: 0.1 });
+  revealEls.forEach(el => observer.observe(el));
+
+  /* ── Sign-up ── */
+  const signups = JSON.parse(localStorage.getItem('bb_signups') || '[]');
+
+  function handleSignup(e, source) {
+    e.preventDefault();
+    const email = document.getElementById(source + '-email').value.trim();
+    const role  = document.getElementById(source + '-role').value || 'unknown';
+    if (!email) return;
+    signups.push({ email, role, ts: new Date().toISOString() });
+    localStorage.setItem('bb_signups', JSON.stringify(signups));
+    const toast = document.getElementById('toast');
+    toast.classList.add('show');
+    setTimeout(() => toast.classList.remove('show'), 4000);
+    document.getElementById(source + '-email').value = '';
+    document.getElementById(source + '-role').value = '';
+  }
+
+  /* ── Smooth scroll ── */
+  document.querySelectorAll('a[href^="#"]').forEach(a => {
+    a.addEventListener('click', e => {
+      const target = document.querySelector(a.getAttribute('href'));
+      if (target) { e.preventDefault(); target.scrollIntoView({ behavior: 'smooth' }); }
+    });
+  });
+</script>
+</body>
+</html>
