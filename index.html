@@ -197,19 +197,9 @@
     .nav-logo { display: flex; align-items: center; gap: 0.75rem; text-decoration: none; }
     .nav-logo-icon {
       width: 36px; height: 36px; border-radius: 9px;
-      display: flex; align-items: center; justify-content: center;
-      position: relative; overflow: hidden;
+      overflow: hidden; flex-shrink: 0;
     }
-    .nav-logo-icon-bg {
-      position: absolute; inset: 0;
-      background: linear-gradient(110deg,
-        #001933 0%, #003366 20%, #0066cc 35%, #4facfe 50%,
-        #a8d8ff 60%, #4facfe 70%, #0066cc 85%, #001933 100%
-      );
-      background-size: 220% 220%;
-      animation: metal-flow 4s ease-in-out infinite;
-    }
-    .nav-logo-icon svg { position: relative; z-index: 1; width: 20px; height: 20px; }
+    .nav-logo-icon img { width: 100%; height: 100%; object-fit: cover; display: block; border-radius: 9px; }
     .nav-logo-name {
       display: block;
       font-family: var(--font-display); font-size: 0.82rem; font-weight: 700;
@@ -235,14 +225,9 @@
     }
     .nav-cta::before {
       content: ''; position: absolute; inset: 0;
-      background: linear-gradient(110deg,
-        #001933 0%, #003366 15%, #0066cc 28%,
-        #4facfe 38%, #7ec8fd 48%, #c8e9ff 50%,
-        #7ec8fd 52%, #4facfe 62%,
-        #0066cc 72%, #003366 85%, #001933 100%
-      );
-      background-size: 220% 220%;
-      animation: metal-flow 4s ease-in-out infinite;
+      background: linear-gradient(135deg, #1a3bb8 0%, #2e67f8 40%, #4facfe 70%, #2e67f8 100%);
+      background-size: 200% 200%;
+      animation: metal-flow 5s ease-in-out infinite;
     }
     .nav-cta span { position: relative; z-index: 1; }
     .nav-cta:hover { box-shadow: 0 0 40px rgba(79,172,254,0.7), 0 0 80px rgba(79,172,254,0.25); transform: translateY(-1px); }
@@ -255,6 +240,7 @@
       display: flex; align-items: center;
       padding: 8rem 4rem 6rem;
       overflow: hidden; z-index: 1;
+      background: radial-gradient(ellipse at 35% 45%, #0d1b5e 0%, #080f30 45%, #050816 100%);
     }
 
     #hero-shader {
@@ -275,65 +261,35 @@
     }
     .blob-blue {
       width: 700px; height: 700px;
-      background: radial-gradient(ellipse, rgba(79,172,254,0.07) 0%, transparent 70%);
+      background: radial-gradient(ellipse, rgba(79,172,254,0.14) 0%, transparent 70%);
       top: -150px; left: -200px;
     }
     .blob-gold {
       width: 500px; height: 500px;
-      background: radial-gradient(ellipse, rgba(245,166,35,0.05) 0%, transparent 70%);
+      background: radial-gradient(ellipse, rgba(100,120,255,0.08) 0%, transparent 70%);
       bottom: -100px; right: 20%;
       animation-delay: -11s; animation-direction: reverse;
     }
 
-    /* Phone mockup on right */
-    .hero-phone-wrap {
-      position: absolute; right: 5%; top: 50%; transform: translateY(-50%);
-      z-index: 2;
+    /* Mascot on right */
+    .hero-mascot-wrap {
+      position: absolute; right: 4%; top: 50%; transform: translateY(-50%);
+      z-index: 2; pointer-events: none;
     }
-    .hero-phone {
-      width: 260px; height: 520px; border-radius: 38px;
-      overflow: hidden; position: relative;
-      border: 1px solid rgba(79,172,254,0.25);
-      box-shadow:
-        0 40px 100px rgba(0,0,0,0.7),
-        0 0 0 1px rgba(255,255,255,0.04),
-        inset 0 1px 0 rgba(255,255,255,0.1);
-      animation: float-phone 8s ease-in-out infinite;
+    .hero-mascot {
+      width: 340px; height: 340px; border-radius: 28%;
+      display: block;
+      animation: float-phone 7s ease-in-out infinite;
+      filter: drop-shadow(0 0 40px rgba(79,140,254,0.55)) drop-shadow(0 0 80px rgba(40,80,220,0.3));
     }
-    .hero-phone img {
-      width: 100%; height: 100%;
-      object-fit: cover; object-position: top;
+    .mascot-glow {
+      position: absolute; inset: -30px;
+      background: radial-gradient(circle, rgba(79,140,254,0.18) 0%, transparent 65%);
+      border-radius: 50%;
+      pointer-events: none;
+      animation: glow-pulse-blue 4s ease-in-out infinite;
     }
-    /* Rim lights on phone */
-    .rim-blue {
-      position: absolute; top: 4%; left: -28px;
-      width: 160px; height: 92%; border-radius: 50%;
-      background: radial-gradient(ellipse at left, rgba(79,172,254,0.5) 0%, transparent 70%);
-      filter: blur(24px); pointer-events: none;
-      animation: rim-blue-pulse 4.5s ease-in-out infinite;
-    }
-    .rim-gold {
-      position: absolute; bottom: 5%; right: -20px;
-      width: 200px; height: 70%;
-      background: radial-gradient(ellipse at right, rgba(245,166,35,0.35) 0%, transparent 70%);
-      filter: blur(30px); pointer-events: none;
-      animation: rim-gold-pulse 7s ease-in-out infinite;
-    }
-    /* Scan line on phone */
-    .phone-scan::after {
-      content: ''; position: absolute; left: 0; right: 0; height: 2px;
-      background: linear-gradient(to right, transparent, rgba(79,172,254,0.5), transparent);
-      animation: scan-line 4s linear infinite; pointer-events: none; z-index: 3;
-    }
-    /* Scanlines texture */
-    .scanlines {
-      position: absolute; inset: 0; pointer-events: none; z-index: 2;
-      background: repeating-linear-gradient(
-        to bottom, transparent, transparent 3px,
-        rgba(0,0,0,0.07) 3px, rgba(0,0,0,0.07) 4px
-      );
-      opacity: 0.5;
-    }
+
     /* Left fade for text readability */
     .hero-fade {
       position: absolute; inset: 0; z-index: 1;
@@ -361,11 +317,7 @@
       color: var(--blue);
       animation: eyebrow-glow 2.5s ease-in-out infinite alternate;
     }
-    .hero-eyebrow::before, .hero-eyebrow::after {
-      content: ''; height: 1px; background: var(--blue);
-    }
-    .hero-eyebrow::before { width: 28px; }
-    .hero-eyebrow::after  { width: 14px; }
+    .hero-eyebrow::before, .hero-eyebrow::after { content: none; }
 
     .hero-headline {
       font-family: var(--font-display);
@@ -401,14 +353,9 @@
     }
     .btn-primary::before {
       content: ''; position: absolute; inset: 0;
-      background: linear-gradient(110deg,
-        #001933 0%, #003366 12%, #0066cc 25%,
-        #4facfe 38%, #7ec8fd 48%, #c8e9ff 50%,
-        #7ec8fd 52%, #4facfe 62%,
-        #0066cc 75%, #003366 88%, #001933 100%
-      );
-      background-size: 250% 250%;
-      animation: metal-flow 4s ease-in-out infinite;
+      background: linear-gradient(135deg, #1a3bb8 0%, #2e67f8 40%, #4facfe 70%, #2e67f8 100%);
+      background-size: 200% 200%;
+      animation: metal-flow 5s ease-in-out infinite;
     }
     .btn-primary span { position: relative; z-index: 1; }
     .btn-primary:hover { box-shadow: 0 0 50px rgba(79,172,254,0.8), 0 0 100px rgba(79,172,254,0.3); transform: translateY(-3px) scale(1.02); }
@@ -886,7 +833,7 @@
 
     /* ── Mobile ── */
     @media(max-width:900px){
-      .hero-phone-wrap { display: none; }
+      .hero-mascot-wrap { display: none; }
       .hero-fade { display: none; }
     }
     @media(max-width:640px){
@@ -909,11 +856,7 @@
 <nav id="nav">
   <a class="nav-logo" href="#">
     <div class="nav-logo-icon">
-      <div class="nav-logo-icon-bg"></div>
-      <svg viewBox="0 0 24 24" fill="none">
-        <path d="M12 2C12 2 5 10 5 14.5C5 18.09 8.13 21 12 21C15.87 21 19 18.09 19 14.5C19 10 12 2 12 2Z" fill="white" fill-opacity="0.95"/>
-        <path d="M10.5 15h3M12 13.5v3" stroke="#0066cc" stroke-width="1.6" stroke-linecap="round"/>
-      </svg>
+      <img src="assets/logo.jpg" alt="Budder Buddy" />
     </div>
     <div class="nav-logo-text">
       <span class="nav-logo-name">BUDDER BUDDY</span>
@@ -936,18 +879,14 @@
   <div class="hero-fade"></div>
   <div class="hero-fade-bottom"></div>
 
-  <!-- Phone mockup right side -->
-  <div class="hero-phone-wrap">
-    <div class="rim-blue"></div>
-    <div class="rim-gold"></div>
-    <div class="hero-phone phone-scan">
-      <div class="scanlines"></div>
-      <img src="assets/screenshots/IMG_9590.png" alt="Budder Buddy App" />
-    </div>
+  <!-- Mascot right side -->
+  <div class="hero-mascot-wrap">
+    <div class="mascot-glow"></div>
+    <img class="hero-mascot" src="assets/logo.jpg" alt="Budder Buddy mascot" />
   </div>
 
   <div class="hero-content">
-    <div class="hero-eyebrow">Now in Beta &nbsp;·&nbsp; Free for First Adopters</div>
+    <div class="hero-eyebrow">✦ Now in Beta &nbsp;·&nbsp; Free for First Adopters ✦</div>
 
     <h1 class="hero-headline">
       <span class="hero-line">HEAL YOUR</span>
@@ -957,13 +896,7 @@
           INK
         </span>
       </span>
-      <span class="hero-line">THE RIGHT</span>
-      <span class="hero-line">
-        <span class="hero-accent gold-accent">
-          <div class="hero-accent-bg lm-gold"></div>
-          WAY.
-        </span>
-      </span>
+      <span class="hero-line" style="color:rgba(240,240,240,0.9);">THE RIGHT WAY.</span>
     </h1>
 
     <p class="hero-sub">
