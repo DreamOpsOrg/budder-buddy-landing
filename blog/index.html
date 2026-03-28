@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Blog — Budder Buddy</title>
+  <link rel="canonical" href="https://budderbuddy.org/blog/" />
+  <meta name="description" content="Tattoo aftercare tips, healing guides, and app updates from Budder Buddy." />
+  <meta property="og:title" content="Blog — Budder Buddy" />
+  <meta property="og:description" content="Tattoo aftercare tips, healing guides, and app updates." />
+  <meta property="og:url" content="https://budderbuddy.org/blog/" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;700;800;900&family=Nunito:ital,wght@0,400;0,600;0,700;0,800;1,700&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --black:    #080808;
+      --dark:     #0d0d0d;
+      --dark2:    #121212;
+      --card:     rgba(14,14,14,0.9);
+      --blue:     #4facfe;
+      --blue-dim: rgba(79,172,254,0.12);
+      --blue-glow:rgba(79,172,254,0.35);
+      --gold:     #f5a623;
+      --gold-dim: rgba(245,166,35,0.12);
+      --gold-glow:rgba(245,166,35,0.35);
+      --white:    #f0f0f0;
+      --muted:    #555;
+      --border:   rgba(255,255,255,0.07);
+      --font-display: 'Orbitron', monospace;
+      --font:     'Nunito', sans-serif;
+    }
+
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: var(--font);
+      background: var(--black);
+      color: var(--white);
+      line-height: 1.6;
+      overflow-x: hidden;
+      min-height: 100vh;
+    }
+
+    /* ── Liquid Metal ── */
+    @keyframes metal-flow {
+      0%   { background-position: 0%   50%; }
+      50%  { background-position: 100% 50%; }
+      100% { background-position: 0%   50%; }
+    }
+    .lm-blue {
+      background: linear-gradient(110deg,
+        #001933 0%, #003366 12%, #0066cc 22%,
+        #2196f3 32%, #4facfe 42%, #a8d8ff 50%,
+        #4facfe 58%, #2196f3 68%,
+        #0066cc 78%, #003366 88%, #001933 100%
+      );
+      background-size: 220% 220%;
+      animation: metal-flow 5s ease-in-out infinite;
+    }
+    .lm-gold {
+      background: linear-gradient(110deg,
+        #1a0d00 0%, #3d2000 12%, #7a4500 22%,
+        #c47a00 32%, #f5a623 42%, #fde68a 50%,
+        #f5a623 58%, #c47a00 68%,
+        #7a4500 78%, #3d2000 88%, #1a0d00 100%
+      );
+      background-size: 220% 220%;
+      animation: metal-flow 5s ease-in-out infinite reverse;
+    }
+
+    /* ── Starfield ── */
+    #starfield { position: fixed; inset: 0; z-index: 0; pointer-events: none; }
+
+    /* ── Nav ── */
+    nav {
+      position: sticky; top: 0; z-index: 100;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 1rem 2rem;
+      background: rgba(8,8,8,0.85);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+    }
+    .nav-logo {
+      font-family: var(--font-display);
+      font-size: 1.1rem; font-weight: 700;
+      -webkit-background-clip: text; background-clip: text;
+      -webkit-text-fill-color: transparent;
+      text-decoration: none;
+    }
+    .nav-links { display: flex; gap: 1.5rem; align-items: center; }
+    .nav-links a {
+      color: rgba(240,240,240,0.7); text-decoration: none;
+      font-size: 0.9rem; font-weight: 600;
+      transition: color 0.2s;
+    }
+    .nav-links a:hover { color: var(--blue); }
+    .nav-links a.active { color: var(--gold); }
+
+    /* ── Page wrapper ── */
+    .page { position: relative; z-index: 1; max-width: 1100px; margin: 0 auto; padding: 4rem 1.5rem 6rem; }
+
+    /* ── Hero strip ── */
+    .blog-hero {
+      text-align: center; margin-bottom: 3.5rem;
+    }
+    .blog-hero h1 {
+      font-family: var(--font-display);
+      font-size: clamp(2rem, 5vw, 3.2rem);
+      font-weight: 800; letter-spacing: 0.04em;
+      -webkit-background-clip: text; background-clip: text;
+      -webkit-text-fill-color: transparent;
+      margin-bottom: 0.75rem;
+    }
+    .blog-hero p {
+      color: rgba(240,240,240,0.55);
+      font-size: 1.05rem; max-width: 500px; margin: 0 auto;
+    }
+
+    /* ── Category filter ── */
+    .filter-bar {
+      display: flex; flex-wrap: wrap; gap: 0.5rem;
+      margin-bottom: 2.5rem; justify-content: center;
+    }
+    .filter-btn {
+      padding: 0.35rem 1rem;
+      border: 1px solid var(--border);
+      border-radius: 999px;
+      background: transparent;
+      color: rgba(240,240,240,0.6);
+      font-family: var(--font); font-size: 0.85rem; font-weight: 600;
+      cursor: pointer; transition: all 0.2s;
+    }
+    .filter-btn:hover { border-color: var(--blue); color: var(--blue); }
+    .filter-btn.active {
+      border-color: var(--gold); color: #000;
+      background: linear-gradient(110deg, #f5a623, #fde68a, #f5a623);
+    }
+
+    /* ── Post grid ── */
+    .post-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 1.5rem;
+    }
+
+    /* ── Post card ── */
+    .post-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 1.5rem;
+      display: flex; flex-direction: column; gap: 0.75rem;
+      text-decoration: none; color: inherit;
+      transition: border-color 0.25s, transform 0.25s, box-shadow 0.25s;
+      cursor: pointer;
+    }
+    .post-card:hover {
+      border-color: var(--blue-glow);
+      transform: translateY(-3px);
+      box-shadow: 0 8px 32px rgba(79,172,254,0.12);
+    }
+    .post-meta {
+      display: flex; align-items: center; gap: 0.6rem;
+      font-size: 0.78rem; color: rgba(240,240,240,0.4);
+    }
+    .post-category {
+      font-family: var(--font-display);
+      font-size: 0.65rem; font-weight: 700; letter-spacing: 0.08em;
+      padding: 0.2rem 0.6rem; border-radius: 999px;
+      -webkit-background-clip: text; background-clip: text;
+      -webkit-text-fill-color: transparent;
+      border: 1px solid rgba(245,166,35,0.3);
+    }
+    .post-card h2 {
+      font-family: var(--font-display);
+      font-size: 1rem; font-weight: 700; letter-spacing: 0.02em;
+      line-height: 1.4; color: var(--white);
+    }
+    .post-card p {
+      font-size: 0.9rem; color: rgba(240,240,240,0.55);
+      line-height: 1.6; flex: 1;
+    }
+    .read-more {
+      font-size: 0.82rem; font-weight: 700;
+      color: var(--blue); margin-top: 0.25rem;
+      display: flex; align-items: center; gap: 0.3rem;
+    }
+
+    /* ── Empty / loading ── */
+    .state-msg {
+      grid-column: 1 / -1; text-align: center;
+      color: rgba(240,240,240,0.3); font-size: 1rem; padding: 3rem 0;
+    }
+
+    /* ── Footer ── */
+    footer {
+      position: relative; z-index: 1;
+      text-align: center; padding: 2rem;
+      border-top: 1px solid var(--border);
+      color: rgba(240,240,240,0.25); font-size: 0.8rem;
+    }
+    footer a { color: var(--blue); text-decoration: none; }
+  </style>
+</head>
+<body>
+
+<canvas id="starfield"></canvas>
+
+<nav>
+  <a class="nav-logo lm-blue" href="/">BUDDER BUDDY</a>
+  <div class="nav-links">
+    <a href="/">Home</a>
+    <a href="/healing-guide.html">Healing Guide</a>
+    <a href="/blog/" class="active">Blog</a>
+    <a href="/for-artists.html">For Artists</a>
+  </div>
+</nav>
+
+<div class="page">
+  <div class="blog-hero">
+    <h1 class="lm-gold">The Ink Journal</h1>
+    <p>Aftercare tips, healing guides, and updates from the Budder Buddy team.</p>
+  </div>
+
+  <div class="filter-bar" id="filterBar">
+    <button class="filter-btn active" data-cat="all">All</button>
+  </div>
+
+  <div class="post-grid" id="postGrid">
+    <div class="state-msg">Loading posts…</div>
+  </div>
+</div>
+
+<footer>
+  © 2026 Budder Buddy · <a href="/">Home</a> · <a href="/blog/">Blog</a>
+</footer>
+
+<script>
+  /* ── Starfield ── */
+  (function(){
+    const canvas = document.getElementById('starfield');
+    const ctx = canvas.getContext('2d');
+    let stars = [];
+    function resize(){ canvas.width = window.innerWidth; canvas.height = window.innerHeight; }
+    function init(){
+      stars = Array.from({length:160}, () => ({
+        x: Math.random()*canvas.width, y: Math.random()*canvas.height,
+        r: Math.random()*1.2+0.2, o: Math.random()*0.5+0.1,
+        s: Math.random()*0.15+0.05
+      }));
+    }
+    function draw(){
+      ctx.clearRect(0,0,canvas.width,canvas.height);
+      stars.forEach(s => {
+        s.o += s.s * (Math.random()>0.5?1:-1);
+        s.o = Math.max(0.05, Math.min(0.7, s.o));
+        ctx.beginPath(); ctx.arc(s.x,s.y,s.r,0,Math.PI*2);
+        ctx.fillStyle = `rgba(255,255,255,${s.o})`; ctx.fill();
+      });
+      requestAnimationFrame(draw);
+    }
+    resize(); init(); draw();
+    window.addEventListener('resize', () => { resize(); init(); });
+  })();
+
+  /* ── Blog logic ── */
+  let allPosts = [];
+  let activeCategory = 'all';
+
+  async function loadPosts() {
+    try {
+      const res = await fetch('/blog/posts.json?v=' + Date.now());
+      allPosts = await res.json();
+      // Sort newest first
+      allPosts.sort((a, b) => new Date(b.date) - new Date(a.date));
+      buildFilters();
+      renderPosts();
+    } catch(e) {
+      document.getElementById('postGrid').innerHTML =
+        '<div class="state-msg">Could not load posts.</div>';
+    }
+  }
+
+  function buildFilters() {
+    const cats = ['all', ...new Set(allPosts.map(p => p.category))];
+    const bar = document.getElementById('filterBar');
+    bar.innerHTML = cats.map(c =>
+      `<button class="filter-btn${c==='all'?' active':''}" data-cat="${c}">${c === 'all' ? 'All' : c}</button>`
+    ).join('');
+    bar.querySelectorAll('.filter-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        bar.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        activeCategory = btn.dataset.cat;
+        renderPosts();
+      });
+    });
+  }
+
+  function renderPosts() {
+    const grid = document.getElementById('postGrid');
+    const posts = activeCategory === 'all'
+      ? allPosts
+      : allPosts.filter(p => p.category === activeCategory);
+
+    if (!posts.length) {
+      grid.innerHTML = '<div class="state-msg">No posts yet in this category.</div>';
+      return;
+    }
+
+    grid.innerHTML = posts.map(p => `
+      <a class="post-card" href="/blog/post.html?slug=${encodeURIComponent(p.slug)}">
+        <div class="post-meta">
+          <span class="post-category lm-gold">${p.category}</span>
+          <span>·</span>
+          <span>${formatDate(p.date)}</span>
+        </div>
+        <h2>${p.title}</h2>
+        <p>${p.excerpt}</p>
+        <span class="read-more">Read more →</span>
+      </a>
+    `).join('');
+  }
+
+  function formatDate(str) {
+    return new Date(str + 'T12:00:00').toLocaleDateString('en-US', {
+      month: 'short', day: 'numeric', year: 'numeric'
+    });
+  }
+
+  loadPosts();
+</script>
+</body>
+</html>

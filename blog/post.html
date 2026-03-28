@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Loading… — Budder Buddy Blog</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;700;800;900&family=Nunito:ital,wght@0,400;0,600;0,700;0,800;1,700&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --black:    #080808;
+      --dark:     #0d0d0d;
+      --dark2:    #121212;
+      --card:     rgba(14,14,14,0.9);
+      --blue:     #4facfe;
+      --blue-dim: rgba(79,172,254,0.12);
+      --blue-glow:rgba(79,172,254,0.35);
+      --gold:     #f5a623;
+      --gold-dim: rgba(245,166,35,0.12);
+      --gold-glow:rgba(245,166,35,0.35);
+      --white:    #f0f0f0;
+      --muted:    #555;
+      --border:   rgba(255,255,255,0.07);
+      --font-display: 'Orbitron', monospace;
+      --font:     'Nunito', sans-serif;
+    }
+
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: var(--font);
+      background: var(--black);
+      color: var(--white);
+      line-height: 1.6;
+      overflow-x: hidden;
+      min-height: 100vh;
+    }
+
+    @keyframes metal-flow {
+      0%   { background-position: 0%   50%; }
+      50%  { background-position: 100% 50%; }
+      100% { background-position: 0%   50%; }
+    }
+    .lm-blue {
+      background: linear-gradient(110deg,
+        #001933 0%, #003366 12%, #0066cc 22%,
+        #2196f3 32%, #4facfe 42%, #a8d8ff 50%,
+        #4facfe 58%, #2196f3 68%,
+        #0066cc 78%, #003366 88%, #001933 100%
+      );
+      background-size: 220% 220%;
+      animation: metal-flow 5s ease-in-out infinite;
+    }
+    .lm-gold {
+      background: linear-gradient(110deg,
+        #1a0d00 0%, #3d2000 12%, #7a4500 22%,
+        #c47a00 32%, #f5a623 42%, #fde68a 50%,
+        #f5a623 58%, #c47a00 68%,
+        #7a4500 78%, #3d2000 88%, #1a0d00 100%
+      );
+      background-size: 220% 220%;
+      animation: metal-flow 5s ease-in-out infinite reverse;
+    }
+
+    #starfield { position: fixed; inset: 0; z-index: 0; pointer-events: none; }
+
+    nav {
+      position: sticky; top: 0; z-index: 100;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 1rem 2rem;
+      background: rgba(8,8,8,0.85);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+    }
+    .nav-logo {
+      font-family: var(--font-display); font-size: 1.1rem; font-weight: 700;
+      -webkit-background-clip: text; background-clip: text;
+      -webkit-text-fill-color: transparent; text-decoration: none;
+    }
+    .nav-links { display: flex; gap: 1.5rem; align-items: center; }
+    .nav-links a {
+      color: rgba(240,240,240,0.7); text-decoration: none;
+      font-size: 0.9rem; font-weight: 600; transition: color 0.2s;
+    }
+    .nav-links a:hover { color: var(--blue); }
+    .nav-links a.active { color: var(--gold); }
+
+    /* ── Article layout ── */
+    .page { position: relative; z-index: 1; max-width: 760px; margin: 0 auto; padding: 4rem 1.5rem 6rem; }
+
+    .back-link {
+      display: inline-flex; align-items: center; gap: 0.4rem;
+      color: rgba(240,240,240,0.45); text-decoration: none;
+      font-size: 0.85rem; font-weight: 600; margin-bottom: 2.5rem;
+      transition: color 0.2s;
+    }
+    .back-link:hover { color: var(--blue); }
+
+    .post-header { margin-bottom: 2.5rem; }
+    .post-header .meta {
+      display: flex; align-items: center; gap: 0.6rem;
+      font-size: 0.8rem; color: rgba(240,240,240,0.4); margin-bottom: 1rem;
+    }
+    .post-header .category {
+      font-family: var(--font-display); font-size: 0.65rem; font-weight: 700;
+      letter-spacing: 0.08em; padding: 0.2rem 0.6rem; border-radius: 999px;
+      border: 1px solid rgba(245,166,35,0.3);
+      -webkit-background-clip: text; background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    .post-header h1 {
+      font-family: var(--font-display);
+      font-size: clamp(1.5rem, 4vw, 2.4rem);
+      font-weight: 800; letter-spacing: 0.03em;
+      line-height: 1.3; color: var(--white);
+      margin-bottom: 1rem;
+    }
+    .post-header .excerpt {
+      font-size: 1.1rem; color: rgba(240,240,240,0.55);
+      line-height: 1.7; border-left: 3px solid var(--gold);
+      padding-left: 1rem;
+    }
+
+    .divider {
+      height: 1px; background: var(--border); margin: 2rem 0;
+    }
+
+    /* ── Post body typography ── */
+    .post-body { font-size: 1.05rem; line-height: 1.85; color: rgba(240,240,240,0.85); }
+    .post-body h2 {
+      font-family: var(--font-display); font-size: 1.15rem; font-weight: 700;
+      letter-spacing: 0.04em; margin: 2rem 0 0.75rem;
+      -webkit-background-clip: text; background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    .post-body h3 {
+      font-family: var(--font-display); font-size: 0.95rem; font-weight: 600;
+      margin: 1.5rem 0 0.5rem; color: var(--blue);
+    }
+    .post-body p { margin-bottom: 1.2rem; }
+    .post-body ul, .post-body ol {
+      margin: 0 0 1.2rem 1.5rem; color: rgba(240,240,240,0.8);
+    }
+    .post-body li { margin-bottom: 0.4rem; }
+    .post-body strong { color: var(--white); font-weight: 700; }
+    .post-body em { color: var(--gold); font-style: italic; }
+    .post-body a { color: var(--blue); }
+
+    /* ── Tags ── */
+    .tag-list { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-top: 2.5rem; }
+    .tag {
+      padding: 0.25rem 0.75rem; border-radius: 999px;
+      border: 1px solid var(--border);
+      font-size: 0.78rem; color: rgba(240,240,240,0.45);
+    }
+
+    /* ── CTA ── */
+    .post-cta {
+      margin-top: 3rem; padding: 2rem;
+      background: var(--card); border: 1px solid var(--border); border-radius: 16px;
+      text-align: center;
+    }
+    .post-cta h3 {
+      font-family: var(--font-display); font-size: 1rem; font-weight: 700;
+      margin-bottom: 0.5rem; color: var(--white);
+    }
+    .post-cta p { font-size: 0.9rem; color: rgba(240,240,240,0.5); margin-bottom: 1.25rem; }
+    .cta-btn {
+      display: inline-block; padding: 0.75rem 2rem;
+      border-radius: 999px; text-decoration: none;
+      font-family: var(--font-display); font-size: 0.8rem;
+      font-weight: 700; letter-spacing: 0.06em; color: #000;
+    }
+
+    /* ── Error/loading ── */
+    .state-msg { text-align: center; padding: 5rem 0; color: rgba(240,240,240,0.3); }
+
+    footer {
+      position: relative; z-index: 1; text-align: center; padding: 2rem;
+      border-top: 1px solid var(--border);
+      color: rgba(240,240,240,0.25); font-size: 0.8rem;
+    }
+    footer a { color: var(--blue); text-decoration: none; }
+  </style>
+</head>
+<body>
+
+<canvas id="starfield"></canvas>
+
+<nav>
+  <a class="nav-logo lm-blue" href="/">BUDDER BUDDY</a>
+  <div class="nav-links">
+    <a href="/">Home</a>
+    <a href="/healing-guide.html">Healing Guide</a>
+    <a href="/blog/" class="active">Blog</a>
+    <a href="/for-artists.html">For Artists</a>
+  </div>
+</nav>
+
+<div class="page" id="pageContent">
+  <div class="state-msg">Loading post…</div>
+</div>
+
+<footer>
+  © 2026 Budder Buddy · <a href="/">Home</a> · <a href="/blog/">Blog</a>
+</footer>
+
+<script>
+  /* ── Starfield ── */
+  (function(){
+    const canvas = document.getElementById('starfield');
+    const ctx = canvas.getContext('2d');
+    let stars = [];
+    function resize(){ canvas.width = window.innerWidth; canvas.height = window.innerHeight; }
+    function init(){
+      stars = Array.from({length:160}, () => ({
+        x: Math.random()*canvas.width, y: Math.random()*canvas.height,
+        r: Math.random()*1.2+0.2, o: Math.random()*0.5+0.1,
+        s: Math.random()*0.15+0.05
+      }));
+    }
+    function draw(){
+      ctx.clearRect(0,0,canvas.width,canvas.height);
+      stars.forEach(s => {
+        s.o += s.s * (Math.random()>0.5?1:-1);
+        s.o = Math.max(0.05, Math.min(0.7, s.o));
+        ctx.beginPath(); ctx.arc(s.x,s.y,s.r,0,Math.PI*2);
+        ctx.fillStyle = `rgba(255,255,255,${s.o})`; ctx.fill();
+      });
+      requestAnimationFrame(draw);
+    }
+    resize(); init(); draw();
+    window.addEventListener('resize', () => { resize(); init(); });
+  })();
+
+  /* ── Post loader ── */
+  function formatDate(str) {
+    return new Date(str + 'T12:00:00').toLocaleDateString('en-US', {
+      month: 'long', day: 'numeric', year: 'numeric'
+    });
+  }
+
+  async function loadPost() {
+    const params = new URLSearchParams(window.location.search);
+    const slug = params.get('slug');
+    const page = document.getElementById('pageContent');
+
+    if (!slug) {
+      page.innerHTML = '<div class="state-msg">No post specified. <a href="/blog/" style="color:var(--blue)">← Back to Blog</a></div>';
+      return;
+    }
+
+    try {
+      const res = await fetch('/blog/posts.json?v=' + Date.now());
+      const posts = await res.json();
+      const post = posts.find(p => p.slug === slug);
+
+      if (!post) {
+        page.innerHTML = '<div class="state-msg">Post not found. <a href="/blog/" style="color:var(--blue)">← Back to Blog</a></div>';
+        return;
+      }
+
+      document.title = post.title + ' — Budder Buddy Blog';
+
+      // Add OG meta dynamically
+      const metaDesc = document.createElement('meta');
+      metaDesc.name = 'description'; metaDesc.content = post.excerpt;
+      document.head.appendChild(metaDesc);
+
+      const h2Class = 'lm-blue';
+
+      page.innerHTML = `
+        <a class="back-link" href="/blog/">← Back to Blog</a>
+        <div class="post-header">
+          <div class="meta">
+            <span class="category lm-gold">${post.category}</span>
+            <span>·</span>
+            <span>${formatDate(post.date)}</span>
+            <span>·</span>
+            <span>${post.author}</span>
+          </div>
+          <h1>${post.title}</h1>
+          <p class="excerpt">${post.excerpt}</p>
+        </div>
+        <div class="divider"></div>
+        <div class="post-body">${styleHeadings(post.content)}</div>
+        ${post.tags && post.tags.length ? `
+          <div class="tag-list">
+            ${post.tags.map(t => `<span class="tag">#${t}</span>`).join('')}
+          </div>
+        ` : ''}
+        <div class="post-cta">
+          <h3>Track Your Healing with Budder Buddy</h3>
+          <p>Daily check-ins, UV alerts, and AI guidance — free for first adopters.</p>
+          <a class="cta-btn lm-gold" href="/#signup">Get Early Access</a>
+        </div>
+      `;
+    } catch(e) {
+      page.innerHTML = '<div class="state-msg">Could not load post. <a href="/blog/" style="color:var(--blue)">← Back to Blog</a></div>';
+    }
+  }
+
+  function styleHeadings(html) {
+    // Give h2 tags the lm-blue gradient class
+    return html.replace(/<h2>/g, '<h2 class="lm-blue">');
+  }
+
+  loadPost();
+</script>
+</body>
+</html>
