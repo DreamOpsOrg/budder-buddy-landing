@@ -1,0 +1,574 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Support — Budder Buddy</title>
+  <link rel="canonical" href="https://budderbuddy.org/support" />
+  <meta name="description" content="Get help with Budder Buddy — FAQs, troubleshooting, and contact support." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;700;800;900&family=Nunito:ital,wght@0,400;0,600;0,700;0,800;1,700&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --black:    #080808;
+      --dark:     #0d0d0d;
+      --dark2:    #121212;
+      --card:     rgba(14,14,14,0.9);
+      --blue:     #4facfe;
+      --blue-dim: rgba(79,172,254,0.12);
+      --gold:     #f5a623;
+      --gold-dim: rgba(245,166,35,0.12);
+      --white:    #f0f0f0;
+      --muted:    #888;
+      --border:   rgba(255,255,255,0.07);
+      --font-display: 'Orbitron', monospace;
+      --font:     'Nunito', sans-serif;
+    }
+
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: var(--font);
+      background: var(--black);
+      color: var(--white);
+      line-height: 1.7;
+      overflow-x: hidden;
+    }
+
+    @keyframes metal-flow {
+      0%   { background-position: 0%   50%; }
+      50%  { background-position: 100% 50%; }
+      100% { background-position: 0%   50%; }
+    }
+
+    .lm-blue {
+      background: linear-gradient(110deg,
+        #001933 0%, #003366 12%, #0066cc 22%,
+        #2196f3 32%, #4facfe 42%, #a8d8ff 50%,
+        #4facfe 58%, #2196f3 68%,
+        #0066cc 78%, #003366 88%, #001933 100%
+      );
+      background-size: 220% 220%;
+      animation: metal-flow 5s ease-in-out infinite;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 1rem 2rem;
+      background: rgba(8,8,8,0.85);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+    }
+    .nav-logo {
+      font-family: var(--font-display);
+      font-size: 1.1rem; font-weight: 700;
+      background: linear-gradient(90deg, var(--blue), var(--gold));
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+      background-clip: text;
+      text-decoration: none;
+    }
+    .nav-back {
+      font-family: var(--font);
+      font-size: .85rem; color: var(--muted);
+      text-decoration: none; transition: color .2s;
+    }
+    .nav-back:hover { color: var(--blue); }
+
+    /* ── HERO ── */
+    .hero {
+      padding: 7rem 2rem 3rem;
+      text-align: center;
+    }
+    .hero-badge {
+      display: inline-block;
+      font-family: var(--font-display);
+      font-size: .65rem; letter-spacing: .15em; font-weight: 700;
+      color: var(--blue);
+      border: 1px solid rgba(79,172,254,0.3);
+      padding: .3rem .9rem; border-radius: 2rem;
+      margin-bottom: 1.2rem;
+    }
+    .hero h1 {
+      font-family: var(--font-display);
+      font-size: clamp(1.8rem, 4vw, 3rem);
+      font-weight: 800; margin-bottom: .6rem;
+    }
+    .hero p { color: var(--muted); font-size: .95rem; }
+
+    /* ── LAYOUT ── */
+    .content {
+      max-width: 860px;
+      margin: 0 auto;
+      padding: 2rem 2rem 6rem;
+    }
+
+    /* ── CONTACT CARDS ── */
+    .contact-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 1rem;
+      margin-bottom: 3rem;
+    }
+    .contact-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 1rem;
+      padding: 1.5rem;
+      text-align: center;
+      transition: border-color .2s;
+    }
+    .contact-card:hover { border-color: rgba(79,172,254,0.3); }
+    .contact-card .icon {
+      font-size: 1.8rem;
+      margin-bottom: .75rem;
+      display: block;
+    }
+    .contact-card h3 {
+      font-family: var(--font-display);
+      font-size: .7rem; letter-spacing: .1em;
+      color: var(--blue);
+      margin-bottom: .4rem;
+    }
+    .contact-card p { font-size: .85rem; color: var(--muted); margin-bottom: .6rem; }
+    .contact-card a {
+      display: inline-block;
+      font-size: .85rem; font-weight: 700;
+      color: var(--blue); text-decoration: none;
+    }
+    .contact-card a:hover { text-decoration: underline; }
+
+    /* ── FAQ ── */
+    .faq-heading {
+      font-family: var(--font-display);
+      font-size: .75rem; letter-spacing: .12em;
+      color: var(--blue);
+      margin-bottom: 1.25rem;
+    }
+
+    .faq-category {
+      margin-bottom: 2rem;
+    }
+    .faq-category-title {
+      font-family: var(--font-display);
+      font-size: .65rem; letter-spacing: .12em;
+      color: var(--gold);
+      padding: .3rem .8rem;
+      border: 1px solid rgba(245,166,35,0.25);
+      border-radius: 2rem;
+      display: inline-block;
+      margin-bottom: 1rem;
+    }
+
+    details {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: .75rem;
+      margin-bottom: .6rem;
+      overflow: hidden;
+      transition: border-color .2s;
+    }
+    details[open] { border-color: rgba(79,172,254,0.25); }
+    details summary {
+      padding: 1rem 1.25rem;
+      font-weight: 700; font-size: .95rem;
+      cursor: pointer;
+      list-style: none;
+      display: flex; align-items: center; justify-content: space-between;
+      gap: .5rem;
+      user-select: none;
+    }
+    details summary::-webkit-details-marker { display: none; }
+    details summary::after {
+      content: '+';
+      font-family: var(--font-display);
+      font-size: .85rem; color: var(--blue);
+      flex-shrink: 0;
+      transition: transform .2s;
+    }
+    details[open] summary::after { content: '−'; }
+    details .answer {
+      padding: 0 1.25rem 1.1rem;
+      color: #ccc; font-size: .92rem;
+    }
+    details .answer p { margin-bottom: .5rem; }
+    details .answer p:last-child { margin-bottom: 0; }
+    details .answer ul {
+      padding-left: 1.2rem; color: #ccc; font-size: .92rem;
+    }
+    details .answer ul li { margin-bottom: .3rem; }
+    details .answer a { color: var(--blue); }
+
+    /* ── CONTACT FORM ── */
+    .form-section {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 1.25rem;
+      padding: 2rem;
+      margin-top: 2.5rem;
+    }
+    .form-section h2 {
+      font-family: var(--font-display);
+      font-size: .85rem; letter-spacing: .1em;
+      color: var(--blue);
+      margin-bottom: .4rem;
+    }
+    .form-section p { color: var(--muted); font-size: .88rem; margin-bottom: 1.5rem; }
+
+    .form-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem;
+      margin-bottom: 1rem;
+    }
+    @media (max-width: 540px) { .form-row { grid-template-columns: 1fr; } }
+
+    .field { display: flex; flex-direction: column; gap: .4rem; margin-bottom: 1rem; }
+    .field label {
+      font-size: .8rem; font-weight: 700;
+      color: var(--muted); letter-spacing: .04em;
+    }
+    .field input, .field select, .field textarea {
+      background: rgba(255,255,255,0.04);
+      border: 1px solid var(--border);
+      border-radius: .6rem;
+      padding: .7rem 1rem;
+      color: var(--white);
+      font-family: var(--font);
+      font-size: .92rem;
+      outline: none;
+      transition: border-color .2s;
+      width: 100%;
+    }
+    .field input:focus, .field select:focus, .field textarea:focus {
+      border-color: rgba(79,172,254,0.5);
+    }
+    .field select option { background: #111; }
+    .field textarea { resize: vertical; min-height: 110px; }
+
+    .submit-btn {
+      display: inline-block;
+      font-family: var(--font-display);
+      font-size: .75rem; font-weight: 700; letter-spacing: .08em;
+      padding: .85rem 2.5rem;
+      border: none; border-radius: 3rem;
+      cursor: pointer;
+      background: linear-gradient(90deg, #003366, #4facfe, #003366);
+      background-size: 200%;
+      animation: metal-flow 4s ease-in-out infinite;
+      color: #fff;
+      transition: opacity .2s;
+    }
+    .submit-btn:hover { opacity: .85; }
+
+    .success-msg {
+      display: none;
+      background: rgba(79,172,254,0.1);
+      border: 1px solid rgba(79,172,254,0.3);
+      border-radius: .75rem;
+      padding: 1rem 1.25rem;
+      color: var(--blue);
+      font-size: .9rem;
+      margin-top: 1rem;
+    }
+
+    /* ── FOOTER ── */
+    footer {
+      text-align: center;
+      padding: 2rem;
+      color: var(--muted);
+      font-size: .8rem;
+      border-top: 1px solid var(--border);
+    }
+    footer a { color: var(--blue); text-decoration: none; }
+    footer a:hover { text-decoration: underline; }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <a href="/" class="nav-logo">Budder Buddy</a>
+    <a href="/" class="nav-back">← Back to Home</a>
+  </nav>
+
+  <div class="hero">
+    <div class="hero-badge">Help Center</div>
+    <h1><span class="lm-blue">Support</span></h1>
+    <p>We've got you covered — find answers or reach out directly.</p>
+  </div>
+
+  <div class="content">
+
+    <!-- Contact options -->
+    <div class="contact-grid">
+      <div class="contact-card">
+        <span class="icon">✉️</span>
+        <h3>Email Support</h3>
+        <p>For account issues, bugs, and general help.</p>
+        <a href="mailto:support@budderbuddy.org">support@budderbuddy.org</a>
+      </div>
+      <div class="contact-card">
+        <span class="icon">🔒</span>
+        <h3>Privacy Requests</h3>
+        <p>Data deletion, access requests, CCPA/GDPR.</p>
+        <a href="mailto:privacy@budderbuddy.org">privacy@budderbuddy.org</a>
+      </div>
+      <div class="contact-card">
+        <span class="icon">⚖️</span>
+        <h3>Legal</h3>
+        <p>Terms, disputes, and formal inquiries.</p>
+        <a href="mailto:legal@budderbuddy.org">legal@budderbuddy.org</a>
+      </div>
+    </div>
+
+    <!-- FAQ -->
+    <p class="faq-heading">FREQUENTLY ASKED QUESTIONS</p>
+
+    <div class="faq-category">
+      <span class="faq-category-title">Getting Started</span>
+
+      <details>
+        <summary>What is Budder Buddy?</summary>
+        <div class="answer">
+          <p>Budder Buddy is a tattoo healing tracker app. It helps you monitor your tattoo's recovery day by day — with ghost-camera check-ins, UV alerts, smart reminders, an AI healing guide, and a timelapse of your entire healing journey stored in your Ink Vault.</p>
+        </div>
+      </details>
+
+      <details>
+        <summary>Is Budder Buddy free?</summary>
+        <div class="answer">
+          <p>Yes — Budder Buddy is free for early adopters. We plan to introduce optional premium features in the future, but the core healing tracker will always have a free tier.</p>
+        </div>
+      </details>
+
+      <details>
+        <summary>What devices does Budder Buddy support?</summary>
+        <div class="answer">
+          <p>Budder Buddy is available on iOS (iPhone). Android support is planned for a future release. Check the App Store for the latest supported iOS versions.</p>
+        </div>
+      </details>
+
+      <details>
+        <summary>Do I need an account to use the app?</summary>
+        <div class="answer">
+          <p>You can use basic features without an account. Creating a free account unlocks cloud backup for your check-ins and Ink Vault photos, so your data isn't lost if you switch devices.</p>
+        </div>
+      </details>
+    </div>
+
+    <div class="faq-category">
+      <span class="faq-category-title">Check-Ins & Ghost Camera</span>
+
+      <details>
+        <summary>How does the ghost camera work?</summary>
+        <div class="answer">
+          <p>When you do a check-in, the ghost camera overlays a transparent reference image of your previous check-in photo onto your live camera view. This helps you line up the shot from the same angle every time, giving you a consistent healing comparison and a clean timelapse at the end.</p>
+        </div>
+      </details>
+
+      <details>
+        <summary>Why is the app asking for camera permission?</summary>
+        <div class="answer">
+          <p>Camera access is needed for ghost-camera check-ins and adding photos to your Ink Vault. We only access your camera when you actively take a check-in photo — we never record or monitor your camera in the background.</p>
+          <p>You can grant or revoke camera permission at any time in your device Settings → Privacy & Security → Camera.</p>
+        </div>
+      </details>
+
+      <details>
+        <summary>How often should I do a check-in?</summary>
+        <div class="answer">
+          <p>We recommend once daily, ideally at the same time each day, for the first 2–4 weeks. The app will remind you based on the schedule you set. After the initial healing phase, you can switch to weekly check-ins to track long-term settling of colors and lines.</p>
+          <p>Always follow your tattoo artist's specific aftercare instructions — they know your tattoo best.</p>
+        </div>
+      </details>
+
+      <details>
+        <summary>Can I delete a check-in?</summary>
+        <div class="answer">
+          <p>Yes. Swipe left on any check-in entry in your timeline to delete it. Note: deleted check-ins cannot be recovered.</p>
+        </div>
+      </details>
+    </div>
+
+    <div class="faq-category">
+      <span class="faq-category-title">UV Alerts & Reminders</span>
+
+      <details>
+        <summary>How do UV alerts work?</summary>
+        <div class="answer">
+          <p>The app uses your approximate location (city/region level) to fetch the local UV index. When the UV index is elevated, you'll receive an alert reminding you to keep your healing tattoo covered or protected from sun exposure. UV exposure is one of the leading causes of color fading and complications during healing.</p>
+          <p>You can use a manual zip code instead of location access if you prefer — set this in app Settings → UV Alerts.</p>
+        </div>
+      </details>
+
+      <details>
+        <summary>How do I change my reminder schedule?</summary>
+        <div class="answer">
+          <p>Go to app Settings → Reminders to customize the time, frequency, and type of notifications. You can also disable reminders entirely without affecting other app features.</p>
+        </div>
+      </details>
+
+      <details>
+        <summary>I'm not receiving notifications — what do I do?</summary>
+        <div class="answer">
+          <ul>
+            <li>Check that notifications are enabled in Settings → Privacy & Security → Notifications → Budder Buddy.</li>
+            <li>Make sure Do Not Disturb is not active.</li>
+            <li>In the app, go to Settings → Reminders and confirm they are turned on.</li>
+            <li>Try toggling notifications off and back on.</li>
+          </ul>
+          <p>If the issue persists, contact us at <a href="mailto:support@budderbuddy.org">support@budderbuddy.org</a>.</p>
+        </div>
+      </details>
+    </div>
+
+    <div class="faq-category">
+      <span class="faq-category-title">Ink Vault & Timelapse</span>
+
+      <details>
+        <summary>What is the Ink Vault?</summary>
+        <div class="answer">
+          <p>The Ink Vault is your personal archive of all your tattoos. For each piece, you can store photos, artist info, studio, ink date, style, and your complete healing history. It's a permanent record of your tattoo collection over time.</p>
+        </div>
+      </details>
+
+      <details>
+        <summary>How do I generate my healing timelapse?</summary>
+        <div class="answer">
+          <p>Once you've completed enough check-ins, a "Generate Timelapse" option will appear on your tattoo's detail page. The timelapse compiles your check-in photos in order to show the full healing progression. You can download it to your camera roll and share it.</p>
+        </div>
+      </details>
+
+      <details>
+        <summary>Are my photos backed up?</summary>
+        <div class="answer">
+          <p>Photos are stored on your device by default. If you have an account with cloud sync enabled, your photos are also backed up to secure cloud storage. We recommend keeping your own backup via iCloud or your device backup as well.</p>
+        </div>
+      </details>
+    </div>
+
+    <div class="faq-category">
+      <span class="faq-category-title">AI Healing Guide</span>
+
+      <details>
+        <summary>Is the AI healing advice medically accurate?</summary>
+        <div class="answer">
+          <p>The AI Healing Guide provides general aftercare suggestions based on your check-in data. It is <strong>not</strong> a substitute for professional medical advice. Always follow the aftercare instructions given by your licensed tattoo artist.</p>
+          <p>If you see signs of infection — excessive redness, swelling, discharge, fever, or prolonged pain — consult a licensed healthcare provider immediately.</p>
+        </div>
+      </details>
+
+      <details>
+        <summary>What data does the AI use?</summary>
+        <div class="answer">
+          <p>The AI uses the text and metadata from your check-ins — healing stage, observations, days since your tattoo date, and general tattoo info. Your photos are not sent to AI services. See our <a href="/privacy.html">Privacy Policy</a> for full details.</p>
+        </div>
+      </details>
+    </div>
+
+    <div class="faq-category">
+      <span class="faq-category-title">Account & Data</span>
+
+      <details>
+        <summary>How do I delete my account and data?</summary>
+        <div class="answer">
+          <p>You can delete your account directly from the app: go to Settings → Account → Delete Account. All your personal data will be permanently deleted within 30 days.</p>
+          <p>You can also request deletion by emailing <a href="mailto:privacy@budderbuddy.org">privacy@budderbuddy.org</a> with the subject "Account Deletion Request."</p>
+        </div>
+      </details>
+
+      <details>
+        <summary>How do I request a copy of my data?</summary>
+        <div class="answer">
+          <p>Email <a href="mailto:privacy@budderbuddy.org">privacy@budderbuddy.org</a> with the subject "Data Export Request." We'll get back to you within 30 days with an export of your data.</p>
+        </div>
+      </details>
+
+      <details>
+        <summary>I forgot my password — how do I reset it?</summary>
+        <div class="answer">
+          <p>On the login screen, tap "Forgot Password" and enter your email address. You'll receive a reset link within a few minutes. Check your spam folder if you don't see it.</p>
+          <p>Still stuck? Email <a href="mailto:support@budderbuddy.org">support@budderbuddy.org</a> and we'll help manually.</p>
+        </div>
+      </details>
+
+      <details>
+        <summary>I found a bug — how do I report it?</summary>
+        <div class="answer">
+          <p>We appreciate bug reports! Email <a href="mailto:support@budderbuddy.org">support@budderbuddy.org</a> with:</p>
+          <ul>
+            <li>A description of what happened</li>
+            <li>Steps to reproduce the issue</li>
+            <li>Your device model and iOS version</li>
+            <li>App version (Settings → About)</li>
+            <li>A screenshot if possible</li>
+          </ul>
+        </div>
+      </details>
+    </div>
+
+    <!-- Contact form -->
+    <div class="form-section">
+      <h2>Still Need Help?</h2>
+      <p>Send us a message and we'll get back to you within 1–2 business days.</p>
+      <form id="supportForm" action="https://formsubmit.co/support@budderbuddy.org" method="POST">
+        <input type="hidden" name="_subject" value="Budder Buddy Support Request" />
+        <input type="hidden" name="_captcha" value="false" />
+        <input type="hidden" name="_next" value="https://budderbuddy.org/support.html?sent=1" />
+        <div class="form-row">
+          <div class="field">
+            <label for="name">NAME</label>
+            <input type="text" id="name" name="name" placeholder="Your name" required />
+          </div>
+          <div class="field">
+            <label for="email">EMAIL</label>
+            <input type="email" id="email" name="email" placeholder="you@email.com" required />
+          </div>
+        </div>
+        <div class="field">
+          <label for="category">TOPIC</label>
+          <select id="category" name="category" required>
+            <option value="" disabled selected>Select a topic...</option>
+            <option value="app-bug">App bug or crash</option>
+            <option value="account">Account or login issue</option>
+            <option value="camera">Camera or check-in problem</option>
+            <option value="notifications">Notifications not working</option>
+            <option value="timelapse">Timelapse or Ink Vault</option>
+            <option value="data-privacy">Data or privacy request</option>
+            <option value="billing">Billing or subscription</option>
+            <option value="other">Other</option>
+          </select>
+        </div>
+        <div class="field">
+          <label for="message">MESSAGE</label>
+          <textarea id="message" name="message" placeholder="Describe your issue or question..." required></textarea>
+        </div>
+        <button type="submit" class="submit-btn">SEND MESSAGE</button>
+      </form>
+      <div class="success-msg" id="successMsg">
+        Message sent! We'll get back to you within 1–2 business days.
+      </div>
+    </div>
+
+  </div>
+
+  <footer>
+    <p>&copy; 2026 Budder Buddy. All rights reserved. &nbsp;|&nbsp; <a href="/terms.html">Terms of Service</a> &nbsp;|&nbsp; <a href="/privacy.html">Privacy Policy</a> &nbsp;|&nbsp; <a href="/support.html">Support</a> &nbsp;|&nbsp; <a href="/">Home</a></p>
+  </footer>
+
+  <script>
+    // Show success message if redirected back after form submit
+    if (window.location.search.includes('sent=1')) {
+      document.getElementById('successMsg').style.display = 'block';
+      document.getElementById('supportForm').style.display = 'none';
+    }
+  </script>
+
+</body>
+</html>

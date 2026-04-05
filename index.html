@@ -9,6 +9,78 @@
   <meta property="og:title" content="Budder Buddy — Tattoo Healing, Reimagined" />
   <meta property="og:description" content="Ghost camera check-ins, live UV alerts, AI healing guidance. Free for first adopters." />
   <meta property="og:url" content="https://budderbuddy.org" />
+  <meta property="og:type" content="website" />
+  <meta property="og:image" content="https://budderbuddy.org/assets/budder-buddy.jpeg" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Budder Buddy — Tattoo Healing, Reimagined" />
+  <meta name="twitter:description" content="Ghost camera check-ins, live UV alerts, AI healing guidance. Free for first adopters." />
+  <meta name="twitter:image" content="https://budderbuddy.org/assets/budder-buddy.jpeg" />
+
+  <!-- Schema: SoftwareApplication -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    "name": "Budder Buddy",
+    "description": "Budder Buddy tracks every day of your tattoo's recovery — ghost-camera check-ins, UV alerts, AI healing guidance, and a full timelapse of the journey.",
+    "url": "https://budderbuddy.org",
+    "applicationCategory": "HealthApplication",
+    "operatingSystem": "iOS",
+    "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
+    "publisher": { "@type": "Organization", "name": "Budder Buddy", "url": "https://budderbuddy.org" }
+  }
+  </script>
+
+  <!-- Schema: FAQPage (AEO) -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "What is Budder Buddy?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Budder Buddy is a tattoo healing tracker app. It uses ghost-camera check-ins, live UV alerts, AI healing stage guidance, and daily reminders to help you protect your tattoo investment through every stage of recovery."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "How long does a tattoo take to heal?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Surface healing takes roughly 2–3 weeks. Full, deep healing of the dermis takes 2–4 months. During that window the ink is still settling and colors will continue to clarify."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "What is a ghost camera check-in?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Budder Buddy's ghost camera overlays your previous check-in photo so you can line up the exact same shot each day. This gives you a precise, consistent record of how your tattoo is healing over time."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Is Budder Buddy free?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Budder Buddy is free for first adopters who sign up before launch. Early access members lock in free access to all core features."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "What should I do in the first 24 hours after getting a tattoo?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Keep the tattoo covered as your artist directed, gently wash it with mild fragrance-free soap after 2–4 hours, apply a thin layer of unscented moisturizer, avoid soaking or sun exposure, and wear loose clothing over the area."
+        }
+      }
+    ]
+  }
+  </script>
+
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;700;800;900&family=Nunito:ital,wght@0,400;0,600;0,700;0,800;1,700&display=swap" rel="stylesheet" />
@@ -844,9 +916,198 @@
       .cta-section { padding: 6rem 1.25rem; }
       footer { padding: 2rem 1.25rem; }
     }
+
+    /* ══════════════════════════════════════
+       SPLASH SCREEN
+    ══════════════════════════════════════ */
+    #splash {
+      position: fixed;
+      inset: 0;
+      background: #080808;
+      z-index: 99999;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+      pointer-events: all;
+    }
+    #splash.hidden {
+      display: none;
+    }
+
+    /* Rising energy glow from bottom */
+    .splash-ground-glow {
+      position: absolute;
+      bottom: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 600px;
+      height: 300px;
+      background: radial-gradient(ellipse at 50% 100%, rgba(79,172,254,0.45) 0%, transparent 70%);
+      opacity: 0;
+      animation: ground-rise 0.5s ease-out 0.1s forwards;
+    }
+    @keyframes ground-rise {
+      to { opacity: 1; }
+    }
+
+    /* Shockwave ring at impact */
+    .splash-shockwave {
+      position: absolute;
+      bottom: 22%;
+      left: 50%;
+      transform: translateX(-50%) scale(0);
+      width: 80px;
+      height: 20px;
+      border-radius: 50%;
+      border: 3px solid rgba(79,172,254,0.9);
+      opacity: 0;
+      animation: shockwave 0.5s ease-out 1.05s forwards;
+    }
+    @keyframes shockwave {
+      0%   { transform: translateX(-50%) scale(0);   opacity: 0.9; }
+      100% { transform: translateX(-50%) scale(8);   opacity: 0; }
+    }
+
+    /* Screen flash at impact */
+    .splash-flash {
+      position: absolute;
+      inset: 0;
+      background: rgba(79,172,254,0.18);
+      opacity: 0;
+      animation: impact-flash 0.4s ease-out 1.05s forwards;
+    }
+    @keyframes impact-flash {
+      0%   { opacity: 0.7; }
+      100% { opacity: 0; }
+    }
+
+    /* Mascot */
+    .splash-mascot {
+      position: relative;
+      z-index: 2;
+      width: min(320px, 60vw);
+      transform: translateY(-160%);
+      opacity: 0;
+      filter: drop-shadow(0 0 30px rgba(79,172,254,0.6));
+      animation:
+        mascot-drop   0.85s cubic-bezier(0.23, 1, 0.32, 1) 0.28s forwards,
+        mascot-flex   0.6s ease-in-out 1.6s both,
+        mascot-float  4s ease-in-out 2.4s infinite;
+    }
+    @keyframes mascot-drop {
+      0%   { transform: translateY(-160%); opacity: 0; }
+      40%  { opacity: 1; }
+      72%  { transform: translateY(5%) scaleX(1.18) scaleY(0.8); }  /* squish on land */
+      84%  { transform: translateY(-4%) scaleX(0.93) scaleY(1.07); } /* bounce up */
+      93%  { transform: translateY(2%) scaleX(1.03) scaleY(0.98); }  /* settle */
+      100% { transform: translateY(0) scaleX(1) scaleY(1); opacity: 1; }
+    }
+    @keyframes mascot-flex {
+      0%   { transform: scale(1);    filter: drop-shadow(0 0 30px rgba(79,172,254,0.6)); }
+      35%  { transform: scale(1.07); filter: drop-shadow(0 0 60px rgba(79,172,254,0.95)) drop-shadow(0 0 100px rgba(79,172,254,0.5)); }
+      65%  { transform: scale(1.05); filter: drop-shadow(0 0 55px rgba(79,172,254,0.9)); }
+      100% { transform: scale(1);    filter: drop-shadow(0 0 30px rgba(79,172,254,0.6)); }
+    }
+    @keyframes mascot-float {
+      0%, 100% { transform: translateY(0); }
+      50%      { transform: translateY(-10px); }
+    }
+
+    /* Title text */
+    .splash-title {
+      position: relative;
+      z-index: 2;
+      font-family: var(--font-display);
+      font-size: clamp(2rem, 8vw, 4.5rem);
+      font-weight: 900;
+      letter-spacing: 0.12em;
+      color: transparent;
+      background: linear-gradient(110deg, #003366 0%, #4facfe 40%, #a8d8ff 55%, #4facfe 70%, #003366 100%);
+      background-size: 220% 100%;
+      -webkit-background-clip: text;
+      background-clip: text;
+      text-shadow: none;
+      filter: drop-shadow(0 0 24px rgba(79,172,254,0.7));
+      opacity: 0;
+      transform: scale(2.2);
+      animation: title-slam 0.45s cubic-bezier(0.16, 1, 0.3, 1) 1.4s forwards,
+                 title-sheen 3s ease-in-out 2s infinite;
+      margin-top: 0.6rem;
+    }
+    @keyframes title-slam {
+      0%   { opacity: 0; transform: scale(2.2) translateY(10px); letter-spacing: 0.4em; }
+      60%  { opacity: 1; transform: scale(0.96) translateY(-2px); }
+      100% { opacity: 1; transform: scale(1) translateY(0); letter-spacing: 0.12em; }
+    }
+    @keyframes title-sheen {
+      0%   { background-position: 200% 0; }
+      100% { background-position: -200% 0; }
+    }
+
+    /* Tagline */
+    .splash-tagline {
+      position: relative;
+      z-index: 2;
+      font-family: var(--font);
+      font-size: clamp(0.75rem, 2.5vw, 1rem);
+      font-weight: 600;
+      letter-spacing: 0.25em;
+      color: rgba(240,240,240,0.6);
+      text-transform: uppercase;
+      opacity: 0;
+      animation: fade-up-in 0.5s ease-out 1.85s forwards;
+      margin-top: 0.4rem;
+    }
+    @keyframes fade-up-in {
+      from { opacity: 0; transform: translateY(8px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    /* Skip button */
+    .splash-skip {
+      position: absolute;
+      bottom: 2rem;
+      right: 2rem;
+      font-family: var(--font);
+      font-size: 0.78rem;
+      letter-spacing: 0.1em;
+      color: rgba(255,255,255,0.3);
+      background: none;
+      border: 1px solid rgba(255,255,255,0.12);
+      border-radius: 20px;
+      padding: 0.4rem 1rem;
+      cursor: pointer;
+      opacity: 0;
+      animation: fade-up-in 0.4s ease-out 1s forwards;
+      transition: color 0.2s, border-color 0.2s;
+    }
+    .splash-skip:hover { color: rgba(255,255,255,0.7); border-color: rgba(79,172,254,0.4); }
+
+    /* Exit animation */
+    #splash.exiting {
+      animation: splash-exit 0.6s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+    }
+    @keyframes splash-exit {
+      0%   { opacity: 1; transform: scale(1); }
+      40%  { opacity: 1; transform: scale(1.04); }
+      100% { opacity: 0; transform: scale(0.96); }
+    }
   </style>
 </head>
 <body>
+
+<!-- ── SPLASH SCREEN ── -->
+<div id="splash">
+  <div class="splash-ground-glow"></div>
+  <div class="splash-flash"></div>
+  <div class="splash-shockwave"></div>
+  <img class="splash-mascot" src="assets/logo.jpg" alt="Budder Buddy" />
+  <div class="splash-title">BUDDER BUDDY</div>
+  <div class="splash-tagline">Tattoo Healing, Reimagined</div>
+  <button class="splash-skip" id="splash-skip">SKIP ›</button>
+</div>
 
 <div id="grain"></div>
 <div id="cursor-glow"></div>
@@ -1195,8 +1456,14 @@
     <a href="for-artists.html" style="color:var(--muted);text-decoration:none;font-size:0.78rem;letter-spacing:0.04em;transition:color 0.2s;" onmouseover="this.style.color='#f0f0f0'" onmouseout="this.style.color='#555'">For Artists</a>
     <a href="/blog/" style="color:var(--muted);text-decoration:none;font-size:0.78rem;letter-spacing:0.04em;transition:color 0.2s;" onmouseover="this.style.color='#f0f0f0'" onmouseout="this.style.color='#555'">Blog</a>
     <a href="#signup" style="color:var(--muted);text-decoration:none;font-size:0.78rem;letter-spacing:0.04em;transition:color 0.2s;" onmouseover="this.style.color='#f0f0f0'" onmouseout="this.style.color='#555'">Get Early Access</a>
+    <a href="support.html" style="color:var(--muted);text-decoration:none;font-size:0.78rem;letter-spacing:0.04em;transition:color 0.2s;" onmouseover="this.style.color='#f0f0f0'" onmouseout="this.style.color='#555'">Support</a>
   </nav>
   <p>Your Tattoo Aftercare Companion</p>
+  <p style="margin-top:10px;font-size:0.72rem;display:flex;gap:1.5rem;justify-content:center;flex-wrap:wrap;">
+    <a href="privacy.html" style="color:var(--muted);text-decoration:none;transition:color 0.2s;" onmouseover="this.style.color='#4facfe'" onmouseout="this.style.color='#555'">Privacy Policy</a>
+    <a href="terms.html" style="color:var(--muted);text-decoration:none;transition:color 0.2s;" onmouseover="this.style.color='#4facfe'" onmouseout="this.style.color='#555'">Terms of Service</a>
+    <a href="support.html" style="color:var(--muted);text-decoration:none;transition:color 0.2s;" onmouseover="this.style.color='#4facfe'" onmouseout="this.style.color='#555'">Support</a>
+  </p>
   <p style="margin-top:6px;font-size:0.72rem;">© 2026 Budder Buddy. All rights reserved.</p>
 </footer>
 
@@ -1487,6 +1754,34 @@ void main(){
     else { cancelAnimationFrame(raf); raf = null; }
   }, { threshold: 0 });
   observer.observe(canvas.closest('section'));
+})();
+</script>
+
+<script>
+// ── Splash Screen ─────────────────────────────────────────────────────────────
+(function () {
+  const splash = document.getElementById('splash');
+  const skipBtn = document.getElementById('splash-skip');
+
+  // Skip if already seen this session
+  if (sessionStorage.getItem('bb_splash_seen')) {
+    splash.classList.add('hidden');
+    return;
+  }
+
+  function dismiss() {
+    sessionStorage.setItem('bb_splash_seen', '1');
+    splash.classList.add('exiting');
+    splash.addEventListener('animationend', () => splash.classList.add('hidden'), { once: true });
+  }
+
+  // Auto-dismiss after full animation sequence (~3.6s)
+  const autoTimer = setTimeout(dismiss, 3600);
+
+  skipBtn.addEventListener('click', () => {
+    clearTimeout(autoTimer);
+    dismiss();
+  });
 })();
 </script>
 

@@ -1,0 +1,458 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Terms of Service — Budder Buddy</title>
+  <link rel="canonical" href="https://budderbuddy.org/terms" />
+  <meta name="description" content="Budder Buddy Terms of Service — the rules and agreements for using the app." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;700;800;900&family=Nunito:ital,wght@0,400;0,600;0,700;0,800;1,700&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --black:    #080808;
+      --dark:     #0d0d0d;
+      --dark2:    #121212;
+      --card:     rgba(14,14,14,0.9);
+      --blue:     #4facfe;
+      --blue-dim: rgba(79,172,254,0.12);
+      --blue-glow:rgba(79,172,254,0.35);
+      --gold:     #f5a623;
+      --gold-dim: rgba(245,166,35,0.12);
+      --gold-glow:rgba(245,166,35,0.35);
+      --white:    #f0f0f0;
+      --muted:    #888;
+      --border:   rgba(255,255,255,0.07);
+      --font-display: 'Orbitron', monospace;
+      --font:     'Nunito', sans-serif;
+    }
+
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: var(--font);
+      background: var(--black);
+      color: var(--white);
+      line-height: 1.7;
+      overflow-x: hidden;
+    }
+
+    @keyframes metal-flow {
+      0%   { background-position: 0%   50%; }
+      50%  { background-position: 100% 50%; }
+      100% { background-position: 0%   50%; }
+    }
+
+    .lm-gold {
+      background: linear-gradient(110deg,
+        #1a0d00 0%, #3d2000 12%, #7a4500 22%,
+        #c47a00 32%, #f5a623 42%, #fde68a 50%,
+        #f5a623 58%, #c47a00 68%,
+        #7a4500 78%, #3d2000 88%, #1a0d00 100%
+      );
+      background-size: 220% 220%;
+      animation: metal-flow 5s ease-in-out infinite reverse;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 1rem 2rem;
+      background: rgba(8,8,8,0.85);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+    }
+    .nav-logo {
+      font-family: var(--font-display);
+      font-size: 1.1rem; font-weight: 700;
+      background: linear-gradient(90deg, var(--blue), var(--gold));
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+      background-clip: text;
+      text-decoration: none;
+    }
+    .nav-back {
+      font-family: var(--font);
+      font-size: .85rem; color: var(--muted);
+      text-decoration: none;
+      transition: color .2s;
+    }
+    .nav-back:hover { color: var(--gold); }
+
+    /* ── HERO ── */
+    .hero {
+      padding: 7rem 2rem 3rem;
+      text-align: center;
+    }
+    .hero-badge {
+      display: inline-block;
+      font-family: var(--font-display);
+      font-size: .65rem; letter-spacing: .15em; font-weight: 700;
+      color: var(--gold);
+      border: 1px solid rgba(245,166,35,0.3);
+      padding: .3rem .9rem; border-radius: 2rem;
+      margin-bottom: 1.2rem;
+    }
+    .hero h1 {
+      font-family: var(--font-display);
+      font-size: clamp(1.8rem, 4vw, 3rem);
+      font-weight: 800;
+      margin-bottom: .6rem;
+    }
+    .hero p {
+      color: var(--muted);
+      font-size: .95rem;
+    }
+
+    /* ── CONTENT ── */
+    .content {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 2rem 2rem 6rem;
+    }
+
+    .toc {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 1rem;
+      padding: 1.5rem 2rem;
+      margin-bottom: 2.5rem;
+    }
+    .toc h3 {
+      font-family: var(--font-display);
+      font-size: .75rem; letter-spacing: .1em;
+      color: var(--gold);
+      margin-bottom: 1rem;
+    }
+    .toc ol {
+      padding-left: 1.2rem;
+      color: var(--muted);
+      font-size: .9rem;
+    }
+    .toc ol li { margin-bottom: .3rem; }
+    .toc ol li a { color: var(--gold); text-decoration: none; }
+    .toc ol li a:hover { text-decoration: underline; }
+
+    .section {
+      margin-bottom: 2.5rem;
+      scroll-margin-top: 5rem;
+    }
+    .section h2 {
+      font-family: var(--font-display);
+      font-size: 1rem; font-weight: 700;
+      color: var(--gold);
+      letter-spacing: .05em;
+      margin-bottom: .9rem;
+      padding-bottom: .5rem;
+      border-bottom: 1px solid var(--border);
+    }
+    .section p { color: #ccc; margin-bottom: .8rem; font-size: .95rem; }
+    .section ul, .section ol {
+      color: #ccc; font-size: .95rem;
+      padding-left: 1.4rem;
+      margin-bottom: .8rem;
+    }
+    .section ul li, .section ol li { margin-bottom: .4rem; }
+
+    .callout {
+      background: var(--gold-dim);
+      border: 1px solid rgba(245,166,35,0.2);
+      border-radius: .75rem;
+      padding: 1rem 1.25rem;
+      margin: 1rem 0;
+      font-size: .9rem;
+      color: #ccc;
+    }
+    .callout-blue {
+      background: var(--blue-dim);
+      border-color: rgba(79,172,254,0.2);
+    }
+    .callout strong { color: var(--gold); }
+    .callout-blue strong { color: var(--blue); }
+
+    strong { color: var(--white); }
+
+    /* ── FOOTER ── */
+    footer {
+      text-align: center;
+      padding: 2rem;
+      color: var(--muted);
+      font-size: .8rem;
+      border-top: 1px solid var(--border);
+    }
+    footer a { color: var(--gold); text-decoration: none; }
+    footer a:hover { text-decoration: underline; }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <a href="/" class="nav-logo">Budder Buddy</a>
+    <a href="/" class="nav-back">← Back to Home</a>
+  </nav>
+
+  <div class="hero">
+    <div class="hero-badge">Legal</div>
+    <h1><span class="lm-gold">Terms of Service</span></h1>
+    <p>Last updated: March 28, 2026 &nbsp;|&nbsp; Effective: March 28, 2026</p>
+  </div>
+
+  <div class="content">
+
+    <div class="callout">
+      <strong>Plain-English Summary:</strong> Use Budder Buddy responsibly, keep your account secure, and don't misuse the app. The AI guidance is informational — not medical advice. Your content is yours. We can suspend accounts that violate these terms.
+    </div>
+
+    <div class="toc">
+      <h3>TABLE OF CONTENTS</h3>
+      <ol>
+        <li><a href="#t1">Agreement to Terms</a></li>
+        <li><a href="#t2">Eligibility</a></li>
+        <li><a href="#t3">Account Registration</a></li>
+        <li><a href="#t4">The Service</a></li>
+        <li><a href="#t5">Medical Disclaimer</a></li>
+        <li><a href="#t6">User Content</a></li>
+        <li><a href="#t7">Acceptable Use</a></li>
+        <li><a href="#t8">Subscriptions &amp; Payments</a></li>
+        <li><a href="#t9">Intellectual Property</a></li>
+        <li><a href="#t10">Third-Party Services</a></li>
+        <li><a href="#t11">Privacy</a></li>
+        <li><a href="#t12">Disclaimers</a></li>
+        <li><a href="#t13">Limitation of Liability</a></li>
+        <li><a href="#t14">Indemnification</a></li>
+        <li><a href="#t15">Termination</a></li>
+        <li><a href="#t16">Dispute Resolution &amp; Arbitration</a></li>
+        <li><a href="#t17">Governing Law</a></li>
+        <li><a href="#t18">Changes to Terms</a></li>
+        <li><a href="#t19">Contact</a></li>
+      </ol>
+    </div>
+
+    <div class="section" id="t1">
+      <h2>1. Agreement to Terms</h2>
+      <p>These Terms of Service ("Terms") constitute a legally binding agreement between you ("User," "you," or "your") and Budder Buddy / DreamOps ("Company," "we," "us," or "our") governing your access to and use of the Budder Buddy mobile application, website at <strong>budderbuddy.org</strong>, and any related services (collectively, the "Service").</p>
+      <p><strong>By downloading, installing, or using the Service, you confirm that you have read, understood, and agree to be bound by these Terms and our Privacy Policy.</strong> If you do not agree, do not use the Service.</p>
+    </div>
+
+    <div class="section" id="t2">
+      <h2>2. Eligibility</h2>
+      <p>You must be at least <strong>13 years of age</strong> to use the Service. By using the Service, you represent and warrant that:</p>
+      <ul>
+        <li>You are at least 13 years old (or 16 years old where required by applicable law).</li>
+        <li>If you are between 13 and 17, you have obtained parental or legal guardian consent.</li>
+        <li>You have the legal capacity to enter into a binding agreement.</li>
+        <li>Your use of the Service does not violate any applicable laws or regulations in your jurisdiction.</li>
+      </ul>
+      <p>We reserve the right to restrict or terminate access for users who do not meet eligibility requirements.</p>
+    </div>
+
+    <div class="section" id="t3">
+      <h2>3. Account Registration</h2>
+      <p>Certain features of the Service require you to create an account. When creating an account, you agree to:</p>
+      <ul>
+        <li>Provide accurate, current, and complete information.</li>
+        <li>Maintain and promptly update your account information.</li>
+        <li>Keep your password confidential and not share your account credentials.</li>
+        <li>Accept responsibility for all activities that occur under your account.</li>
+        <li>Notify us immediately at <strong>support@budderbuddy.org</strong> if you suspect unauthorized access to your account.</li>
+      </ul>
+      <p>You may not create accounts using automated means, create accounts on behalf of others without authorization, or use another person's account without permission.</p>
+    </div>
+
+    <div class="section" id="t4">
+      <h2>4. The Service</h2>
+      <p>Budder Buddy provides a tattoo healing tracking application that includes the following features (current and planned):</p>
+      <ul>
+        <li><strong>Ghost Camera Check-Ins</strong> — Camera-assisted daily photo capture with overlay alignment tool.</li>
+        <li><strong>Healing Timeline</strong> — Day-by-day tracker logging healing stages, observations, and ratings.</li>
+        <li><strong>UV Index Alerts</strong> — Location-based UV alerts to help protect healing tattoos from sun damage.</li>
+        <li><strong>Smart Reminders</strong> — Customizable push notification reminders for aftercare routines.</li>
+        <li><strong>Timelapse Download</strong> — Auto-generated timelapse video compiled from your check-in photos.</li>
+        <li><strong>AI Healing Guide</strong> — AI-powered aftercare suggestions and healing insights based on your data.</li>
+        <li><strong>Ink Vault</strong> — Secure personal archive of your tattoos, photos, and healing history.</li>
+        <li><strong>Artist Portal (Future)</strong> — Tools for tattoo artists to send aftercare instructions to clients.</li>
+        <li><strong>Community Features (Future)</strong> — Optional sharing of healing journeys with other users.</li>
+        <li><strong>Premium Subscription (Future)</strong> — Enhanced features available via paid subscription.</li>
+      </ul>
+      <p>We reserve the right to modify, suspend, or discontinue any part of the Service at any time with or without notice, and we will not be liable for any such modifications.</p>
+    </div>
+
+    <div class="section" id="t5">
+      <h2>5. Medical Disclaimer</h2>
+      <div class="callout callout-blue">
+        <strong>Important:</strong> Budder Buddy is NOT a medical application. The information provided, including AI-generated healing guidance, is for informational and educational purposes only. It does not constitute professional medical advice, diagnosis, or treatment.
+      </div>
+      <p>Specifically:</p>
+      <ul>
+        <li>Always follow the aftercare instructions provided by your licensed tattoo artist.</li>
+        <li>If you experience signs of infection (excessive redness, swelling, discharge, fever, or prolonged pain), consult a licensed healthcare provider immediately.</li>
+        <li>UV alerts are informational guidance only — consult sun safety guidelines and your tattoo artist for specific recommendations.</li>
+        <li>We do not guarantee the accuracy, completeness, or timeliness of AI healing guidance.</li>
+        <li>Individual healing varies significantly based on skin type, tattoo placement, size, technique, and personal health factors.</li>
+      </ul>
+      <p>Never disregard professional medical advice or delay seeking it because of information you received from Budder Buddy.</p>
+    </div>
+
+    <div class="section" id="t6">
+      <h2>6. User Content</h2>
+      <p><strong>Ownership:</strong> You retain all ownership rights to the content you create, upload, or share through the Service ("User Content"), including photos, notes, and observations.</p>
+      <p><strong>License to us:</strong> By uploading User Content, you grant Budder Buddy a limited, non-exclusive, royalty-free, worldwide license to store, process, and display your User Content solely as necessary to provide and improve the Service. This license does not grant us the right to sell, publicly display, or commercially exploit your User Content without your explicit consent.</p>
+      <p><strong>Your responsibilities:</strong> You represent and warrant that:</p>
+      <ul>
+        <li>You own or have the right to upload all User Content.</li>
+        <li>Your User Content does not infringe the intellectual property rights of any third party.</li>
+        <li>Your User Content does not contain illegal material, including child sexual abuse material (CSAM).</li>
+        <li>You have the consent of any identifiable individuals in photos you upload.</li>
+      </ul>
+      <p>We reserve the right to remove User Content that violates these Terms without prior notice.</p>
+    </div>
+
+    <div class="section" id="t7">
+      <h2>7. Acceptable Use</h2>
+      <p>You agree not to use the Service to:</p>
+      <ul>
+        <li>Violate any applicable local, state, national, or international law or regulation.</li>
+        <li>Transmit any content that is defamatory, obscene, offensive, hateful, or otherwise objectionable.</li>
+        <li>Impersonate any person or entity or misrepresent your affiliation with any person or entity.</li>
+        <li>Upload or transmit viruses, malware, or any other malicious code.</li>
+        <li>Attempt to gain unauthorized access to any part of the Service or its related systems.</li>
+        <li>Use automated tools (bots, scrapers, crawlers) to access or collect data from the Service.</li>
+        <li>Reverse engineer, decompile, or disassemble the application or any portion of it.</li>
+        <li>Use the Service to spam, phish, or harass other users (for future community features).</li>
+        <li>Interfere with or disrupt the integrity or performance of the Service.</li>
+        <li>Circumvent any content filtering or access control measures.</li>
+      </ul>
+      <p>Violation of these acceptable use terms may result in immediate account suspension or termination.</p>
+    </div>
+
+    <div class="section" id="t8">
+      <h2>8. Subscriptions &amp; Payments</h2>
+      <p>Budder Buddy currently offers free access during its early adopter period. Paid subscription plans may be introduced in the future. When subscription features are launched:</p>
+      <ul>
+        <li><strong>Billing</strong> — subscriptions will be billed on a recurring basis (monthly or annual) through the applicable app store (Apple App Store or Google Play) or our payment processor. All charges are in USD unless otherwise stated.</li>
+        <li><strong>Free trials</strong> — if a free trial is offered, it will automatically convert to a paid subscription at the end of the trial period unless cancelled.</li>
+        <li><strong>Cancellation</strong> — you may cancel your subscription at any time through your app store account settings. Cancellation takes effect at the end of the current billing period; no partial refunds are issued for unused time.</li>
+        <li><strong>Refunds</strong> — all purchases are final unless required otherwise by applicable law or the policies of the applicable app store. Refund requests for exceptional circumstances can be directed to <strong>support@budderbuddy.org</strong>.</li>
+        <li><strong>Price changes</strong> — we will provide at least 30 days' notice before any subscription price increase. Your continued use after the price change constitutes acceptance of the new price.</li>
+        <li><strong>In-app purchases</strong> — one-time in-app purchases (e.g., unlocking specific features) are non-refundable once delivered.</li>
+        <li><strong>Taxes</strong> — you are responsible for any applicable taxes on your purchases.</li>
+      </ul>
+      <p>For Apple App Store purchases, Apple's purchase terms also apply. For Google Play purchases, Google's terms also apply.</p>
+    </div>
+
+    <div class="section" id="t9">
+      <h2>9. Intellectual Property</h2>
+      <p><strong>Our IP:</strong> The Service, including its design, graphics, code, trademarks, logos, and content created by us (the "Budder Buddy IP"), is owned by or licensed to Budder Buddy / DreamOps and is protected by copyright, trademark, and other intellectual property laws. You may not copy, modify, distribute, sell, or lease any part of the Budder Buddy IP without our prior written consent.</p>
+      <p><strong>Limited license to you:</strong> We grant you a personal, non-exclusive, non-transferable, revocable, limited license to download and use the app on your personal device(s) solely for your personal, non-commercial use, subject to these Terms.</p>
+      <p><strong>Feedback:</strong> If you provide us with feedback, suggestions, or ideas regarding the Service ("Feedback"), you grant us an irrevocable, perpetual, royalty-free license to use, modify, and incorporate that Feedback into the Service without any obligation to you.</p>
+    </div>
+
+    <div class="section" id="t10">
+      <h2>10. Third-Party Services</h2>
+      <p>The Service may contain links to or integrations with third-party websites, services, or applications. These third-party services are governed by their own terms and privacy policies. We do not endorse, control, or assume responsibility for any third-party services. Your use of third-party services is at your own risk.</p>
+      <p>App store distribution is subject to the terms of Apple Inc. (App Store) and Google LLC (Google Play). These Terms are between you and Budder Buddy only, not Apple or Google.</p>
+    </div>
+
+    <div class="section" id="t11">
+      <h2>11. Privacy</h2>
+      <p>Our collection and use of your personal information is governed by our <a href="/privacy" style="color: var(--gold);">Privacy Policy</a>, which is incorporated into these Terms by reference. By using the Service, you consent to our collection and use of data as described in the Privacy Policy.</p>
+    </div>
+
+    <div class="section" id="t12">
+      <h2>12. Disclaimers</h2>
+      <p>THE SERVICE IS PROVIDED ON AN "AS IS" AND "AS AVAILABLE" BASIS WITHOUT WARRANTIES OF ANY KIND, EITHER EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO:</p>
+      <ul>
+        <li>Warranties of merchantability, fitness for a particular purpose, or non-infringement.</li>
+        <li>That the Service will be uninterrupted, error-free, or free of viruses.</li>
+        <li>The accuracy or reliability of any AI-generated healing guidance.</li>
+        <li>That UV alerts will be accurate, timely, or appropriate for your specific situation.</li>
+        <li>That timelapse generation will always produce usable output.</li>
+      </ul>
+      <p>Some jurisdictions do not allow the exclusion of implied warranties, so some of the above exclusions may not apply to you.</p>
+    </div>
+
+    <div class="section" id="t13">
+      <h2>13. Limitation of Liability</h2>
+      <p>TO THE FULLEST EXTENT PERMITTED BY APPLICABLE LAW, BUDDER BUDDY AND ITS OFFICERS, DIRECTORS, EMPLOYEES, AGENTS, AND PARTNERS SHALL NOT BE LIABLE FOR ANY INDIRECT, INCIDENTAL, SPECIAL, CONSEQUENTIAL, PUNITIVE, OR EXEMPLARY DAMAGES, INCLUDING BUT NOT LIMITED TO:</p>
+      <ul>
+        <li>Loss of data or User Content.</li>
+        <li>Physical harm resulting from reliance on AI healing guidance or UV alerts.</li>
+        <li>Costs of substitute services.</li>
+        <li>Loss of profits or goodwill.</li>
+      </ul>
+      <p>IN NO EVENT SHALL OUR TOTAL LIABILITY TO YOU FOR ALL CLAIMS ARISING FROM YOUR USE OF THE SERVICE EXCEED THE GREATER OF: (A) THE AMOUNT YOU PAID US IN THE TWELVE (12) MONTHS PRECEDING THE CLAIM, OR (B) ONE HUNDRED U.S. DOLLARS ($100.00).</p>
+      <p>Some jurisdictions do not allow certain liability limitations, so some of the above may not apply to you.</p>
+    </div>
+
+    <div class="section" id="t14">
+      <h2>14. Indemnification</h2>
+      <p>You agree to indemnify, defend, and hold harmless Budder Buddy, DreamOps, and their officers, directors, employees, and agents from and against any claims, liabilities, damages, losses, costs, and expenses (including reasonable legal fees) arising out of or in connection with:</p>
+      <ul>
+        <li>Your violation of these Terms.</li>
+        <li>Your User Content.</li>
+        <li>Your use of the Service in a manner not authorized by these Terms.</li>
+        <li>Your violation of any third party's rights.</li>
+      </ul>
+    </div>
+
+    <div class="section" id="t15">
+      <h2>15. Termination</h2>
+      <p><strong>By you:</strong> You may stop using the Service at any time. To delete your account, use the in-app account deletion feature or contact us at <strong>support@budderbuddy.org</strong>.</p>
+      <p><strong>By us:</strong> We may suspend or terminate your account and access to the Service at any time, with or without cause or notice, if we believe you have violated these Terms, engaged in fraudulent activity, or for any other reason at our discretion. Upon termination:</p>
+      <ul>
+        <li>Your right to use the Service ceases immediately.</li>
+        <li>We may (but are not obligated to) delete your account data in accordance with our Privacy Policy.</li>
+        <li>Provisions of these Terms that by their nature should survive (including disclaimers, limitations of liability, and dispute resolution) will continue to apply.</li>
+      </ul>
+    </div>
+
+    <div class="section" id="t16">
+      <h2>16. Dispute Resolution &amp; Arbitration</h2>
+      <p><strong>Informal resolution:</strong> Before filing any formal legal claim, you agree to first attempt to resolve the dispute informally by contacting us at <strong>legal@budderbuddy.org</strong> and giving us 30 days to respond.</p>
+      <p><strong>Binding arbitration:</strong> If informal resolution fails, you and Budder Buddy agree that any dispute, claim, or controversy arising from or relating to these Terms or the Service will be resolved by binding individual arbitration administered by the American Arbitration Association (AAA) under its Consumer Arbitration Rules, except as otherwise provided herein. Arbitration will take place in the state of your residence or via video conference.</p>
+      <p><strong>Class action waiver:</strong> YOU AND BUDDER BUDDY AGREE THAT EACH MAY BRING CLAIMS AGAINST THE OTHER ONLY IN YOUR OR ITS INDIVIDUAL CAPACITY AND NOT AS A PLAINTIFF OR CLASS MEMBER IN ANY PURPORTED CLASS OR REPRESENTATIVE ACTION.</p>
+      <p><strong>Exceptions:</strong> Either party may bring an individual claim in small claims court. Either party may seek emergency injunctive relief in a court of competent jurisdiction to prevent irreparable harm.</p>
+      <p><strong>EU/EEA Users:</strong> If you are located in the EU or EEA, you may have the right to submit a complaint to your local data protection authority or consumer protection authority. The above arbitration clause does not limit any rights you may have under EU law.</p>
+    </div>
+
+    <div class="section" id="t17">
+      <h2>17. Governing Law</h2>
+      <p>These Terms and your use of the Service shall be governed by and construed in accordance with the laws of the United States and the state in which Budder Buddy operates, without regard to its conflict of law principles. For users in the EU or EEA, mandatory consumer protection laws of your country of residence may also apply.</p>
+    </div>
+
+    <div class="section" id="t18">
+      <h2>18. Changes to Terms</h2>
+      <p>We reserve the right to modify these Terms at any time. When we make material changes, we will:</p>
+      <ul>
+        <li>Update the "Last updated" date at the top of this page.</li>
+        <li>Notify you via in-app notification or email (if you have an account).</li>
+        <li>Where required by law, obtain your renewed consent before changes take effect.</li>
+      </ul>
+      <p>Your continued use of the Service after any modifications to these Terms constitutes your acceptance of the updated Terms. If you do not agree to the modified Terms, you must stop using the Service and delete your account.</p>
+    </div>
+
+    <div class="section" id="t19">
+      <h2>19. Contact</h2>
+      <p>For questions about these Terms, please contact us:</p>
+      <ul>
+        <li><strong>General &amp; Support:</strong> support@budderbuddy.org</li>
+        <li><strong>Legal &amp; Disputes:</strong> legal@budderbuddy.org</li>
+        <li><strong>Privacy:</strong> privacy@budderbuddy.org</li>
+        <li><strong>Website:</strong> budderbuddy.org</li>
+      </ul>
+      <p>These Terms were written to be clear and fair. If something is confusing or you have a concern, reach out — we're a small team and we genuinely want to hear from you.</p>
+    </div>
+
+  </div>
+
+  <footer>
+    <p>&copy; 2026 Budder Buddy. All rights reserved. &nbsp;|&nbsp; <a href="/terms">Terms of Service</a> &nbsp;|&nbsp; <a href="/privacy">Privacy Policy</a> &nbsp;|&nbsp; <a href="/">Home</a></p>
+  </footer>
+
+</body>
+</html>

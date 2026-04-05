@@ -264,10 +264,59 @@
 
       document.title = post.title + ' — Budder Buddy Blog';
 
-      // Add OG meta dynamically
+      const postUrl = `https://budderbuddy.org/blog/post.html?slug=${encodeURIComponent(post.slug)}`;
+
+      // Meta: description
       const metaDesc = document.createElement('meta');
       metaDesc.name = 'description'; metaDesc.content = post.excerpt;
       document.head.appendChild(metaDesc);
+
+      // Meta: canonical
+      const canonical = document.createElement('link');
+      canonical.rel = 'canonical'; canonical.href = postUrl;
+      document.head.appendChild(canonical);
+
+      // Meta: Open Graph
+      [
+        ['property', 'og:title',       post.title + ' — Budder Buddy Blog'],
+        ['property', 'og:description', post.excerpt],
+        ['property', 'og:url',         postUrl],
+        ['property', 'og:type',        'article'],
+        ['property', 'og:image',       'https://budderbuddy.org/assets/budder-buddy.jpeg'],
+      ].forEach(([attr, name, val]) => {
+        const m = document.createElement('meta');
+        m.setAttribute(attr, name); m.content = val;
+        document.head.appendChild(m);
+      });
+
+      // Meta: Twitter Card
+      [
+        ['twitter:card',        'summary_large_image'],
+        ['twitter:title',       post.title + ' — Budder Buddy Blog'],
+        ['twitter:description', post.excerpt],
+        ['twitter:image',       'https://budderbuddy.org/assets/budder-buddy.jpeg'],
+      ].forEach(([name, val]) => {
+        const m = document.createElement('meta');
+        m.name = name; m.content = val;
+        document.head.appendChild(m);
+      });
+
+      // Schema: BlogPosting (JSON-LD)
+      const schema = document.createElement('script');
+      schema.type = 'application/ld+json';
+      schema.textContent = JSON.stringify({
+        '@context': 'https://schema.org',
+        '@type': 'BlogPosting',
+        'headline': post.title,
+        'description': post.excerpt,
+        'url': postUrl,
+        'datePublished': post.date,
+        'author': { '@type': 'Organization', 'name': post.author || 'Budder Buddy' },
+        'publisher': { '@type': 'Organization', 'name': 'Budder Buddy', 'url': 'https://budderbuddy.org' },
+        'mainEntityOfPage': postUrl,
+        'keywords': (post.tags || []).join(', ')
+      });
+      document.head.appendChild(schema);
 
       const h2Class = 'lm-blue';
 

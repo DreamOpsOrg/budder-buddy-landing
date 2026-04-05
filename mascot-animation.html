@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Budder Buddy — Mascot Animation</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      background: #0a0a1a;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      overflow: hidden;
+      font-family: sans-serif;
+    }
+
+    /* ── Scene ── */
+    .scene {
+      position: relative;
+      width: 500px;
+      height: 500px;
+      display: flex;
+      align-items: flex-end;
+      justify-content: center;
+    }
+
+    /* ── Character ── */
+    .mascot-wrap {
+      position: absolute;
+      bottom: 0;
+      left: 50%;
+      transform: translateX(-50%) scale(0.04);
+      transform-origin: bottom center;
+      animation: runIn 1.6s cubic-bezier(0.22, 1, 0.36, 1) 0.4s forwards;
+    }
+
+    .mascot-wrap img {
+      width: 320px;
+      display: block;
+      filter: drop-shadow(0 0 18px #3af) drop-shadow(0 0 40px #06f);
+    }
+
+    /* Running bob applied to the image itself */
+    .mascot-wrap img {
+      animation: bob 0.18s ease-in-out infinite;
+      animation-play-state: running;
+    }
+
+    /* ── iPhone ── */
+    .iphone {
+      position: absolute;
+      right: -30px;
+      top: 30px;
+      width: 54px;
+      opacity: 0;
+      transform: rotate(-15deg) scale(0.6);
+      animation: phoneAppear 0.4s ease-out 2.6s forwards;
+    }
+
+    /* ── Flash overlay ── */
+    .flash {
+      position: fixed;
+      inset: 0;
+      background: white;
+      opacity: 0;
+      pointer-events: none;
+      animation: cameraFlash 0.5s ease-out 3.2s forwards;
+      z-index: 10;
+    }
+
+    /* ── Polaroid ── */
+    .polaroid {
+      position: absolute;
+      top: -120px;
+      left: 50%;
+      transform: translateX(-50%) rotate(-5deg) scale(0);
+      transform-origin: bottom center;
+      background: white;
+      padding: 10px 10px 30px;
+      box-shadow: 0 8px 30px rgba(0,0,0,0.6);
+      opacity: 0;
+      animation: polaroidPop 0.5s cubic-bezier(0.34, 1.56, 0.64, 1) 3.55s forwards;
+      z-index: 5;
+    }
+
+    .polaroid img {
+      width: 140px;
+      height: 140px;
+      object-fit: cover;
+      display: block;
+    }
+
+    .polaroid .caption {
+      text-align: center;
+      font-size: 11px;
+      color: #333;
+      margin-top: 6px;
+      font-family: 'Courier New', monospace;
+    }
+
+    /* ── Screen crack lines (bump impact) ── */
+    .crack {
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      opacity: 0;
+      z-index: 8;
+      animation: crackFlash 0.25s ease-out 2.05s forwards;
+    }
+
+    .crack svg {
+      width: 100%;
+      height: 100%;
+    }
+
+    /* ── Replay button ── */
+    .replay {
+      position: fixed;
+      bottom: 24px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: #3af;
+      color: #000;
+      border: none;
+      padding: 10px 24px;
+      border-radius: 20px;
+      font-size: 14px;
+      font-weight: bold;
+      cursor: pointer;
+      opacity: 0;
+      animation: fadeInBtn 0.4s ease 4.2s forwards;
+      z-index: 20;
+    }
+
+    /* ══════════════════════════════
+       KEYFRAMES
+    ══════════════════════════════ */
+
+    /* Run from far → overshoot → settle */
+    @keyframes runIn {
+      0%   { transform: translateX(-50%) scale(0.04) translateY(0); }
+      70%  { transform: translateX(-50%) scale(1.25) translateY(-10px); }
+      78%  { transform: translateX(-50%) scale(1.35) translateY(-5px); }   /* BUMP */
+      84%  { transform: translateX(-50%) scale(1.05) translateY(2px); }    /* rebound */
+      90%  { transform: translateX(-50%) scale(1.12) translateY(-2px); }
+      100% { transform: translateX(-50%) scale(1.1) translateY(0); }
+    }
+
+    /* Screen shake on bump */
+    @keyframes shake {
+      0%,100% { transform: translate(0,0); }
+      20%  { transform: translate(-8px, -4px); }
+      40%  { transform: translate(8px, 4px); }
+      60%  { transform: translate(-5px, 3px); }
+      80%  { transform: translate(5px, -3px); }
+    }
+
+    /* Running bounce */
+    @keyframes bob {
+      0%,100% { transform: translateY(0); }
+      50%     { transform: translateY(-6px); }
+    }
+
+    /* iPhone rises into hand */
+    @keyframes phoneAppear {
+      to {
+        opacity: 1;
+        transform: rotate(-10deg) scale(1);
+      }
+    }
+
+    /* White camera flash */
+    @keyframes cameraFlash {
+      0%   { opacity: 0; }
+      15%  { opacity: 0.95; }
+      100% { opacity: 0; }
+    }
+
+    /* Polaroid snaps in */
+    @keyframes polaroidPop {
+      to {
+        opacity: 1;
+        transform: translateX(-50%) rotate(-5deg) scale(1);
+      }
+    }
+
+    /* Crack lines appear briefly on impact */
+    @keyframes crackFlash {
+      0%   { opacity: 0; }
+      30%  { opacity: 0.7; }
+      100% { opacity: 0; }
+    }
+
+    @keyframes fadeInBtn {
+      to { opacity: 1; }
+    }
+
+    /* Shake triggered by JS class */
+    .shaking {
+      animation: shake 0.35s ease 2.05s;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Flash overlay -->
+  <div class="flash"></div>
+
+  <div class="scene" id="scene">
+
+    <!-- Impact crack lines -->
+    <div class="crack">
+      <svg viewBox="0 0 500 500" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <line x1="250" y1="250" x2="80"  y2="60"  stroke="white" stroke-width="2" opacity="0.8"/>
+        <line x1="250" y1="250" x2="420" y2="80"  stroke="white" stroke-width="1.5" opacity="0.6"/>
+        <line x1="250" y1="250" x2="30"  y2="310" stroke="white" stroke-width="1.5" opacity="0.7"/>
+        <line x1="250" y1="250" x2="470" y2="350" stroke="white" stroke-width="1"   opacity="0.5"/>
+        <line x1="250" y1="250" x2="200" y2="480" stroke="white" stroke-width="2"   opacity="0.8"/>
+        <line x1="250" y1="250" x2="350" y2="490" stroke="white" stroke-width="1"   opacity="0.4"/>
+        <!-- secondary branches -->
+        <line x1="140" y1="140" x2="60"  y2="180" stroke="white" stroke-width="1" opacity="0.4"/>
+        <line x1="380" y1="160" x2="460" y2="200" stroke="white" stroke-width="1" opacity="0.4"/>
+      </svg>
+    </div>
+
+    <!-- Character -->
+    <div class="mascot-wrap" id="mascot">
+      <img src="assets/budder-buddy.jpeg"
+           id="mascotImg"
+           alt="Budder Buddy" />
+
+      <!-- iPhone in character's hand area -->
+      <div class="iphone">
+        <svg viewBox="0 0 54 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <!-- phone body -->
+          <rect x="2" y="2" width="50" height="96" rx="8" fill="#1a1a1a" stroke="#555" stroke-width="1.5"/>
+          <!-- screen -->
+          <rect x="5" y="10" width="44" height="72" rx="3" fill="#222"/>
+          <!-- camera app icon on screen -->
+          <circle cx="27" cy="46" r="12" fill="#333" stroke="#555" stroke-width="1"/>
+          <circle cx="27" cy="46" r="7" fill="#444"/>
+          <circle cx="27" cy="46" r="4" fill="#1a6aff" opacity="0.7"/>
+          <!-- home bar -->
+          <rect x="18" y="88" width="18" height="3" rx="1.5" fill="#555"/>
+          <!-- notch -->
+          <rect x="16" y="4" width="22" height="5" rx="2.5" fill="#111"/>
+          <!-- flash glow -->
+          <circle id="lensGlow" cx="27" cy="46" r="12" fill="white" opacity="0" />
+        </svg>
+      </div>
+    </div>
+
+    <!-- Polaroid photo result -->
+    <div class="polaroid">
+      <img src="assets/budder-buddy.jpeg" alt="selfie" />
+      <div class="caption">📸 got u</div>
+    </div>
+
+  </div>
+
+  <button class="replay" onclick="replay()">▶ Replay</button>
+
+  <script>
+    const scene   = document.getElementById('scene');
+    const mascot  = document.getElementById('mascot');
+    const lensGlow = document.getElementById('lensGlow');
+
+    // Stop bob animation after character settles
+    setTimeout(() => {
+      document.getElementById('mascotImg').style.animationPlayState = 'paused';
+    }, 2100);
+
+    // Screen shake on bump
+    setTimeout(() => {
+      scene.classList.add('shaking');
+    }, 2050);
+
+    // Lens flash glow synced to camera flash
+    setTimeout(() => {
+      lensGlow.style.transition = 'opacity 0.1s';
+      lensGlow.style.opacity = '0.9';
+      setTimeout(() => { lensGlow.style.opacity = '0'; }, 200);
+    }, 3200);
+
+    function replay() {
+      location.reload();
+    }
+  </script>
+</body>
+</html>
