@@ -17,6 +17,13 @@
   to = "/for-artists.html"
   status = 200
 
+# IndexNow key file — must come BEFORE catch-all
+[[redirects]]
+  from = "/8fe87788f75ef05a4f2f10a97640124d.txt"
+  to = "/8fe87788f75ef05a4f2f10a97640124d.txt"
+  status = 200
+  force = true
+
 # Catch-all for any unmatched paths → home
 [[redirects]]
   from = "/*"
